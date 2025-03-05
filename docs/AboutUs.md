@@ -47,12 +47,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, Integration
 * Responsibilities: In addition to developing, also in charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-### James Doe
+### Timothy Tay (tim0tay)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tim0tay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tim0tay)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
