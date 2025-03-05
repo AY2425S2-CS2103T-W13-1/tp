@@ -28,14 +28,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: unconfirmed
 
-### Johnny Doe
+### Chua Wen Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wentingchua.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wentingchua)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling and tracking: In charge of defining, assigning, and tracking project tasks.
 
 ### Jean Doe
 
