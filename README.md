@@ -42,6 +42,7 @@ Scoopbook is a lightweight **desktop application** to manage your contacts. Spec
 
 - **Example commands**: Nil
   - **Note**: Scoopbook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<br>
 
 ## Authors
 Find out more about us on our [About Us](https://ay2425s2-cs2103t-w13-1.github.io/tp/AboutUs.html) page!
