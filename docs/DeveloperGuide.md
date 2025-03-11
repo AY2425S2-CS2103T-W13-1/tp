@@ -260,15 +260,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**:  
+* has a need to manage a significant number of contacts  
+* prefers desktop apps over other types  
+* can type fast  
+* prefers typing to mouse interactions  
+* is reasonably comfortable using CLI apps  
+* requires a way to categorise and group contacts easily  
+* requires a high level of privacy  
+* contacts are stored offline  
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
 
 ### User stories
