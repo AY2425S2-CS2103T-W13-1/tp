@@ -16,6 +16,9 @@ import seedu.address.logic.commands.AddTagCommand.AddTagPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AddTagCommand object
+ */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
 
     /**
