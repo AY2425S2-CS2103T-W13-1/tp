@@ -273,18 +273,36 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
 
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a … | I want to … | So that I can… |
+|----------|--------|------------|----------------|
+| `* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App |
+| `* * *` | user | add a new contact | |
+| `* * *` | user | delete a contact | remove them if they are no longer relevant to my investigations |
+| `* * *` | user | find a person by name | locate details of persons without having to go through the entire list |
+| `* * *` | user | tag contacts by credibility (e.g. verified, unverified, anonymous) | assess reliability quickly |
+| `* * *` | user | search for a contact by tags (e.g. topic, organization) | quickly find relevant contacts |
+| `* * *` | user | access previously saved contacts | contact people that I have saved the contacts of |
+| `* * *` | user | keep my contacts locally on my device | maintain the privacy of my contacts |
+| `* * *` | user | save the home address of a contact | know where to find them if required |
+| `* *` | user | edit previously saved contacts | change contacts if they have any different information |
+| `* *` | user | hide private contact details | minimize chance of someone else seeing them by accident |
+| `* *` | user | export my saved contacts to a different device and have them read easily by the same program | transfer my files to different devices easily |
+| `*` | user | log conversation notes with each contact | keep track of all my notes and critical information in one place |
+| `*` | user | view a conversation note | refer back to previously recorded conversation note |
+| `*` | user | delete conversation notes for each contact | delete conversation notes that are no longer relevant to prevent clutter |
+| `*` | user | export my notes to a .txt / .pdf file | share information with my team |
+| `*` | user | create keyboard shortcuts for frequently used actions | work faster |
+| `*` | user | view my existing keyboard shortcuts | remind myself what keyboard shortcuts I currently have |
+| `*` | user | delete an existing keyboard shortcut | update my keyboard shortcuts if I have a change of preference |
+| `*` | user | copy important pieces of information quickly | call or email my contacts |
+| `*` | user | see when a contact was saved | keep track of when I met the contact |
+| `*` | user | set follow-up reminders | do not miss out on getting updates from my contacts |
+| `*` | user | create investigations (groups) | group related contacts together |
+| `*` | user | add a profile photo for contacts | remember their faces too |
 
 *{More to be added}*
 
