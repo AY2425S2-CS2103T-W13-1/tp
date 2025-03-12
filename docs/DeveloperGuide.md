@@ -345,8 +345,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+**OS**: Operating System. A program that manages both hardware and software on a device.
+
+**CLI**: Command Line Interface. A mechanism through which users interact with their operating system.
+
+**CLI (-based) app**: An app primarily based on the key feature of the CLI, which is text-based typing.
+
+**GUI**: Graphical User Interface. A form of user interface that allows users to interact with electronic devices through graphical icons and visual indicators.
+
+**User**: The person using ScoopBook.
+
+**Attributes**: Relevant information that a contact may have. E.g., “high priority,” “whistleblower,” or “government official.”
+
+**Investigation**: A group of contacts that share some commonality. Users can create investigations and choose who to add to or remove from them.
 
 --------------------------------------------------------------------------------------------------------------------
 
