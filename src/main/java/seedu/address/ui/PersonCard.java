@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.model.person.Address.EMPTY_ADDRESS;
+import static seedu.address.model.person.Email.EMPTY_EMAIL;
+import static seedu.address.model.person.Phone.EMPTY_PHONE;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -49,11 +53,26 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().getPhoneNumber());
+        phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
+        // Apply visibility settings for optional fields
+        updateVisibility(phone, phone.getText(), EMPTY_PHONE);
+        updateVisibility(address, address.getText(), EMPTY_ADDRESS);
+        updateVisibility(email, email.getText(), EMPTY_EMAIL);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Updates the visibility of a label based on whether the field is empty.
+     */
+    public void updateVisibility(Label label, String text, String emptyText) {
+        boolean isEmpty = text.equals(emptyText);
+        label.setVisible(!isEmpty);
+        label.setManaged(!isEmpty);
     }
 }
