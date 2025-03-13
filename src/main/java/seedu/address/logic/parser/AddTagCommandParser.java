@@ -40,6 +40,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         }
 
         AddTagPersonDescriptor addTagPersonDescriptor = new AddTagPersonDescriptor();
+        // If no tags are provided, throw an exception
         parseTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(addTagPersonDescriptor::setTags);
 
         return new AddTagCommand(index, addTagPersonDescriptor);
@@ -56,8 +57,9 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
     private Optional<Set<Tag>> parseTags(Collection<String> tags) throws ParseException {
         assert tags != null;
 
-        if (tags.isEmpty()) {
-            return Optional.empty();
+        if (tags.isEmpty() || tags.contains("")) {
+            throw new ParseException(AddTagCommand.MESSAGE_EMPTY_TAG);
+            // return Optional.empty();
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));

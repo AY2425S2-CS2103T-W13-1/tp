@@ -39,6 +39,8 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Tag added to person: %1$s";
 
+    public static final String MESSAGE_EMPTY_TAG = "Tags cannot be empty";
+
     private final Index index;
     private final AddTagPersonDescriptor addTagPersonDescriptor;
 
