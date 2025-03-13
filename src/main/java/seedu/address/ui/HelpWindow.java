@@ -1,10 +1,15 @@
 package seedu.address.ui;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -15,7 +20,7 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-w13-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -27,6 +32,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private TextArea localGuideTextArea;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +43,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        loadLocalGuide();
     }
 
     /**
@@ -98,5 +107,38 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Loads the local user guide from a text file
+     */
+    private void loadLocalGuide() {
+        String content = loadResourceFile("help/local_userguide.txt");
+        if (content != null) {
+            localGuideTextArea.setText(content);
+        } else {
+            localGuideTextArea.setText("Local user guide not found.");
+        }
+    }
+
+    /**
+     * Loads a resource file from the classpath.
+     *
+     * @param filename The filename of the resource.
+     * @return The content of the file, or null if an error occurs.
+     */
+    private String loadResourceFile(String filename) {
+        StringBuilder content = new StringBuilder();
+        try (InputStream inputStream = getClass().getResourceAsStream("/" + filename);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            return content.toString();
+        } catch (IOException | NullPointerException e) {
+            logger.warning("Error loading resource file: " + filename);
+            return null;
+        }
     }
 }

@@ -273,49 +273,501 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
 
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a … | I want to … | So that I can… |
+|----------|--------|------------|----------------|
+| `* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App |
+| `* * *` | user | add a new contact | |
+| `* * *` | user | delete a contact | remove them if they are no longer relevant to my investigations |
+| `* * *` | user | find a person by name | locate details of persons without having to go through the entire list |
+| `* * *` | user | tag contacts by credibility (e.g. verified, unverified, anonymous) | assess reliability quickly |
+| `* * *` | user | search for a contact by tags (e.g. topic, organization) | quickly find relevant contacts |
+| `* * *` | user | access previously saved contacts | contact people that I have saved the contacts of |
+| `* * *` | user | keep my contacts locally on my device | maintain the privacy of my contacts |
+| `* * *` | user | save the home address of a contact | know where to find them if required |
+| `* *` | user | edit previously saved contacts | change contacts if they have any different information |
+| `* *` | user | hide private contact details | minimize chance of someone else seeing them by accident |
+| `* *` | user | export my saved contacts to a different device and have them read easily by the same program | transfer my files to different devices easily |
+| `*` | user | log conversation notes with each contact | keep track of all my notes and critical information in one place |
+| `*` | user | view a conversation note | refer back to previously recorded conversation note |
+| `*` | user | delete conversation notes for each contact | delete conversation notes that are no longer relevant to prevent clutter |
+| `*` | user | export my notes to a .txt / .pdf file | share information with my team |
+| `*` | user | create keyboard shortcuts for frequently used actions | work faster |
+| `*` | user | view my existing keyboard shortcuts | remind myself what keyboard shortcuts I currently have |
+| `*` | user | delete an existing keyboard shortcut | update my keyboard shortcuts if I have a change of preference |
+| `*` | user | copy important pieces of information quickly | call or email my contacts |
+| `*` | user | see when a contact was saved | keep track of when I met the contact |
+| `*` | user | set follow-up reminders | do not miss out on getting updates from my contacts |
+| `*` | user | create investigations (groups) | group related contacts together |
+| `*` | user | add a profile photo for contacts | remember their faces too |
 
 *{More to be added}*
 
-### Use cases
+### Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
+**Use case: Ask for help - UC1**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User asks for help regarding instructions.
+2. ScoopBook directs User to a website with detailed instructions for each functionality.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: Add a contact - UC2**
+
+**MSS**
+
+1. User requests to add a contact with information into the list.
+2. ScoopBook adds contact into the list.
+
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The input given by User is invalid.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: View contacts - UC3**
+
+**MSS**
+
+1. User requests to view list of contacts.
+2. ScoopBook shows a list of contacts.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Contact list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+
+**Use case: Delete a contact - UC4**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to delete a specific contact in the list.
+3. ScoopBook deletes the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid, or the input is not a number.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Edit a contact - UC5**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to edit a specific contact in the list.
+3. ScoopBook edits that contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given input is invalid.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Add tag(s) to a contact - UC6**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to add remarks to a specific contact in the list.
+3. ScoopBook adds remarks to that contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Remove tag(s) to a contact - UC7**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to remove tag(s) from a specific contact in the list.
+3. ScoopBook removes the specified tags from the specified contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid, or the input tag does not exist.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Search contact by name - UC8**
+
+**MSS**
+
+1. User requests to search for contacts based on keywords.
+2. ScoopBook displays a list of contacts whose name matches the keywords.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No contact matches with the keywords.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Search contact by tag - UC9**
+
+**MSS**
+
+1. User requests to search for contacts based on tags.
+2. ScoopBook displays a list of contacts that match the tags.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. No contact matches with the tags.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Export contacts - UC10**
+
+**MSS**
+
+1. User requests to export contacts by tag or export all.
+2. ScoopBook prompts the location to save the export file of contacts in.
+3. User confirms the save location.
+4. ScoopBook saves the relevant contacts in the export file.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User has no contacts.
+    * 1a1. ScoopBook indicates that there is nothing to export.
+
+      Use case ends.
+
+* 2a. User decides to cancel the operation.
+
+  Use case ends.
+
+
+
+**Use case: Create investigation - UC11**
+
+**MSS**
+
+1. User requests to create an investigation.
+2. ScoopBook creates the investigation.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The name of the investigation already exists.
+    * 1a1. ScoopBook informs User that there is already an investigation with the same name.
+
+      Use case ends.
+
+
+
+**Use case: Add contact to investigation - UC12**
+
+**MSS**
+
+1. User requests to add a contact to an existing investigation.
+2. ScoopBook adds the contact to the specified investigation.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The investigation specified by User does not exist.
+    * 1a1. ScoopBook informs User that no such investigation exists.
+
+      Use case ends.
+
+* 1b. The contact specified by User does not exist.
+    * 1b1. ScoopBook informs User that no such contact exists.
+
+      Use case ends.
+
+* 1c. Multiple contacts contain the keywords specified by User.
+    * 1c1. ScoopBook informs User that there are duplicates, and that the operation cannot be performed.
+
+      Use case ends.
+
+
+
+**Use case: Remove contact from investigation - UC13**
+
+**MSS**
+
+1. User requests to remove a contact from an existing investigation.
+2. ScoopBook removes the contact from the specified investigation.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The investigation specified by User does not exist.
+    * 1a1. ScoopBook informs User that no such investigation exists.
+
+      Use case ends.
+
+* 1b. The contact specified by User does not exist in the investigation.
+    * 1b1. ScoopBook informs User that no such contact exists.
+
+      Use case ends.
+
+* 1c. Multiple contacts or investigations contain the keywords specified by User.
+    * 1c1. ScoopBook informs User that there are duplicates, and that the operation cannot be performed.
+
+      Use case ends.
+
+
+
+**Use case: Log conversation notes - UC14**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to add log to a specific contact in the list.
+3. ScoopBook adds logs to a specific contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: View specific conversation note - UC15**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to view a specific conversation note from a specific contact.
+3. ScoopBook displays the specified conversation note.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given conversation note index or contact index is invalid.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Delete conversation note - UC16**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to delete a specific conversation note by index.
+3. ScoopBook deletes the conversation note.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Export note - UC17**
+
+**MSS**
+
+1. User requests to view contact (UC3).
+2. User requests to export notes by index or export all for a specific contact.
+3. ScoopBook prompts the location to save the export file of notes in.
+4. User confirms the save location.
+5. ScoopBook saves the relevant notes in the export file.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given contact index or notes indexes are invalid.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. User decides to cancel the operation.
+
+  Use case resumes at step 1.
+
+
+
+**Use case: View keyboard shortcuts - UC18**
+
+**MSS**
+
+1. User requests to view keyboard shortcuts.
+2. ScoopBook displays all actions with keyboard shortcuts with their respective shortcuts.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Keyboard shortcut list is empty.
+    * 2a1. ScoopBook displays an empty list.
+
+      Use case ends.
+
+
+
+**Use case: Create keyboard shortcuts - UC19**
+
+**MSS**
+
+1. User requests to view keyboard shortcuts (UC18).
+2. User requests to create keyboard shortcuts.
+3. ScoopBook displays available actions that can be assigned to a shortcut.
+4. User selects a specific action and specifies a key combination.
+5. ScoopBook assigns the shortcut.
+
+   Use case ends.
+
+**Extensions**
+
+* 4a. User provides an invalid action index.
+    * 4a1. ScoopBook shows an error message.
+
+      Use case resumes at step 3.
+
+* 4b. User provides an invalid or existing shortcut combination.
+    * 4b1. ScoopBook shows an error message.
+
+      Use case resumes at step 3.
+
+
+
+**Use case: Delete keyboard shortcuts - UC20**
+
+**MSS**
+
+1. User requests to view keyboard shortcuts (UC18).
+2. User requests to delete a specific keyboard shortcut in the list.
+3. ScoopBook deletes the specific keyboard shortcut.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid index.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Set follow-up reminder - UC21**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to set a follow-up reminder to specific contact.
+3. ScoopBook sets a follow-up reminder.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Delete follow-up reminder - UC22**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to delete a specific follow-up reminder to a specific contact.
+3. ScoopBook deletes the follow-up reminder.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+
+
+**Use case: Add profile photo - UC23**
+
+**MSS**
+
+1. User requests to view contacts (UC3).
+2. User requests to add a profile photo for a specific contact.
+3. ScoopBook prompts the location to access the profile photo file.
+4. User selects the profile photo.
+5. ScoopBook saves the profile photo.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User provides an invalid input.
+    * 2a1. ScoopBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. User selects an invalid file.
+    * 4a1. ScoopBook shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -327,8 +779,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+**OS**: Operating System. A program that manages both hardware and software on a device.
+
+**CLI**: Command Line Interface. A mechanism through which users interact with their operating system.
+
+**CLI (-based) app**: An app primarily based on the key feature of the CLI, which is text-based typing.
+
+**GUI**: Graphical User Interface. A form of user interface that allows users to interact with electronic devices through graphical icons and visual indicators.
+
+**User**: The person using ScoopBook.
+
+**Attributes**: Relevant information that a contact may have. E.g., “high priority,” “whistleblower,” or “government official.”
+
+**Investigation**: A group of contacts that share some commonality. Users can create investigations and choose who to add to or remove from them.
 
 --------------------------------------------------------------------------------------------------------------------
 
