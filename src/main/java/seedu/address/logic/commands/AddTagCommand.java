@@ -198,7 +198,7 @@ public class AddTagCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof AddTagCommand.AddTagPersonDescriptor)) {
                 return false;
             }
 
