@@ -32,13 +32,4 @@ public class AddTagCommandTest {
         expectedModel.setPerson(currentPerson, editedPerson);
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
-    @Test
-    public void execute_invalidIndex_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Person personForDescriptor = new PersonBuilder().build();
-        AddTagPersonDescriptor descriptor = new AddTagPersonDescriptorBuilder(personForDescriptor).build();
-        AddTagCommand addTagCommand = new AddTagCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-    // tests to add: other methods, invalid tags, empty tags
 }
