@@ -13,6 +13,7 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String EMPTY_PHONE = "000";
     public final String value;
 
     /**
@@ -31,6 +32,14 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a string representation of the phone number.
+     * If the phone number is not present, it returns "Unknown number".
+     */
+    public String getPhoneNumber() {
+        return value.equals(EMPTY_PHONE) ? "Unknown number" : value;
     }
 
     @Override
