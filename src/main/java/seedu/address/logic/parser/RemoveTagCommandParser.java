@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveTagCommand;
-import seedu.address.logic.commands.RemoveTagCommand.RemoveTagPersonDescriptor;
+import seedu.address.logic.commands.PersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 /**
@@ -34,7 +34,7 @@ public class RemoveTagCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE), pe);
         }
 
-        RemoveTagPersonDescriptor removeTagPersonDescriptor = new RemoveTagPersonDescriptor();
+        PersonDescriptor removeTagPersonDescriptor = new PersonDescriptor();
 
         parseTagsForRemoveTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removeTagPersonDescriptor::setTags);
         return new RemoveTagCommand(index, removeTagPersonDescriptor);
