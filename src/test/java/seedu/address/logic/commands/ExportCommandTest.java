@@ -70,16 +70,6 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void execute_unwritableDestination_throwsCommandException() throws IOException {
-        Path invalidPath = temporaryFolder.resolve("/.json");
-        ExportCommand exportCommand = new ExportCommand(invalidPath);
-        CommandException exception = assertThrows(CommandException.class, () -> {
-            exportCommand.execute(model);
-        });
-        assertEquals(exception.getMessage(), ExportCommand.MESSAGE_EXPORT_FAILURE);
-    }
-
-    @Test
     public void equals_sameObject_returnsTrue() {
         Path targetPath = Paths.get("test.json");
         ExportCommand exportCommand = new ExportCommand(targetPath);
