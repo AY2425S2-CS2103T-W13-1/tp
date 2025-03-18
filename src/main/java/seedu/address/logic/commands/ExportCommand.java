@@ -17,7 +17,8 @@ import seedu.address.model.Model;
 public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_SOURCE_FILE_NOT_FOUND = "Export failed. Source .json file does not exist.";
+    public static final String MESSAGE_SOURCE_FILE_NOT_FOUND = "Address book not found."
+            + " Start adding contacts to form your address book.";
     public static final String MESSAGE_INVALID_TARGET_PATH = "Invalid target path: %s";
     public static final String MESSAGE_INVALID_FILE_FORMAT = "Export failed. Target file must have a .json extension.";
     public static final String MESSAGE_EXPORT_SUCCESS = "Exported Address Book to %1$s as requested ...";
