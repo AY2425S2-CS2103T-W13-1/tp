@@ -26,13 +26,16 @@ public class ExportCommandTest {
         Path targetPath = temporaryFolder.resolve("exported_data.json");
         ExportCommand exportCommand = new ExportCommand(targetPath);
 
-        CommandResult result = exportCommand.execute(model);
-
-        assertEquals(String.format(ExportCommand.MESSAGE_EXPORT_SUCCESS, targetPath.toAbsolutePath()),
-                result.getFeedbackToUser());
-
-        // Verify file exists
-        assertEquals(true, Files.exists(targetPath));
+        try {
+            CommandResult result = exportCommand.execute(model);
+            System.out.println("Export succeeded: " + targetPath.toAbsolutePath());
+            assertEquals(String.format(ExportCommand.MESSAGE_EXPORT_SUCCESS, targetPath.toAbsolutePath()),
+                    result.getFeedbackToUser());
+            assertEquals(true, Files.exists(targetPath));
+        } catch (CommandException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Test
