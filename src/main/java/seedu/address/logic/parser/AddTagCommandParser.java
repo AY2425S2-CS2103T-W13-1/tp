@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTagCommand;
-import seedu.address.logic.commands.AddTagCommand.AddTagPersonDescriptor;
+import seedu.address.logic.commands.PersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -39,11 +39,11 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
         }
 
-        AddTagPersonDescriptor addTagPersonDescriptor = new AddTagPersonDescriptor();
+        PersonDescriptor personDescriptor = new PersonDescriptor();
         // If no tags are provided, throw an exception
-        parseTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(addTagPersonDescriptor::setTags);
+        parseTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(personDescriptor::setTags);
 
-        return new AddTagCommand(index, addTagPersonDescriptor);
+        return new AddTagCommand(index, personDescriptor);
     }
 
     /**
