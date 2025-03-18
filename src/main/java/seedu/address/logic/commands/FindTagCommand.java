@@ -20,6 +20,8 @@ public class FindTagCommand extends Command {
             + "Parameters: t/TAG [t/MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " t/friend t/reporter t/government";
 
+    public static final String MESSAGE_EMPTY_TAG = "Tags cannot be empty.";
+
     private final TagNamesContainsTagsPredicate predicate;
 
     public FindTagCommand(TagNamesContainsTagsPredicate predicate) {
