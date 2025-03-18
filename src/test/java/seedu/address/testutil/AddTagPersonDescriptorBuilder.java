@@ -1,32 +1,32 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.AddTagCommand.AddTagPersonDescriptor;
+import seedu.address.logic.commands.PersonDescriptor;
 import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building AddTagPersonDescriptor objects.
  */
 public class AddTagPersonDescriptorBuilder {
-    private AddTagPersonDescriptor descriptor;
+    private PersonDescriptor descriptor;
     public AddTagPersonDescriptorBuilder() {
-        descriptor = new AddTagPersonDescriptor();
+        descriptor = new PersonDescriptor();
     }
 
-    public AddTagPersonDescriptorBuilder(AddTagPersonDescriptor descriptor) {
-        this.descriptor = new AddTagPersonDescriptor(descriptor);
+    public AddTagPersonDescriptorBuilder(PersonDescriptor descriptor) {
+        this.descriptor = new PersonDescriptor(descriptor);
     }
     /**
      * Returns an {@code AddTagPersonDescriptor} with fields containing {@code person}'s details
      */
     public AddTagPersonDescriptorBuilder(Person person) {
-        descriptor = new AddTagPersonDescriptor();
+        descriptor = new PersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
-    public AddTagPersonDescriptor build() {
+    public PersonDescriptor build() {
         return descriptor;
     }
 
