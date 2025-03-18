@@ -60,4 +60,15 @@ public class ExportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_EXPORT_FAILURE, e.getMessage()));
         }
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ExportCommand that = (ExportCommand) obj;
+        return targetPath.equals(that.targetPath); // Compare the file path
+    }
 }
