@@ -48,8 +48,8 @@ public class ExportCommandTest {
     @Test
     public void execute_invalidFileFormat_throwsCommandException() {
         Path invalidPath = temporaryFolder.resolve("exported_data.txt"); // Not a .json file
-
         ExportCommand exportCommand = new ExportCommand(invalidPath);
+        exportCommand.sourceFileExists("");
         CommandException exception = assertThrows(CommandException.class, () -> {
             exportCommand.execute(model);
         });
