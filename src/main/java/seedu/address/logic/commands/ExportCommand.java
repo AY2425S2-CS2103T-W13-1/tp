@@ -19,16 +19,16 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_SOURCE_FILE_NOT_FOUND = "Address book not found."
             + " Start adding contacts to form your address book.";
-    public static final String MESSAGE_INVALID_TARGET_PATH = "Invalid target path: %s";
     public static final String MESSAGE_INVALID_FILE_FORMAT = "Export failed. Target file must have a .json extension.";
     public static final String MESSAGE_EXPORT_SUCCESS = "Exported Address Book to %1$s as requested ...";
-    public static final String MESSAGE_EXPORT_FAILURE = "Failed to export json file: %1$s";
+    public static final String MESSAGE_EXPORT_FAILURE = "Failed to export json file";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book data at the specified path.\n"
             + "Parameters: FILEPATH (must be a valid file path)\n"
             + "Example: " + COMMAND_WORD + " C:/Users/username/Desktop/exported_data.json";
     private static final Path SOURCE_JSON_PATH = Paths.get("data/addressbook.json");
     private final Path targetPath;
+    private boolean sourcePathValid = true;
 
     /**
      * Creates an ExportCommand to export json file to specified target path
@@ -40,25 +40,37 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(targetPath);
+
+        if (!targetPath.toString().toLowerCase().endsWith(".json")) {
+            throw new CommandException(MESSAGE_INVALID_FILE_FORMAT);
+        }
+        if (!sourcePathValid) {
+            throw new CommandException(MESSAGE_SOURCE_FILE_NOT_FOUND);
+        }
         try {
-            if (!Files.exists(SOURCE_JSON_PATH)) {
-                throw new CommandException(MESSAGE_SOURCE_FILE_NOT_FOUND);
+            // Ensure parent directory exists
+            if (targetPath.getParent() != null) {
+                Files.createDirectories(targetPath.getParent());
             }
-            if (!targetPath.toString().toLowerCase().endsWith(".json")) {
-                throw new CommandException(MESSAGE_INVALID_FILE_FORMAT);
-            }
-            try {
-                if (targetPath.getParent() != null) {
-                    Files.createDirectories(targetPath.getParent());
-                }
-                Files.newOutputStream(targetPath).close();
-            } catch (IOException e) {
-                throw new CommandException(String.format(MESSAGE_INVALID_TARGET_PATH, e.getMessage()));
-            }
+
+            // Perform the export
             Files.copy(SOURCE_JSON_PATH, targetPath, StandardCopyOption.REPLACE_EXISTING);
             return new CommandResult(String.format(MESSAGE_EXPORT_SUCCESS, targetPath.toAbsolutePath()));
+
         } catch (IOException e) {
-            throw new CommandException(String.format(MESSAGE_EXPORT_FAILURE, e.getMessage()));
+            throw new CommandException(MESSAGE_EXPORT_FAILURE);
+        }
+    }
+
+    /**
+     * Method to check if the json source file exists and
+     * store boolean in variable
+     */
+    public void sourceFileExists(String s) {
+        if (s.equals("simulate invalid source file")) {
+            sourcePathValid = false;
+        } else {
+            sourcePathValid = Files.exists(SOURCE_JSON_PATH);
         }
     }
     @Override
