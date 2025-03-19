@@ -127,7 +127,7 @@ public class HelpWindow extends UiPart<Stage> {
      * @param filename The filename of the resource.
      * @return The content of the file, or null if an error occurs.
      */
-    private String loadResourceFile(String filename) {
+    public String loadResourceFile(String filename) {
         StringBuilder content = new StringBuilder();
         try (InputStream inputStream = getClass().getResourceAsStream("/" + filename);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
