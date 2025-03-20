@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -25,7 +27,8 @@ public class RemoveTagCommandTest {
         model.setAddressBook(new AddressBook()); // Clear previous data
 
         // Create person with tags "collegaue" and "friends"
-        Person currentPerson = new PersonBuilder().withName("removeTagTestAllFields").withTags("colleague", "friends").build();
+        Person currentPerson = new PersonBuilder().withName("removeTagTestAllFields")
+                .withTags("colleague", "friends").build();
         model.addPerson(currentPerson);
 
         Person editedPerson = new PersonBuilder(currentPerson).withTags("friends").build();
@@ -57,7 +60,8 @@ public class RemoveTagCommandTest {
         model.setAddressBook(new AddressBook()); // Clear previous data
 
         // Create person with tags "collegaue" and "friends"
-        Person currentPerson = new PersonBuilder().withName("removeTagTestAllFields").withTags("colleague", "friends").build();
+        Person currentPerson = new PersonBuilder().withName("removeTagTestAllFields")
+                .withTags("colleague", "friends").build();
         model.addPerson(currentPerson);
 
         PersonDescriptor descriptor = new PersonDescriptorBuilder().withTags("nonExistentTag").build();
