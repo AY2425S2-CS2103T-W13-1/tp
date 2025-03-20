@@ -24,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class RemoveTagCommand extends Command {
 
     public static final String COMMAND_WORD = "removetag";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the specified tag(s) from the person in the address book.\n"
             + "Parameters: INDEX (must be a positive integer) t/TAG [t/TAG]...\n"

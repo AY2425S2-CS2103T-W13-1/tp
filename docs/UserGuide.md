@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ScoopBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ScoopBook can get your contact management tasks done faster than traditional GUI apps. Made with journalists in mind, this app boasts **efficient categorisation** and **searching** of contacts.
 
 * Table of Contents
 {:toc}
@@ -15,20 +15,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your ScoopBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar scoopbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -36,7 +36,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,9 +66,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows the user guide, containing instructions on how to use the command.
 
 Format: `help`
 
@@ -77,11 +75,11 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* The add command **must** have a name, and one of the following fields: phone number, email, address.
+  i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
+* A person can have any number of tags (including 0).
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -142,6 +140,57 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding tags to a contact: `addtag`
+
+Adds the tags typed in to the specified person.
+
+Format: `addtag INDEX t/TAG1 [t/MORETAGS]`
+
+* Adds the specified tags to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Multiple tags in a single addtag command is supported.
+  i.e. `addtag 1 t/friend t/neighbour` will tag the 1st person with both "friend" and "neighbour".
+* Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
+
+Examples:
+* `list` followed by `addtag 2 t/friend` tags the 2nd person with "friends" in the address book.
+* `find Betsy` followed by `addtag 1 t/friend` tags the 1st person in the results of the `find` command with "friends".
+
+### Remove tag from a contact: `removetag`
+
+Remove the specified tag from the person.
+
+Format: `removetag INDEX t/TAG1 [t/MORETAGS]`
+
+* Removes the specified tags from the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Multiple tags in a single removetag command is supported.
+  i.e. `removetag 1 t/friend t/neighbour` will remove both the "friend" and "neighbour" tag for the 1st person.
+* Tags are case sensitive. The typed tag must match the tag on the person exactly.
+  i.e. `removetag 1 t/friend` will not remove the tag "Friend".
+
+Examples:
+* `list` followed by `removetag 2 t/friend` removes the "friend" tag from the 2nd person in the address book.
+* `find Betsy` followed by `removetag 1 t/friend` removes the "friend" tag from the 1st person in the results of the `find` command.
+
+### Find people with tags: `findtag`
+
+Find persons who have all of the specified tags.
+
+Format: `findtag t/TAG1 [t/MORETAGS]`
+
+* The searching of tags is case-insensitive. e.g `friends` will match `Friends`
+* The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
+* Only the tags are searched.
+* Only full words will be matched e.g. `Friend` will not match `Friends`
+* Only persons matching all the tags will be returned (i.e. `AND` search).
+
+Examples:
+* `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
+* `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -156,18 +205,18 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ScoopBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ScoopBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, ScoopBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the ScoopBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files `[coming in v1.4]`
 
 _Details coming soon ..._
 
@@ -176,7 +225,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ScoopBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,5 +245,8 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/friend`
+**Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
+**Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
 **List** | `list`
 **Help** | `help`
