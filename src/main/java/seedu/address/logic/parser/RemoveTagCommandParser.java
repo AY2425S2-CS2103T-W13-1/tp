@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new RemoveTagCommand object
  */
-public class RemoveTagCommandParser {
+public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveTagCommand
      * and returns a RemoveTagCommand object for execution.
@@ -34,6 +34,10 @@ public class RemoveTagCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE), pe);
         }
 
+        if (!argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTagCommand.MESSAGE_USAGE));
+        }
+
         PersonDescriptor removeTagPersonDescriptor = new PersonDescriptor();
 
         parseTagsForRemoveTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removeTagPersonDescriptor::setTags);
@@ -48,9 +52,6 @@ public class RemoveTagCommandParser {
     private Optional<Set<Tag>> parseTagsForRemoveTags(Collection<String> tags) throws ParseException {
         assert tags != null;
 
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
