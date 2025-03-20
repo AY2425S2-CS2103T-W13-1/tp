@@ -39,6 +39,17 @@ public class PhoneTest {
     }
 
     @Test
+    public void getPhoneNumber() {
+        // valid phone number
+        Phone phone = new Phone("999");
+        assertTrue(phone.getPhoneNumber().equals("999"));
+
+        // empty phone number
+        Phone emptyPhone = new Phone("000");
+        assertTrue(emptyPhone.getPhoneNumber().equals("Unknown number"));
+    }
+
+    @Test
     public void equals() {
         Phone phone = new Phone("999");
 
