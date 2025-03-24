@@ -1,11 +1,21 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's ID in the address book.
- * Guarantees: immutable
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  * For internal use and reference only.
  */
 public class PersonId {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "PersonId should be an integer";
+    /*
+     * The person id must be a valid integer
+     */
+    public static final String VALIDATION_REGEX = "\\d{1,}";
 
     private static int counter = 0;
     public final String value;
@@ -24,7 +34,16 @@ public class PersonId {
      * Used when loading data from storage.
      */
     public PersonId(String id) {
-        this.value = id;
+        requireNonNull(id);
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        value = id;
+    }
+
+    /**
+     * Returns true if a given string is a valid person id.
+     */
+    public static boolean isValidId(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

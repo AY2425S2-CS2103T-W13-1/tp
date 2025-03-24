@@ -109,6 +109,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
         }
+        if (!PersonId.isValidId(personId)) {
+            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        }
         final PersonId modelPersonId = new PersonId(personId);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
