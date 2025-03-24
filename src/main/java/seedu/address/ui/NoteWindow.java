@@ -3,34 +3,32 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
  * Controller for a note page
  */
-public class NoteWindow extends UiPart<Stage> {
+public class NoteWindow extends UiPart<AnchorPane> {
     public static final String FXML = "NoteWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(NoteWindow.class);
+    private final Stage stage;
 
     @FXML
     private TextArea noteTextArea;
 
     /**
-     * Creates a new NoteWindow.
-     *
-     * @param root Stage to use as the root of the NoteWindow.
+     * Creates a note window.
+     * @param owner
      */
-    public NoteWindow(Stage root) {
-        super(FXML, root);
-    }
-
-    /**
-     * Creates a new NoteWindow
-     */
-    public NoteWindow() {
-        this(new Stage());
+    public NoteWindow(Stage owner) {
+        super(FXML);
+        this.stage = new Stage();
+        stage.initOwner(owner);
+        stage.setScene(new Scene(getRoot()));
     }
 
     /**
@@ -67,23 +65,23 @@ public class NoteWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing note page for specified contact.");
-        getRoot().show();
-        getRoot().centerOnScreen();
+        logger.fine("Showing note window.");
+        stage.show();
+        stage.centerOnScreen();
     }
 
     /**
      * Returns true if the note window is currently being shown.
      */
     public boolean isShowing() {
-        return getRoot().isShowing();
+        return stage.isShowing();
     }
 
     /**
      * Hides the note window.
      */
     public void hide() {
-        getRoot().hide();
+        stage.hide();
     }
 
     /**

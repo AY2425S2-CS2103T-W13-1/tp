@@ -35,6 +35,7 @@ public class NoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToAddNote = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_NOTE_PERSON_SUCCESS, Messages.format(personToAddNote)));
+        return new CommandResult(String.format(MESSAGE_NOTE_PERSON_SUCCESS, Messages.format(personToAddNote)),
+                false, false, true);
     }
 }

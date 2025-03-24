@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
+    private NoteWindow noteWindow;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -66,6 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        noteWindow = new NoteWindow(primaryStage);
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +148,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the note window.
+     */
+    @FXML
+    public void handleNote() {
+        if (!noteWindow.isShowing()) {
+            noteWindow.show();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        noteWindow.hide();
         primaryStage.hide();
     }
 
@@ -184,6 +196,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowNote()) {
+                handleNote();
             }
 
             return commandResult;
