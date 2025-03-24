@@ -7,7 +7,7 @@ package seedu.address.model.person;
  */
 public class PersonId {
 
-    public static int counter = 0;
+    private static int counter = 0;
     public final String value;
 
     /**
