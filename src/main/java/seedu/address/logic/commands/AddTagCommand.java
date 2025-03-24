@@ -85,7 +85,8 @@ public class AddTagCommand extends Command {
         // add new tags from personDescriptor
         updatedTags.addAll(personDescriptor.getTags().orElse(Collections.emptySet()));
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(
+                updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, personToAddTag.getId());
     }
 
     @Override

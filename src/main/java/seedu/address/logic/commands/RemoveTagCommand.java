@@ -80,7 +80,7 @@ public class RemoveTagCommand extends Command {
         //Remove specified tags
         Optional<Set<Tag>> tagsToRemove = personDescriptor.getTags();
         tagsToRemove.ifPresent(existingTags::removeAll);
-        return new Person(name, phone, email, address, existingTags);
+        return new Person(name, phone, email, address, existingTags, personToRemoveTag.getId());
     }
 
     @Override
