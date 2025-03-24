@@ -3,91 +3,71 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
  * Controller for a note page
  */
-public class NoteWindow extends UiPart<AnchorPane> {
-    public static final String FXML = "NoteWindow.fxml";
+public class NoteWindow extends UiPart<Stage> {
+
     private static final Logger logger = LogsCenter.getLogger(NoteWindow.class);
-    private final Stage stage;
+    private static final String FXML = "NoteWindow.fxml";
 
     @FXML
     private TextArea noteTextArea;
 
     /**
-     * Creates a note window.
-     * @param owner
+     * Creates a new NoteWindow.
+     *
+     * @param root Stage to use as the root of the NoteWindow.
      */
-    public NoteWindow(Stage owner) {
-        super(FXML);
-        this.stage = new Stage();
-        stage.initOwner(owner);
-        stage.setScene(new Scene(getRoot()));
+    public NoteWindow(Stage root) {
+        super(FXML, root);
     }
 
     /**
-     * Set the text on the text field of the NoteWindow
-     * @param text
+     * Creates a new NoteWindow with a new Stage.
+     */
+    public NoteWindow() {
+        this(new Stage());
+    }
+
+    /**
+     * Shows the Note window.
+     */
+    public void show() {
+        logger.fine("Showing Note window.");
+        getRoot().show();
+        getRoot().centerOnScreen();
+    }
+
+    /**
+     * Hides the Note window.
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
+     * Focuses on the Note window.
+     */
+    public void focus() {
+        getRoot().requestFocus();
+    }
+
+    /**
+     * Sets the text in the note area.
      */
     public void setText(String text) {
         noteTextArea.setText(text);
     }
 
     /**
-     * @return text from the text field of NoteWindow
+     * Gets the text from the note area.
      */
     public String getText() {
         return noteTextArea.getText();
-    }
-
-    /**
-     * Shows the note window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
-     */
-    public void show() {
-        logger.fine("Showing note window.");
-        stage.show();
-        stage.centerOnScreen();
-    }
-
-    /**
-     * Returns true if the note window is currently being shown.
-     */
-    public boolean isShowing() {
-        return stage.isShowing();
-    }
-
-    /**
-     * Hides the note window.
-     */
-    public void hide() {
-        stage.hide();
-    }
-
-    /**
-     * Focuses on the note window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
     }
 }

@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        noteWindow = new NoteWindow(primaryStage);
+        noteWindow = new NoteWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -153,9 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNote() {
-        if (!noteWindow.isShowing()) {
-            noteWindow.show();
-        }
+        noteWindow.show();
     }
 
     void show() {
