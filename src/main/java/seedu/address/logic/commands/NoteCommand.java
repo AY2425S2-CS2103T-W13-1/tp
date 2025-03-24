@@ -10,7 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-
 /**
  * Creates a .txt file tagged to contact identified using it's displayed index from the address book.
  */
