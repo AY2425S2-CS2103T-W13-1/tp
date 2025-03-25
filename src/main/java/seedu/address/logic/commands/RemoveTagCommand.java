@@ -15,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -76,11 +77,12 @@ public class RemoveTagCommand extends Command {
         Address address = personToRemoveTag.getAddress();
         // Start with the existing set of Tags
         Set<Tag> existingTags = new HashSet<>(personToRemoveTag.getTags());
+        PersonId personId = personToRemoveTag.getId();
 
         //Remove specified tags
         Optional<Set<Tag>> tagsToRemove = personDescriptor.getTags();
         tagsToRemove.ifPresent(existingTags::removeAll);
-        return new Person(name, phone, email, address, existingTags, personToRemoveTag.getId());
+        return new Person(name, phone, email, address, existingTags, personId);
     }
 
     @Override
