@@ -42,13 +42,6 @@ public class NoteCommand extends Command {
     }
 
     @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
-                .toString();
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
