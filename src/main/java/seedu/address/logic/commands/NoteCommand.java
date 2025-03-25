@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,6 +27,7 @@ public class NoteCommand extends Command {
     public NoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -37,5 +39,27 @@ public class NoteCommand extends Command {
         Person personToAddNote = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_NOTE_PERSON_SUCCESS, Messages.format(personToAddNote)),
                 false, false, true);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof NoteCommand)) {
+            return false;
+        }
+
+        NoteCommand otherNoteCommand = (NoteCommand) other;
+        return targetIndex.equals(otherNoteCommand.targetIndex);
     }
 }
