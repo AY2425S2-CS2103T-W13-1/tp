@@ -153,7 +153,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNote() {
-        noteWindow.show();
+        if (!noteWindow.getRoot().isShowing()) {
+            noteWindow.show();
+        } else {
+            noteWindow.focus();
+        }
     }
 
     void show() {
