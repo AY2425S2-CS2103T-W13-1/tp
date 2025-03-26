@@ -25,8 +25,12 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // For internal usage; ID field
+    private final PersonId id;
+
     /**
      * Every field must be present and not null.
+     * This constructor is used when creating a new person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -35,6 +39,21 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.id = new PersonId();
+    }
+
+    /**
+     * Every field must be present and not null.
+     * This constructor is used when loading data from storage.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, PersonId id) {
+        requireAllNonNull(name, phone, email, address, tags, id);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
     }
 
     public Name getName() {
@@ -51,6 +70,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public PersonId getId() {
+        return id;
     }
 
     /**
@@ -100,7 +123,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, id);
     }
 
     @Override
@@ -111,6 +134,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("id", id)
                 .toString();
     }
 
