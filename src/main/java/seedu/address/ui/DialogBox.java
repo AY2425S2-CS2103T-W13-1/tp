@@ -2,13 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
