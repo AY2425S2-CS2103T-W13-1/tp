@@ -14,6 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class StorageManagerTest {
 
@@ -26,6 +28,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        NotesStorage notesStorage = new FileNotesStorage(getTempFilePath("notes"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 
@@ -65,4 +68,28 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    @Test
+    public void notesReadSave() throws Exception {
+        // Note-related tests
+        Person person = new PersonBuilder().build();
+        String noteContent = "This is a test note";
+
+        // Test saving and reading a note
+        storageManager.saveNote(person, noteContent);
+        assertEquals(noteContent, storageManager.readNote(person));
+
+        // Test deleting a note
+        storageManager.deleteNote(person);
+        assertEquals("", storageManager.readNote(person));
+
+        // Test saving multiple notes and deleting all
+        Person person1 = new PersonBuilder().withPersonId("1").build();
+        Person person2 = new PersonBuilder().withPersonId("2").build();
+        storageManager.saveNote(person1, "Note 1");
+        storageManager.saveNote(person2, "Note 2");
+
+        storageManager.deleteAllNotes();
+        assertEquals("", storageManager.readNote(person1));
+        assertEquals("", storageManager.readNote(person2));
+    }
 }
