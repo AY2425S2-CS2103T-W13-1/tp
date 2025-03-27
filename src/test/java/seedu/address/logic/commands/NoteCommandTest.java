@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +16,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -65,5 +67,19 @@ public class NoteCommandTest {
 
         // different person -> returns false
         assertFalse(noteFirstCommand.equals(noteSecondCommand));
+    }
+
+    @Test
+    public void execute_validIndex_returnsCorrectCommandResult() throws Exception {
+        Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        NoteCommand noteCommand = new NoteCommand(INDEX_FIRST_PERSON);
+
+        CommandResult result = noteCommand.execute(model);
+
+        // Verify the CommandResult has showNote=true and the correct target person
+        assertTrue(result.isShowNote());
+        assertEquals(targetPerson, result.getTargetPerson());
+        assertEquals(String.format(NoteCommand.MESSAGE_NOTE_PERSON_SUCCESS, Messages.format(targetPerson)),
+                result.getFeedbackToUser());
     }
 }

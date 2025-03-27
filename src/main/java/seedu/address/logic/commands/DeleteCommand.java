@@ -27,6 +27,8 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    private Person targetPerson;
+
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -41,6 +43,7 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        this.targetPerson = personToDelete;
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
@@ -65,5 +68,12 @@ public class DeleteCommand extends Command {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
                 .toString();
+    }
+
+    /**
+     * Returns the target person to be deleted.
+     */
+    public Person getTargetPerson() {
+        return targetPerson;
     }
 }
