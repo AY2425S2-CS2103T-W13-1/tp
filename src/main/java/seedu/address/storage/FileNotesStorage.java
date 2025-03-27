@@ -53,11 +53,13 @@ public class FileNotesStorage implements NotesStorage {
     }
 
     @Override
-    public void deleteNote(Person person) throws IOException {
+    public boolean deleteNote(Person person) throws IOException {
         Path notePath = getNoteFilePath(person);
         if (Files.exists(notePath)) {
             Files.delete(notePath);
+            return true;
         }
+        return false;
     }
 
     @Override
