@@ -12,6 +12,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,11 +51,12 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
 
+        // Inject storage manually if it's DeleteNoteCommand
+        if (command instanceof DeleteNoteCommand) { ((DeleteNoteCommand) command).setStorage(storage); }
+        commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
-            handleNoteOperations(command);
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -104,13 +106,18 @@ public class LogicManager implements Logic {
         storage.saveNote(person, content);
     }
 
+    @Override
+    public void deleteNote(Person person) throws IOException {
+        storage.deleteNote(person);
+    }
+
     /**
      * Handles note operations based on the command type.
      *
      * @param command The command that was executed
      * @throws IOException If there is an issue with file operations
      */
-    private void handleNoteOperations(Command command) throws IOException {
+    private boolean handleNoteOperations(Command command) throws IOException {
         if (command instanceof DeleteCommand) {
             DeleteCommand deleteCommand = (DeleteCommand) command;
             Person personDeleted = deleteCommand.getTargetPerson();
@@ -123,5 +130,6 @@ public class LogicManager implements Logic {
                 storage.deleteAllNotes();
             }
         }
+        return false;
     }
 }

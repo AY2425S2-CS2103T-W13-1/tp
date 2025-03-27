@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,7 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
+import seedu.address.storage.Storage;
 
 /**
  * Deletes the note tagged to the contact identified using it's displayed index from the address book.
@@ -22,9 +23,11 @@ public class DeleteNoteCommand extends Command {
             + ": Deletes the note of the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_DELETENOTE_SUCCESS = "Note from %1$s deleted successfully";
-
+    public static final String MESSAGE_DELETENOTE_SUCCESS = "Note deleted for: %1$s";
+    public static final String MESSAGE_NO_NOTE = "No note found for: %1$s";
     private final Index targetIndex;
+    private Storage storage;
+    private Person targetPerson;
 
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -39,8 +42,20 @@ public class DeleteNoteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToDeleteNote = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETENOTE_SUCCESS, Messages.format(personToDeleteNote)),
-                false, false, false);
+        this.targetPerson = personToDeleteNote;
+
+        boolean deleted;
+        try {
+            deleted = storage.deleteNote(targetPerson);
+        } catch (IOException e) {
+            throw new CommandException("Failed to delete note: " + e.getMessage(), e);
+        }
+
+        String message = deleted
+                ? String.format(MESSAGE_DELETENOTE_SUCCESS, Messages.format(personToDeleteNote))
+                : String.format(MESSAGE_NO_NOTE, Messages.format(personToDeleteNote));
+
+        return new CommandResult(message);
     }
 
     @Override
@@ -63,5 +78,15 @@ public class DeleteNoteCommand extends Command {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
                 .toString();
+    }
+
+    /**
+     * Returns the target person to be deleted.
+     */
+    public Person getTargetPerson() {
+        return targetPerson;
+    }
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 }
