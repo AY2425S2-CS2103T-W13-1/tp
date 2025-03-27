@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
+    private NoteWindow noteWindow;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        noteWindow = new NoteWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +149,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the note window for a specific person.
+     */
+    @FXML
+    public void handleNote(Person person) {
+        NoteWindow newNoteWindow = new NoteWindow(person, logic);
+        newNoteWindow.show();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        noteWindow.hide();
         primaryStage.hide();
     }
 
@@ -184,6 +196,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowNote()) {
+                handleNote(commandResult.getTargetPerson());
             }
 
             return commandResult;
