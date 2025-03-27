@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -38,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private NoteWindow noteWindow;
     @FXML
     private StackPane commandBoxPlaceholder;
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -46,10 +50,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private VBox resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private DialogBox dialogBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,12 +118,14 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
+    @SuppressWarnings("checkstyle:Regexp")
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        resultDisplayPlaceholder.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+        scrollPane.setContent(resultDisplayPlaceholder);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -188,7 +197,13 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            // prints the user's input
+            resultDisplayPlaceholder.getChildren().add(DialogBox.getUserDialog(commandText).getRoot());
+            // print the result of the command
+            resultDisplayPlaceholder.getChildren().add(
+                    DialogBox.getScoopBookDialog(commandResult.getFeedbackToUser()).getRoot());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -206,6 +221,11 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            // prints the user's input
+            resultDisplayPlaceholder.getChildren().add(DialogBox.getUserDialog(commandText).getRoot());
+            // print the result of the command
+            resultDisplayPlaceholder.getChildren().add(
+                    DialogBox.getScoopBookDialog(e.getMessage()).getRoot());
             throw e;
         }
     }
