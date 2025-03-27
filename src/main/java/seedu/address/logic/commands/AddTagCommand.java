@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -84,8 +85,10 @@ public class AddTagCommand extends Command {
         Set<Tag> updatedTags = new HashSet<>(personToAddTag.getTags());
         // add new tags from personDescriptor
         updatedTags.addAll(personDescriptor.getTags().orElse(Collections.emptySet()));
+        PersonId personId = personToAddTag.getId();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(
+                updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, personId);
     }
 
     @Override

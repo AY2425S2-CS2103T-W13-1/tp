@@ -8,8 +8,10 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -52,6 +54,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            handleNoteOperations(command);
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -84,5 +87,41 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Storage getStorage() {
+        return storage;
+    }
+
+    @Override
+    public String readNote(Person person) throws IOException {
+        return storage.readNote(person);
+    }
+
+    @Override
+    public void saveNote(Person person, String content) throws IOException {
+        storage.saveNote(person, content);
+    }
+
+    /**
+     * Handles note operations based on the command type.
+     *
+     * @param command The command that was executed
+     * @throws IOException If there is an issue with file operations
+     */
+    private void handleNoteOperations(Command command) throws IOException {
+        if (command instanceof DeleteCommand) {
+            DeleteCommand deleteCommand = (DeleteCommand) command;
+            Person personDeleted = deleteCommand.getTargetPerson();
+            if (personDeleted != null) {
+                storage.deleteNote(personDeleted);
+            }
+        } else if (command instanceof ClearCommand) {
+            ClearCommand clearCommand = (ClearCommand) command;
+            if (clearCommand.hasCleared()) {
+                storage.deleteAllNotes();
+            }
+        }
     }
 }
