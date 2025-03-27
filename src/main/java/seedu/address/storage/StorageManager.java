@@ -103,8 +103,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void deleteNote(Person person) throws IOException {
-        notesStorage.deleteNote(person);
+    public boolean deleteNote(Person person) throws IOException {
+        return notesStorage.deleteNote(person);
     }
 
     @Override

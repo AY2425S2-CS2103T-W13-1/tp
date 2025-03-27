@@ -37,7 +37,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, NotesStor
     void saveNote(Person person, String content) throws IOException;
 
     @Override
-    void deleteNote(Person person) throws IOException;
+    boolean deleteNote(Person person) throws IOException;
 
     @Override
     void deleteAllNotes() throws IOException;
