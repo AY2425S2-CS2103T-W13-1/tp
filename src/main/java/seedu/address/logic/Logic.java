@@ -64,4 +64,9 @@ public interface Logic {
      * Saves a note for a person.
      */
     void saveNote(Person person, String content) throws IOException;
+
+    /**
+     * Deletes a note for a person.
+     */
+    void deleteNote(Person person) throws IOException;
 }
