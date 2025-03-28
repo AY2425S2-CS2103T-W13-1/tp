@@ -159,9 +159,9 @@ Examples:
 * `list` followed by `addtag 2 t/friend` tags the 2nd person with "friends" in the address book.
 * `find Betsy` followed by `addtag 1 t/friend` tags the 1st person in the results of the `find` command with "friends".
 
-### Remove tag from a contact: `removetag`
+### Removing tag from a contact: `removetag`
 
-Remove the specified tag from the person.
+Removes the specified tag from the person.
 
 Format: `removetag INDEX t/TAG1 [t/MORETAGS]`
 
@@ -177,7 +177,7 @@ Examples:
 * `list` followed by `removetag 2 t/friend` removes the "friend" tag from the 2nd person in the address book.
 * `find Betsy` followed by `removetag 1 t/friend` removes the "friend" tag from the 1st person in the results of the `find` command.
 
-### Find people with tags: `findtag`
+### Finding people with tags: `findtag`
 
 Find persons who have all of the specified tags.
 
@@ -192,6 +192,16 @@ Format: `findtag t/TAG1 [t/MORETAGS]`
 Examples:
 * `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
 * `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
+
+### Deleting Note from Person: `deletenote`
+
+Deletes the note from the person.
+
+Format: `deletenote INDEX`
+
+* Deletes note for the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Clearing all entries : `clear`
 
@@ -250,5 +260,6 @@ Action | Format, Examples
 **Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/friend`
 **Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
+**Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
 **List** | `list`
 **Help** | `help`
