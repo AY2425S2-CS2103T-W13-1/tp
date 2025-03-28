@@ -22,6 +22,11 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "Notes Storage" #F4F6F6{
+Class "<<interface>>\nNotesStorage" as NotesStorage
+Class FilesNotesStorage
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,12 +35,15 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" NotesStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
+Storage -down-|> NotesStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
+FilesNotesStorage .up.|> NotesStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
