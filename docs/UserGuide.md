@@ -91,6 +91,8 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+* Only this format of the command is allowed, any other format will not work. e.g. `list 123` will not work.
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -149,7 +151,7 @@ Format: `addtag INDEX t/TAG1 [t/MORETAGS]`
 * Adds the specified tags to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Multiple tags in a single addtag command is supported.
+* Multiple tags in a single `addtag` command is supported.
   i.e. `addtag 1 t/friend t/neighbour` will tag the 1st person with both "friend" and "neighbour".
 * Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
 
