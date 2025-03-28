@@ -93,6 +93,18 @@ public class NoteWindow extends UiPart<Stage> {
     }
 
     /**
+     * Delete the notes for a specific person if available.
+     */
+    private void deleteNotes() {
+        try {
+            logic.deleteNote(person);
+            logger.info("Deleted notes for person: " + person.getName().fullName);
+        } catch (IOException e) {
+            logger.warning("Failed to delete notes: " + e.getMessage());
+        }
+    }
+
+    /**
      * Shows the Note window.
      */
     public void show() {
