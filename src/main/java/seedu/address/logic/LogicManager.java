@@ -8,8 +8,11 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -48,8 +51,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
 
+        // Inject storage manually if it's DeleteNoteCommand
+        if (command instanceof DeleteNoteCommand) { ((DeleteNoteCommand) command).setStorage(storage); }
+        commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (AccessDeniedException e) {
@@ -84,5 +89,47 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Storage getStorage() {
+        return storage;
+    }
+
+    @Override
+    public String readNote(Person person) throws IOException {
+        return storage.readNote(person);
+    }
+
+    @Override
+    public void saveNote(Person person, String content) throws IOException {
+        storage.saveNote(person, content);
+    }
+
+    @Override
+    public void deleteNote(Person person) throws IOException {
+        storage.deleteNote(person);
+    }
+
+    /**
+     * Handles note operations based on the command type.
+     *
+     * @param command The command that was executed
+     * @throws IOException If there is an issue with file operations
+     */
+    private boolean handleNoteOperations(Command command) throws IOException {
+        if (command instanceof DeleteCommand) {
+            DeleteCommand deleteCommand = (DeleteCommand) command;
+            Person personDeleted = deleteCommand.getTargetPerson();
+            if (personDeleted != null) {
+                storage.deleteNote(personDeleted);
+            }
+        } else if (command instanceof ClearCommand) {
+            ClearCommand clearCommand = (ClearCommand) command;
+            if (clearCommand.hasCleared()) {
+                storage.deleteAllNotes();
+            }
+        }
+        return false;
     }
 }
