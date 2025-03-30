@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -53,6 +54,7 @@ public class ImportCommand extends Command {
             ReadOnlyAddressBook importedAddressBook = jsonStorage.readAddressBook()
                     .orElseThrow(() -> new CommandException(MESSAGE_IMPORT_FAILURE));
 
+            validateImportedContacts(importedAddressBook);
             model.setAddressBook(importedAddressBook);
 
             Path savePath = Paths.get("data", "addressbook.json");
@@ -76,5 +78,26 @@ public class ImportCommand extends Command {
             return ive.getMessage();
         }
         return MESSAGE_INVALID_JSON;
+    }
+
+    /**
+     * Checks that at least one of "phone", "email", or "address" is different from placeholder values.
+     */
+    private void validateImportedContacts(ReadOnlyAddressBook addressBook) throws CommandException {
+        for (Person person : addressBook.getPersonList()) {
+            if (isAllPlaceholderValues(person)) {
+                throw new CommandException("Invalid JSON file: Person '" + person.getName()
+                        + "' does not have any added phone, email, or address.");
+            }
+        }
+    }
+
+    /**
+     * Returns true if all three fields (phone, email, address) are set to placeholder values.
+     */
+    private boolean isAllPlaceholderValues(Person person) {
+        return "000".equals(person.getPhone().value)
+                && "unknown@gmail.com".equals(person.getEmail().value)
+                && "Unknown address".equals(person.getAddress().value);
     }
 }
