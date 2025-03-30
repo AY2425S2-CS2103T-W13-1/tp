@@ -2,7 +2,6 @@
   "persons" : [ {
     "name" : "alex",
     "phone" : "000",
-
     "address" : "Unknown address",
     "tags" : [ ],
     "personId" : "1"
