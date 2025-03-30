@@ -97,7 +97,19 @@ public class ImportCommand extends Command {
      */
     private boolean isAllPlaceholderValues(Person person) {
         return "000".equals(person.getPhone().value)
-                && "unknown@gmail.com".equals(person.getEmail().value)
+                && "unknown@example.com".equals(person.getEmail().value)
                 && "Unknown address".equals(person.getAddress().value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ImportCommand that = (ImportCommand) obj;
+        return targetPath.equals(that.targetPath); // Compare the file path
     }
 }
