@@ -103,7 +103,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_import() throws Exception {
         String userInput = ImportCommand.COMMAND_WORD + " src/test/data/ImportCommandTest/validAddressBook.json";
-        ImportCommand expectedCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest/validAddressBook.json"));
+        ImportCommand expectedCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest"
+                + "/validAddressBook.json"));
         ImportCommand command = (ImportCommand) parser.parseCommand(userInput);
         assertEquals(expectedCommand, command);
     }
