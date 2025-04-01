@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.PersonDescriptor;
@@ -96,6 +97,15 @@ public class AddressBookParserTest {
         String userInput = ExportCommand.COMMAND_WORD + " exported_data.json";
         ExportCommand expectedCommand = new ExportCommand(Paths.get("exported_data.json"));
         ExportCommand command = (ExportCommand) parser.parseCommand(userInput); //using AddressBookParser.java
+        assertEquals(expectedCommand, command);
+    }
+
+    @Test
+    public void parseCommand_import() throws Exception {
+        String userInput = ImportCommand.COMMAND_WORD + " src/test/data/ImportCommandTest/validAddressBook.json";
+        ImportCommand expectedCommand = new ImportCommand(Paths.get("src/test/data/ImportCommandTest"
+                + "/validAddressBook.json"));
+        ImportCommand command = (ImportCommand) parser.parseCommand(userInput);
         assertEquals(expectedCommand, command);
     }
 
