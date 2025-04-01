@@ -38,11 +38,15 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
         }
-
+        if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
         PersonDescriptor personDescriptor = new PersonDescriptor();
         // If no tags are provided, throw an exception
+        if (argMultimap.getAllValues(PREFIX_TAG).isEmpty()) {
+            throw new ParseException(AddTagCommand.MESSAGE_EMPTY_TAG);
+        }
         parseTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(personDescriptor::setTags);
-
         return new AddTagCommand(index, personDescriptor);
     }
 
