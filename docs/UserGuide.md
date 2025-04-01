@@ -285,5 +285,7 @@ Action | Format, Examples
 **Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
+**Export Contacts** | `export PATH` <br> e.g., `export backup.json`
+**Import Contacts** | `import PATH` <br> e.g., `import previous_ver.json`
 **List** | `list`
 **Help** | `help`
