@@ -8,9 +8,12 @@ Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]
 
 Examples:
 - add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+- add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal
 
 Note:
-- Tags can still be added later using the addtag command.
+- The add command must have a name, and one of the following fields: phone number, email, address.
+  i.e. add n/Johnny Appleseed does not work because there is no phone number, email or address.
+- A person can have any number of tags (including 0).
 
 2. Listing all contacts: list
 
@@ -66,13 +69,110 @@ Examples:
 - list followed by delete 2 deletes the 2nd person in the address book.
 - find Betsy followed by delete 1 deletes the 1st person in the results of the find command.
 
-6. Clearing all entries: clear
+6. Adding tags to a contact: addtag
+
+Adds the tags typed in to the specified person.
+
+Format: addtag INDEX t/TAG1 [t/MORETAGS]
+
+Note:
+- Adds the specified tags to the person at the specified INDEX.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+- Multiple tags in a single addtag command is supported. i.e. addtag 1 t/friend t/neighbour will tag the 1st person
+  with both "friend" and "neighbour".
+- Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
+
+Examples:
+- list followed by addtag 2 t/friend tags the 2nd person with "friends" in the address book.
+- find Betsy followed by addtag 1 t/friend tags the 1st person in the results of the find command with "friends".
+
+7. Removing tag from a contact: removetag
+
+Removes the specified tag from the person.
+
+Format: removetag INDEX t/TAG1 [t/MORETAGS]
+
+Note:
+- Removes the specified tags from the person at the specified INDEX.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+- Multiple tags in a single removetag command is supported. i.e. removetag 1 t/friend t/neighbour will remove
+  both the "friend" and "neighbour" tag for the 1st person.
+- Tags are case sensitive. The typed tag must match the tag on the person exactly. i.e. removetag 1 t/friend will
+  not remove the tag "Friend".
+
+Examples:
+- list followed by removetag 2 t/friend removes the "friend" tag from the 2nd person in the address book.
+- find Betsy followed by removetag 1 t/friend removes the "friend" tag from the 1st person in the results of
+  the find command.
+
+8. Finding people with tags: findtag
+
+Find persons who have all of the specified tags.
+
+Format: findtag t/TAG1 [t/MORETAGS]
+
+Note:
+- The searching of tags is case-insensitive. e.g friends will match Friends
+- The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
+- Only the tags are searched.
+- Only full words will be matched e.g. Friend will not match Friends
+- Only persons matching all the tags will be returned (i.e. AND search).
+
+Examples:
+- findtag t/friends returns people with tag friends, Friends, FriEndS (due to case insensitivity).
+- findtag t/friends t/neighbours returns people with tag friends and neighbours only.
+
+9. Deleting Note from Person: deletenote
+
+Deletes the note from the person.
+
+Format: deletenote INDEX
+
+Note:
+- Deletes note for the person at the specified INDEX.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …
+
+10. Exporting your contacts: export
+
+Exports the contacts in a .json file to the target path.
+
+Format: export TARGET_PATH
+
+Examples:
+- For Windows: export C:/Users/username/Desktop/MyContacts.json saves the json file as MyContacts.json in the
+  Users/username/Desktop folder.
+- For macOS: export /Users/username/Desktop/MyContacts.json saves the json file as MyContacts.json in the
+  Users/username/Desktop folder.
+- For Linux: export /home/user/desktop/MyContacts.json saves the json file as MyContacts.json in the
+  home/user/desktop folder.
+- export Contacts.json saves the json file as Contacts.json in the root folder of where scoopbook.jar is located at.
+
+11. Importing your contacts: import
+
+Imports the external .json file from target path into the application.
+
+Format: import TARGET_PATH
+
+Examples:
+- For Windows: import C:/Users/username/Desktop/MyContacts.json imports the json file from MyContacts.json in the
+  Users/username/Desktop folder.
+- For macOS: import /Users/username/Desktop/MyContacts.json imports the json file from MyContacts.json in the
+  Users/username/Desktop folder.
+- For Linux: import /home/user/desktop/MyContacts.json imports the json file from MyContacts.json in the
+  home/user/desktop folder.
+- export Contacts.json imports the json file named Contacts.json in the root folder of where scoopbook.jar
+  is located at.
+
+12. Clearing all entries: clear
 
 Warning: this clears all entries from the address book.
 
 Format: clear
 
-7. Exiting the program: exit
+13. Exiting the program: exit
 
 Exits the program.
 
