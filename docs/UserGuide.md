@@ -209,6 +209,30 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Exporting your contacts: `export`
+
+Exports the contacts in a .json file to the target path.
+
+Format: `export TARGET_PATH`
+
+Examples:
+* For Windows: `export C:/Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
+* For macOS: `export /Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
+* For Linux: `export /home/user/desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `home/user/desktop` folder.
+* `export Contacts.json` saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
+
+### Importing your contacts: `import`
+
+Imports the external .json file from target path into the application.
+
+Format: `import TARGET_PATH`
+
+Examples:
+* For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
+* For macOS: `import /Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
+* For Linux: `import /home/user/desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `home/user/desktop` folder.
+* `export Contacts.json` imports the json file named `Contacts.json` in the root folder of where scoopbook.jar is located at.
+
 ### Exiting the program : `exit`
 
 Exits the program.
