@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -85,6 +86,123 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_returnsCorrectAddressBook() {
+        assertEquals(model.getAddressBook(), logic.getAddressBook());
+    }
+
+    @Test
+    public void getAddressBookFilePath_returnsCorrectPath() {
+        assertEquals(model.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_returnsCorrectSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_updatesModelSettings() {
+        GuiSettings newSettings = new GuiSettings(800, 600, 10, 20);
+        logic.setGuiSettings(newSettings);
+        assertEquals(newSettings, model.getGuiSettings());
+    }
+
+    @Test
+    public void getStorage_returnsStorageInstance() {
+        StorageManager expectedStorage = (StorageManager) ((LogicManager) logic).getStorage();
+        assertEquals(expectedStorage, logic.getStorage());
+    }
+
+    @Test
+    public void execute_deleteNote_success() throws Exception {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+
+        String noteContent = "Test note";
+        logic.saveNote(person, noteContent);
+
+        String deleteNoteCommand = "deletenote 1";
+        logic.execute(deleteNoteCommand);
+
+        String deletedContent = logic.readNote(person);
+        assertEquals("", deletedContent);
+    }
+
+    @Test
+    public void saveNote_validPersonAndContent_savesCorrectly() throws Exception {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+
+        String noteContent = "Test note content";
+        logic.saveNote(person, noteContent);
+
+        String readContent = logic.readNote(person);
+        assertEquals(noteContent, readContent);
+    }
+
+    @Test
+    public void saveNote_updatingExistingNote_overwritesPrevious() throws Exception {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+
+        logic.saveNote(person, "Initial content");
+
+        String newContent = "Updated content";
+        logic.saveNote(person, newContent);
+
+        assertEquals(newContent, logic.readNote(person));
+    }
+
+    @Test
+    public void deleteNote_existingNote_removesNote() throws Exception {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+
+        String noteContent = "Note to be deleted";
+        logic.saveNote(person, noteContent);
+
+        logic.deleteNote(person);
+
+        String afterDelete = logic.readNote(person);
+        assertEquals("", afterDelete);
+    }
+
+    @Test
+    public void handleNoteOperations_deleteCommand_deletesNote() throws Exception {
+        Person person = new PersonBuilder().build();
+        model.addPerson(person);
+
+        String noteContent = "Note for deletion test";
+        logic.saveNote(person, noteContent);
+
+        logic.execute("delete 1");
+
+        model.addPerson(person);
+        String result = logic.readNote(person);
+        assertEquals("", result);
+    }
+
+    @Test
+    public void handleNoteOperations_clearCommand_deletesAllNotes() throws Exception {
+        Person person1 = new PersonBuilder().withName("Alice").build();
+        Person person2 = new PersonBuilder().withName("Bob").build();
+        model.addPerson(person1);
+        model.addPerson(person2);
+
+        logic.saveNote(person1, "Alice's note");
+        logic.saveNote(person2, "Bob's note");
+
+        String clearCommand = "clear";
+        logic.execute(clearCommand);
+
+        model.addPerson(person1);
+        model.addPerson(person2);
+
+        assertEquals("", logic.readNote(person1));
+        assertEquals("", logic.readNote(person2));
     }
 
     /**
