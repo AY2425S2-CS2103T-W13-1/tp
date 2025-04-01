@@ -1,2 +1,4 @@
-package seedu.address.logic.parser;public class DeleteNoteCommandParser {
+package seedu.address.logic.parser;
+
+public class DeleteNoteCommandParser {
 }
