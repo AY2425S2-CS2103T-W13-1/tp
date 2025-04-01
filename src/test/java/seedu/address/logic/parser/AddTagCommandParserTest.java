@@ -38,6 +38,16 @@ public class AddTagCommandParserTest {
     }
 
     @Test
+    public void parse_invalidIndex_failure() {
+        // invalid index
+        assertParseFailure(parser, " a t/friends",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        // index not present
+        assertParseFailure(parser, " t/friends",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_multipleTagsWithOneEmpty_throwsParseException() {
         assertParseFailure(parser, "1 t/valid t/", AddTagCommand.MESSAGE_EMPTY_TAG);
     }
