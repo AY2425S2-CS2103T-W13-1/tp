@@ -137,7 +137,8 @@ public class ImportCommandTest {
         CommandException exception = Assertions.assertThrows(CommandException.class, () -> {
             importCommand.execute(model);
         });
-        String expected = "Invalid JSON file: Person 'Roy Balakrishnan' has either out-of-order OR duplicate person ID.";
+        String expected = "Invalid JSON file: Person 'Roy Balakrishnan' has either out-of-order "
+                + "OR duplicate person ID.";
         assertEquals(expected, exception.getMessage());
     }
 }
