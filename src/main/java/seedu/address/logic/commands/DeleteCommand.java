@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.storage.Storage;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -26,6 +28,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
+    private Storage storage;
 
     private Person targetPerson;
 
@@ -45,7 +48,16 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         this.targetPerson = personToDelete;
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+
+        // Delete the note file if it exists
+        try {
+            storage.deleteNote(targetPerson);
+        } catch (IOException e) {
+            throw new CommandException("Failed to delete note: " + e.getMessage(), e);
+        }
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)),
+                false, false, false, NoteDeleteInstruction.DELETE_ONE, personToDelete);
     }
 
     @Override
@@ -75,5 +87,11 @@ public class DeleteCommand extends Command {
      */
     public Person getTargetPerson() {
         return targetPerson;
+    }
+    /**
+     * Sets the storage to be used by the command.
+     */
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 }

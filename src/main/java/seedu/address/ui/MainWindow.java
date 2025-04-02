@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -218,6 +216,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleNote(commandResult.getTargetPerson());
             }
 
+            switch (commandResult.shouldDeleteNote()) {
+            case DELETE_ONE:
+                noteWindowHandler.closeNoteWindow(commandResult.getTargetPerson());
+                break;
+            case DELETE_ALL:
+                noteWindowHandler.closeAllNoteWindows();
+                break;
+            default:
+                break;
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

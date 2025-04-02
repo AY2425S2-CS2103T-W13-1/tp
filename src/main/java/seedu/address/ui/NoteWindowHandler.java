@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
  * Handles the opening and closing of NoteWindows.
  */
 public class NoteWindowHandler {
-    private Map<Person, NoteWindow> openNoteWindows = new HashMap<>();
+    private final Map<Person, NoteWindow> openNoteWindows = new HashMap<>();
     private final Logic logic;
     public NoteWindowHandler(Logic logic) {
         this.logic = logic;
@@ -50,9 +50,4 @@ public class NoteWindowHandler {
     public void closeAllNoteWindows() {
         new ArrayList<>(openNoteWindows.keySet()).forEach(this::closeNoteWindow);
     }
-
-    public NoteWindow getNoteWindow(Person person) {
-        return openNoteWindows.get(person);
-    }
-
 }

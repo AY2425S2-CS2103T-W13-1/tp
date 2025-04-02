@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.NoteDeleteInstruction.DELETE_NONE;
 
 import java.util.Objects;
 
@@ -18,10 +19,12 @@ public class CommandResult {
     private final boolean showHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean shouldExit;
 
     /** Note should be shown to the user. */
     private final boolean showNote;
+    /** Note should be deleted. */
+    private final NoteDeleteInstruction shouldDeleteNote;
 
     /** The person to show the note for. */
     private final Person targetPerson;
@@ -29,11 +32,13 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showNote, Person targetPerson) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean shouldExit,
+                         boolean showNote, NoteDeleteInstruction shouldDeleteNote, Person targetPerson) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.exit = exit;
+        this.shouldExit = shouldExit;
         this.showNote = showNote;
+        this.shouldDeleteNote = shouldDeleteNote;
         this.targetPerson = targetPerson;
     }
 
@@ -42,15 +47,16 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, DELETE_NONE, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}, {@code exit},
      * and {@code showNote}, and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showNote) {
-        this(feedbackToUser, showHelp, exit, showNote, null);
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean shouldExit,
+                         boolean showNote, NoteDeleteInstruction shouldDeleteNote) {
+        this(feedbackToUser, showHelp, shouldExit, showNote, shouldDeleteNote, null);
     }
 
     public Person getTargetPerson() {
@@ -66,11 +72,14 @@ public class CommandResult {
     }
 
     public boolean isExit() {
-        return exit;
+        return shouldExit;
     }
 
     public boolean isShowNote() {
         return showNote;
+    }
+    public NoteDeleteInstruction shouldDeleteNote() {
+        return shouldDeleteNote;
     }
 
     @Override
@@ -87,14 +96,16 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
+                && shouldExit == otherCommandResult.shouldExit
                 && showNote == otherCommandResult.showNote
+                && shouldDeleteNote == otherCommandResult.shouldDeleteNote
                 && Objects.equals(targetPerson, otherCommandResult.targetPerson);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showNote, targetPerson);
+        return Objects.hash(feedbackToUser, showHelp, shouldExit,
+                showNote, shouldDeleteNote, targetPerson);
     }
 
     @Override
@@ -102,8 +113,9 @@ public class CommandResult {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
                 .add("showHelp", showHelp)
-                .add("exit", exit)
+                .add("exit", shouldExit)
                 .add("showNote", showNote)
+                .add("shouldDeleteNote", shouldDeleteNote)
                 .toString();
     }
 
