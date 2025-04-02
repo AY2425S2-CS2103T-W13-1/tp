@@ -1,0 +1,9 @@
+{
+  "persons" : [ {
+    "name" : "alex",
+    "phone" : "000",
+    "email" : "unknown@example.com",
+    "tags" : [ ],
+    "personId" : "1"
+  } ]
+}
