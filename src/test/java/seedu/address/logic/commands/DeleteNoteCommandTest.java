@@ -87,7 +87,6 @@ public class DeleteNoteCommandTest {
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        PersonDescriptor editPersonDescriptor = new PersonDescriptor();
         DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(index);
         String expected = DeleteNoteCommand.class.getCanonicalName() + "{targetIndex=" + index + "}";
         assertEquals(expected, deleteNoteCommand.toString());
