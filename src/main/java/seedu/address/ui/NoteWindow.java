@@ -31,7 +31,6 @@ public class NoteWindow extends UiPart<Stage> {
      */
     public NoteWindow(Stage root) {
         super(FXML, root);
-        setupCloseHandler();
     }
 
     /**
@@ -57,13 +56,16 @@ public class NoteWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets up the handler to save notes when the window is closed.
+     * Sets up the close and hide handler for the Note window.
      */
-    private void setupCloseHandler() {
+    public void setupCloseAndHideHandler(Runnable handler) {
         getRoot().setOnCloseRequest(event -> {
-            if (person != null) {
-                saveNotes();
-            }
+            saveNotes();
+            handler.run();
+        });
+        getRoot().setOnHidden(event -> {
+            saveNotes();
+            handler.run();
         });
     }
 

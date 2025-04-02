@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -37,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private NoteWindow noteWindow;
+    private NoteWindowHandler noteWindowHandler;
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -74,7 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        noteWindow = new NoteWindow();
+        noteWindowHandler = new NoteWindowHandler(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -163,8 +165,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNote(Person person) {
-        NoteWindow newNoteWindow = new NoteWindow(person, logic);
-        newNoteWindow.show();
+        noteWindowHandler.openNoteWindow(person);
     }
 
     void show() {
@@ -180,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        noteWindow.hide();
+        noteWindowHandler.closeAllNoteWindows();
         primaryStage.hide();
     }
 
