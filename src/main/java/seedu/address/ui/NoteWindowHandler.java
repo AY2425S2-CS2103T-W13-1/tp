@@ -26,20 +26,35 @@ public class NoteWindowHandler {
             existingNoteWindow.focus();
         } else {
             NoteWindow newNoteWindow = new NoteWindow(person, logic);
-            newNoteWindow.setupCloseAndHideHandler(() -> closeNoteWindow(person));
+            newNoteWindow.setupCloseAndHideHandler(() -> closeNoteWindowWithSaving(person));
             openNoteWindows.put(person, newNoteWindow);
             newNoteWindow.show();
         }
     }
 
     /**
-     * Closes the NoteWindow for the specified person.
+     * Closes the NoteWindow for the specified person, saving the notes.
      * @param person
      */
-    public void closeNoteWindow(Person person) {
+    public void closeNoteWindowWithSaving(Person person) {
+        // Since the notes are set to save on close/hide by default,
+        // we only need to close/hide the window to save the notes.
         NoteWindow noteWindow = openNoteWindows.get(person);
         if (noteWindow != null) {
             noteWindow.hide();
+            openNoteWindows.remove(person);
+        }
+    }
+    /**
+     * Closes the NoteWindow for the specified person without saving the notes.
+     * @param person
+     */
+    public void closeNoteWindowWithoutSaving(Person person) {
+        // Since the notes are set to save on close/hide by default,
+        // we need to reset the handler, then close/hide the window to save the notes.
+        NoteWindow noteWindow = openNoteWindows.get(person);
+        if (noteWindow != null) {
+            noteWindow.closeWithoutSaving();
             openNoteWindows.remove(person);
         }
     }
@@ -47,7 +62,11 @@ public class NoteWindowHandler {
     /**
      * Closes all open NoteWindows.
      */
-    public void closeAllNoteWindows() {
-        new ArrayList<>(openNoteWindows.keySet()).forEach(this::closeNoteWindow);
+    public void closeAllNoteWindows(boolean isToSave) {
+        if (isToSave) {
+            new ArrayList<>(openNoteWindows.keySet()).forEach(this::closeNoteWindowWithSaving);
+        } else {
+            new ArrayList<>(openNoteWindows.keySet()).forEach(this::closeNoteWindowWithoutSaving);
+        }
     }
 }

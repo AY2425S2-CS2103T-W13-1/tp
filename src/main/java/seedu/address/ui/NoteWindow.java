@@ -68,6 +68,14 @@ public class NoteWindow extends UiPart<Stage> {
             handler.run();
         });
     }
+    /**
+     * Closes the notes for a specific person if available.
+     */
+    public void closeWithoutSaving() {
+        getRoot().setOnCloseRequest(event -> {});
+        getRoot().setOnHidden(event -> {});
+        getRoot().close();
+    }
 
     /**
      * Loads existing notes for a specific person if available.

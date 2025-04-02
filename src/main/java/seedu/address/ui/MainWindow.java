@@ -179,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        noteWindowHandler.closeAllNoteWindows();
+        noteWindowHandler.closeAllNoteWindows(true);
         primaryStage.hide();
     }
 
@@ -218,10 +218,10 @@ public class MainWindow extends UiPart<Stage> {
 
             switch (commandResult.shouldDeleteNote()) {
             case DELETE_ONE:
-                noteWindowHandler.closeNoteWindow(commandResult.getTargetPerson());
+                noteWindowHandler.closeNoteWindowWithSaving(commandResult.getTargetPerson());
                 break;
             case DELETE_ALL:
-                noteWindowHandler.closeAllNoteWindows();
+                noteWindowHandler.closeAllNoteWindows(false);
                 break;
             default:
                 break;
