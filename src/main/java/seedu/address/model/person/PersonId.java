@@ -11,11 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PersonId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "PersonId should be an integer";
-    /*
-     * The person id must be a valid integer
-     */
-        public static final String VALIDATION_REGEX = "^0|[1-9]\\d*$";
+            "PersonId should be an integer"; // The person id must be a valid integer
+    public static final String VALIDATION_REGEX = "^0|[1-9]\\d*$";
 
     private static int counter = 0;
     public final String value;
