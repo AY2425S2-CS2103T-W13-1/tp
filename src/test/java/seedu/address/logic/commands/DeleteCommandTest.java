@@ -53,8 +53,6 @@ public class DeleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        // Manually inject storageManager into deleteCommand
-        deleteCommand.setStorage(storageManager);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -82,9 +80,6 @@ public class DeleteCommandTest {
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        // Manually inject storageManager into deleteCommand
-        deleteCommand.setStorage(storageManager);
-
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
 
@@ -107,8 +102,7 @@ public class DeleteCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-        // Manually inject storageManager into deleteCommand
-        deleteCommand.setStorage(storageManager);
+
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
@@ -147,8 +141,6 @@ public class DeleteCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        // Manually inject storageManager into deleteCommand
-        deleteCommand.setStorage(storageManager);
 
         // Execute the command
         deleteCommand.execute(model);

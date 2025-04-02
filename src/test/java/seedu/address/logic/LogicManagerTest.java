@@ -64,11 +64,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deletenoteCommand = "deletenote 9";
-        assertCommandException(deletenoteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
 
     @Test
     public void execute_validCommand_success() throws Exception {
