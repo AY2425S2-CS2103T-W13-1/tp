@@ -204,8 +204,7 @@ Format: note INDEX
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
-* The note will only be saved when the user closes the window.
-* In the event that multiple note windows are opened for the same person, only the last note window closed will be saved.
+* The note will be saved when the window is closed.
 
 ### Deleting Note from Person: `deletenote`
 
