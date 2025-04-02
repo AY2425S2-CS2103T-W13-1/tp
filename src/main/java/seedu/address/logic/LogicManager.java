@@ -57,6 +57,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
+            handleNoteOperations(command);
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -117,7 +118,7 @@ public class LogicManager implements Logic {
      * @param command The command that was executed
      * @throws IOException If there is an issue with file operations
      */
-    private boolean handleNoteOperations(Command command) throws IOException {
+    private void handleNoteOperations(Command command) throws IOException {
         if (command instanceof DeleteCommand) {
             DeleteCommand deleteCommand = (DeleteCommand) command;
             Person personDeleted = deleteCommand.getTargetPerson();
@@ -130,6 +131,5 @@ public class LogicManager implements Logic {
                 storage.deleteAllNotes();
             }
         }
-        return false;
     }
 }
