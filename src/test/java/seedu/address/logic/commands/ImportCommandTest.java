@@ -118,4 +118,26 @@ public class ImportCommandTest {
         String expected = "Invalid JSON file: Person's PersonId field is missing!";
         assertEquals(expected, exception.getMessage());
     }
+
+    @Test
+    public void execute_duplicatePersonId_throwsCommandException() {
+        Path targetPath = Paths.get("src/test/data/ImportCommandTest/duplicatePersonId.json").toAbsolutePath();
+        ImportCommand importCommand = new ImportCommand(targetPath);
+        CommandException exception = Assertions.assertThrows(CommandException.class, () -> {
+            importCommand.execute(model);
+        });
+        String expected = "Invalid JSON file: Person 'Bernice Yu' has either out-of-order OR duplicate person ID.";
+        assertEquals(expected, exception.getMessage());
+    }
+
+    @Test
+    public void execute_outOfOrderPersonId_throwsCommandException() {
+        Path targetPath = Paths.get("src/test/data/ImportCommandTest/outOfOrderPersonId.json").toAbsolutePath();
+        ImportCommand importCommand = new ImportCommand(targetPath);
+        CommandException exception = Assertions.assertThrows(CommandException.class, () -> {
+            importCommand.execute(model);
+        });
+        String expected = "Invalid JSON file: Person 'Roy Balakrishnan' has either out-of-order OR duplicate person ID.";
+        assertEquals(expected, exception.getMessage());
+    }
 }
