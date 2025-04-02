@@ -91,8 +91,6 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-* Only this format of the command is allowed, any other format will not work. e.g. `list 123` will not work.
-
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
