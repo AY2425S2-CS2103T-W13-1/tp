@@ -23,7 +23,7 @@ public class ClearCommand extends Command {
         hasCleared = true;
         PersonId.reset();
         return new CommandResult(MESSAGE_SUCCESS, false, false,
-                false, NoteDeleteInstruction.DELETE_ALL);
+                false, NoteCloseInstruction.CLOSE_ALL);
     }
 
     /**

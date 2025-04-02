@@ -37,7 +37,7 @@ public class NoteCommand extends Command {
         }
         Person personToAddNote = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_NOTE_PERSON_SUCCESS, Messages.format(personToAddNote)),
-                false, false, true, NoteDeleteInstruction.DELETE_NONE, personToAddNote);
+                false, false, true, NoteCloseInstruction.CLOSE_NONE, personToAddNote);
     }
 
     @Override

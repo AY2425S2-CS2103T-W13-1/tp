@@ -56,7 +56,7 @@ public class DeleteNoteCommand extends Command {
                 : String.format(MESSAGE_NO_NOTE, Messages.format(personToDeleteNote));
 
         return new CommandResult(message, false, false, true,
-                deleted ? NoteDeleteInstruction.DELETE_ONE : NoteDeleteInstruction.DELETE_NONE, personToDeleteNote);
+                NoteCloseInstruction.CLOSE_ONE, personToDeleteNote);
     }
 
     @Override

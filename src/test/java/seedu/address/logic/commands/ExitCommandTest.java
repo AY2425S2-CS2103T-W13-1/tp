@@ -15,7 +15,7 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false,
-                true, false, NoteDeleteInstruction.DELETE_NONE);
+                true, false, NoteCloseInstruction.CLOSE_NONE);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

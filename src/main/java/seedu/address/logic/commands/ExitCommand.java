@@ -14,7 +14,7 @@ public class ExitCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
-                false, NoteDeleteInstruction.DELETE_NONE);
+                false, NoteCloseInstruction.CLOSE_NONE);
     }
 
 }

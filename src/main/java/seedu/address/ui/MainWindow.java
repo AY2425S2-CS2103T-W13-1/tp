@@ -217,10 +217,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             switch (commandResult.shouldDeleteNote()) {
-            case DELETE_ONE:
-                noteWindowHandler.closeNoteWindowWithSaving(commandResult.getTargetPerson());
+            case CLOSE_ONE:
+                noteWindowHandler.closeNoteWindowWithoutSaving(commandResult.getTargetPerson());
                 break;
-            case DELETE_ALL:
+            case CLOSE_ALL:
+                // For clear command, close all note windows without saving
                 noteWindowHandler.closeAllNoteWindows(false);
                 break;
             default:

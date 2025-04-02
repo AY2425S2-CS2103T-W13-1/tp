@@ -18,7 +18,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
-                false, NoteDeleteInstruction.DELETE_NONE)));
+                false, NoteCloseInstruction.CLOSE_NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -34,16 +34,16 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
-                false, NoteDeleteInstruction.DELETE_NONE)));
+                false, NoteCloseInstruction.CLOSE_NONE)));
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
-                false, NoteDeleteInstruction.DELETE_NONE)));
+                false, NoteCloseInstruction.CLOSE_NONE)));
         // different showNote value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                true, NoteDeleteInstruction.DELETE_NONE)));
+                true, NoteCloseInstruction.CLOSE_NONE)));
         // different shouldDeleteNote value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, NoteDeleteInstruction.DELETE_ALL)));
+                false, NoteCloseInstruction.CLOSE_ALL)));
     }
 
     @Test
@@ -58,18 +58,18 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
-                false, false, NoteDeleteInstruction.DELETE_NONE).hashCode());
+                false, false, NoteCloseInstruction.CLOSE_NONE).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                true, false, NoteDeleteInstruction.DELETE_NONE).hashCode());
+                true, false, NoteCloseInstruction.CLOSE_NONE).hashCode());
 
         // different showNote value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, true, NoteDeleteInstruction.DELETE_NONE).hashCode());
+                false, true, NoteCloseInstruction.CLOSE_NONE).hashCode());
         // different shouldDeleteNote value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
-                false, false, NoteDeleteInstruction.DELETE_ALL).hashCode());
+                false, false, NoteCloseInstruction.CLOSE_ALL).hashCode());
     }
 
     @Test
@@ -88,18 +88,18 @@ public class CommandResultTest {
         Person person1 = new PersonBuilder().withName("Alice").build();
         Person person2 = new PersonBuilder().withName("Bob").build();
         CommandResult commandResult = new CommandResult("feedback", false, false,
-                true, NoteDeleteInstruction.DELETE_NONE, person1);
+                true, NoteCloseInstruction.CLOSE_NONE, person1);
 
         // different targetPerson -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                true, NoteDeleteInstruction.DELETE_NONE, person2)));
+                true, NoteCloseInstruction.CLOSE_NONE, person2)));
     }
 
     @Test
     public void getTargetPerson_returnsCorrectPerson() {
         Person person = new PersonBuilder().withName("Alice").build();
         CommandResult commandResult = new CommandResult("feedback", false, false,
-                true, NoteDeleteInstruction.DELETE_NONE, person);
+                true, NoteCloseInstruction.CLOSE_NONE, person);
         assertEquals(person, commandResult.getTargetPerson());
     }
 }

@@ -23,7 +23,7 @@ public class HelpCommandTest {
     @Test
     public void execute_help_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
-                false, NoteDeleteInstruction.DELETE_NONE);
+                false, NoteCloseInstruction.CLOSE_NONE);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
     @Test

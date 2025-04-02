@@ -57,7 +57,7 @@ public class DeleteCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)),
-                false, false, false, NoteDeleteInstruction.DELETE_ONE, personToDelete);
+                false, false, false, NoteCloseInstruction.CLOSE_ONE, personToDelete);
     }
 
     @Override

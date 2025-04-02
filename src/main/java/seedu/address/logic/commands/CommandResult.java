@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.NoteDeleteInstruction.DELETE_NONE;
+import static seedu.address.logic.commands.NoteCloseInstruction.CLOSE_NONE;
 
 import java.util.Objects;
 
@@ -24,7 +24,7 @@ public class CommandResult {
     /** Note should be shown to the user. */
     private final boolean showNote;
     /** Note should be deleted. */
-    private final NoteDeleteInstruction shouldDeleteNote;
+    private final NoteCloseInstruction shouldDeleteNote;
 
     /** The person to show the note for. */
     private final Person targetPerson;
@@ -33,7 +33,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean shouldExit,
-                         boolean showNote, NoteDeleteInstruction shouldDeleteNote, Person targetPerson) {
+                         boolean showNote, NoteCloseInstruction shouldDeleteNote, Person targetPerson) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.shouldExit = shouldExit;
@@ -47,7 +47,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, DELETE_NONE, null);
+        this(feedbackToUser, false, false, false, CLOSE_NONE, null);
     }
 
     /**
@@ -55,7 +55,7 @@ public class CommandResult {
      * and {@code showNote}, and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean shouldExit,
-                         boolean showNote, NoteDeleteInstruction shouldDeleteNote) {
+                         boolean showNote, NoteCloseInstruction shouldDeleteNote) {
         this(feedbackToUser, showHelp, shouldExit, showNote, shouldDeleteNote, null);
     }
 
@@ -78,7 +78,7 @@ public class CommandResult {
     public boolean isShowNote() {
         return showNote;
     }
-    public NoteDeleteInstruction shouldDeleteNote() {
+    public NoteCloseInstruction shouldDeleteNote() {
         return shouldDeleteNote;
     }
 
