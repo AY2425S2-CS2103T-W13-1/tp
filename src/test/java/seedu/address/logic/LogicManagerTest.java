@@ -20,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -62,6 +63,12 @@ public class LogicManagerTest {
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_deleteNoteCommandStorageInjection_success() throws Exception {
+        String deleteNoteCommand = "deletenote 1";
+        assertCommandFailure(deleteNoteCommand, CommandException.class, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, model);
     }
 
 
