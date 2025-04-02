@@ -213,6 +213,8 @@ Format: `clear`
 
 Exports the contacts in a .json file to the target path.
 
+- The `export` command only exports your contacts. It does not export the notes tagged to them.
+
 Format: `export TARGET_PATH`
 
 Examples:
@@ -226,6 +228,9 @@ Examples:
 Imports the external .json file from target path into the application.
 
 Format: `import TARGET_PATH`
+
+- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command
+- Only write your own .json file if you are confident that you can update it correctly.
 
 Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
