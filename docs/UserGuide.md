@@ -199,6 +199,18 @@ Examples:
 * `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
 * `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
 
+### Opening Note for Person: `note`
+
+Open a window for the user to add notes to.
+If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
+If no note exists for the person, a new note will be created and displayed in the window for editing.
+<br> Format: note INDEX
+
+* Opens a window for the user to add notes to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …
+* The note will be saved when the window is closed.
+
 ### Deleting Note from Person: `deletenote`
 
 Deletes the note from the person.
