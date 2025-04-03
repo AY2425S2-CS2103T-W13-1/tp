@@ -17,12 +17,14 @@ public class FindTagCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", "Tags cannot be empty.");
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_noTagPrefix_throwsParseException() {
-        assertParseFailure(parser, "friends", "Tags cannot be empty.");
+        assertParseFailure(parser, "friends",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -46,13 +48,11 @@ public class FindTagCommandParserTest {
 
     @Test
     public void parse_emptyTagName_throwsParseException() {
-        assertParseFailure(parser, " t/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " t/", FindTagCommand.MESSAGE_EMPTY_TAG);
     }
 
     @Test
     public void parse_multipleTagsWithOneEmpty_throwsParseException() {
-        assertParseFailure(parser, " t/valid t/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " t/valid t/", FindTagCommand.MESSAGE_EMPTY_TAG);
     }
 }
