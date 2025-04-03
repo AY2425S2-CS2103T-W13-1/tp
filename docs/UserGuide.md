@@ -197,7 +197,7 @@ Examples:
 
 Open a window for the user to add notes to.
 If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
-Else, a new note will first be added for the person before the note is displayed.
+Else, a new note will first be added for the person before the existing note is displayed.
 
 Format: note INDEX
 
