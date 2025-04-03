@@ -24,6 +24,10 @@ public class ImportCommandParser {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
+        String[] parts = trimmedArgs.split("\\s+", 2);
+        if (parts.length > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+        }
         Path targetPath = Paths.get(trimmedArgs);
         return new ImportCommand(targetPath);
     }
