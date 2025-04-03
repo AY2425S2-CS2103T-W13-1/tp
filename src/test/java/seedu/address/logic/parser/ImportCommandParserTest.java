@@ -28,4 +28,11 @@ public class ImportCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(userInput),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_tooManyArgs_throwParseException() {
+        String userInput = "import validAddressBook.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+    }
 }
