@@ -27,4 +27,11 @@ public class ExportCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_tooManyArgs_throwsParseException() {
+        String userInput = "export exported_data.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
+    }
+
 }

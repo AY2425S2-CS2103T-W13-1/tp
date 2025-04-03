@@ -38,7 +38,10 @@ public class DeleteNoteCommandTest {
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_DELETENOTE_SUCCESS,
                 Messages.format(personToDeleteNote));
 
-        assertCommandSuccess(deleteNoteCommand, model, expectedMessage, model);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
+                false, NoteCloseInstruction.CLOSE_ONE, personToDeleteNote);
+
+        assertCommandSuccess(deleteNoteCommand, model, expectedCommandResult, model);
         assertEquals(personToDeleteNote, deleteNoteCommand.getTargetPerson());
     }
 
@@ -51,7 +54,10 @@ public class DeleteNoteCommandTest {
         String expectedMessage = String.format(DeleteNoteCommand.MESSAGE_NO_NOTE,
                 Messages.format(personToDeleteNote));
 
-        assertCommandSuccess(deleteNoteCommand, model, expectedMessage, model);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
+                false, NoteCloseInstruction.CLOSE_ONE, personToDeleteNote);
+
+        assertCommandSuccess(deleteNoteCommand, model, expectedCommandResult, model);
         assertEquals(personToDeleteNote, deleteNoteCommand.getTargetPerson());
     }
     @Test
@@ -87,7 +93,6 @@ public class DeleteNoteCommandTest {
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
-        PersonDescriptor editPersonDescriptor = new PersonDescriptor();
         DeleteNoteCommand deleteNoteCommand = new DeleteNoteCommand(index);
         String expected = DeleteNoteCommand.class.getCanonicalName() + "{targetIndex=" + index + "}";
         assertEquals(expected, deleteNoteCommand.toString());

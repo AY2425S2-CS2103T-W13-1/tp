@@ -17,7 +17,8 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
+                false, NoteCloseInstruction.CLOSE_NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -32,13 +33,17 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
-
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
+                false, NoteCloseInstruction.CLOSE_NONE)));
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
-
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
+                false, NoteCloseInstruction.CLOSE_NONE)));
         // different showNote value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                true, NoteCloseInstruction.CLOSE_NONE)));
+        // different shouldDeleteNote value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                false, NoteCloseInstruction.CLOSE_ALL)));
     }
 
     @Test
@@ -52,13 +57,19 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
+                false, false, NoteCloseInstruction.CLOSE_NONE).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
+                true, false, NoteCloseInstruction.CLOSE_NONE).hashCode());
 
         // different showNote value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
+                false, true, NoteCloseInstruction.CLOSE_NONE).hashCode());
+        // different shouldDeleteNote value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
+                false, false, NoteCloseInstruction.CLOSE_ALL).hashCode());
     }
 
     @Test
@@ -67,7 +78,8 @@ public class CommandResultTest {
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
                 + ", exit=" + commandResult.isExit()
-                + ", showNote=" + commandResult.isShowNote() + "}";
+                + ", showNote=" + commandResult.isShowNote()
+                + ", shouldDeleteNote=" + commandResult.shouldDeleteNote() + "}";
         assertEquals(expected, commandResult.toString());
     }
 
@@ -75,16 +87,19 @@ public class CommandResultTest {
     public void equals_differentTargetPerson_returnsFalse() {
         Person person1 = new PersonBuilder().withName("Alice").build();
         Person person2 = new PersonBuilder().withName("Bob").build();
-        CommandResult commandResult = new CommandResult("feedback", false, false, true, person1);
+        CommandResult commandResult = new CommandResult("feedback", false, false,
+                true, NoteCloseInstruction.CLOSE_NONE, person1);
 
         // different targetPerson -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, person2)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                true, NoteCloseInstruction.CLOSE_NONE, person2)));
     }
 
     @Test
     public void getTargetPerson_returnsCorrectPerson() {
         Person person = new PersonBuilder().withName("Alice").build();
-        CommandResult commandResult = new CommandResult("feedback", false, false, true, person);
+        CommandResult commandResult = new CommandResult("feedback", false, false,
+                true, NoteCloseInstruction.CLOSE_NONE, person);
         assertEquals(person, commandResult.getTargetPerson());
     }
 }
