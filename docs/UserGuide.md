@@ -224,19 +224,19 @@ Examples:
 
 ### Importing your contacts: `import`
 
-Imports contacts from the external .json file located at the specfied path into the application.
+Imports contacts from the external .json file located at the specified path into the application.
 
 Format: `import TARGET_PATH`
 
-- CAUTION: This command overwrites existing contacts and notes.
-- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command
+- CAUTION: This command overwrites existing contacts and remove all notes.
+- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command.
 - Only write your own .json file if you are confident that you can update it correctly.
 
 Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For macOS: `import /Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For Linux: `import /home/user/desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `home/user/desktop` folder.
-* `export Contacts.json` imports the json file named `Contacts.json` in the root folder of where scoopbook.jar is located at.
+* `import Contacts.json` imports the json file named `Contacts.json` from the root folder of where scoopbook.jar is located at.
 
 ### Exiting the program : `exit`
 
