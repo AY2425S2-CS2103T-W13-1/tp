@@ -42,6 +42,7 @@ public class PersonIdTest {
         assertFalse(PersonId.isValidId("123.45")); // non-integer
         assertFalse(PersonId.isValidId("123-45")); // non-integer
         assertFalse(PersonId.isValidId("123 45")); // non-integer
+        assertFalse(PersonId .isValidId("-1")); // negative integer
 
         // valid person id
         assertTrue(PersonId.isValidId("0")); // zero
