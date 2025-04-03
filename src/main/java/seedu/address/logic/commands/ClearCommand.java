@@ -22,7 +22,8 @@ public class ClearCommand extends Command {
         model.setAddressBook(new AddressBook());
         hasCleared = true;
         PersonId.reset();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false,
+                false, NoteCloseInstruction.CLOSE_ALL);
     }
 
     /**

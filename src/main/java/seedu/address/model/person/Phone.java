@@ -44,7 +44,7 @@ public class Phone {
 
     @Override
     public String toString() {
-        return value;
+        return value.equals(EMPTY_PHONE) ? "" : value;
     }
 
     @Override
