@@ -68,4 +68,15 @@ public class PhoneTest {
         // different values -> returns false
         assertFalse(phone.equals(new Phone("995")));
     }
+
+    @Test
+    public void toStringTest() {
+        // valid phone number
+        Phone phone = new Phone("999");
+        assertTrue(phone.toString().equals("999"));
+
+        // empty phone number
+        Phone emptyPhone = new Phone("000");
+        assertTrue(emptyPhone.toString().equals(""));
+    }
 }
