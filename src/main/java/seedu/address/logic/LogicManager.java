@@ -53,7 +53,9 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
 
         // Inject storage manually if it's DeleteNoteCommand
-        if (command instanceof DeleteNoteCommand) { ((DeleteNoteCommand) command).setStorage(storage); }
+        if (command instanceof DeleteNoteCommand castCommand) {
+            castCommand.setStorage(storage);
+        }
         commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
