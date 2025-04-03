@@ -227,6 +227,7 @@ Imports contacts from the external .json file located at the specfied path into 
 
 Format: `import TARGET_PATH`
 
+- CAUTION: This command overwrites existing contacts and notes.
 - To ensure that the .json file follows the correct format, only use .json files exported using the `export` command
 - Only write your own .json file if you are confident that you can update it correctly.
 
