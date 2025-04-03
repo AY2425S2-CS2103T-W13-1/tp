@@ -80,6 +80,11 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
+* If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
+    - Phone: `000`
+    - Email: `unknown@example.com`
+    - Address: `Unknown address`  
+      This ensures that every contact has a placeholder value for these fields if left empty.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -90,8 +95,6 @@ Examples:
 Shows a list of all persons in the address book.
 
 Format: `list`
-
-* Only this format of the command is allowed, any other format will not work. e.g. `list 123` will not work.
 
 ### Editing a person : `edit`
 
@@ -105,6 +108,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -195,6 +199,18 @@ Examples:
 * `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
 * `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
 
+### Opening Note for Person: `note`
+
+Open a window for the user to add notes to.
+If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
+If no note exists for the person, a new note will be created and displayed in the window for editing.
+<br> Format: note INDEX
+
+* Opens a window for the user to add notes to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …
+* The note will be saved when the window is closed.
+
 ### Deleting Note from Person: `deletenote`
 
 Deletes the note from the person.
@@ -211,6 +227,37 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Exporting your contacts: `export`
+
+Exports the contacts in a .json file to the target path.
+
+- The `export` command only exports your contacts. It does not export the notes tagged to them.
+- Before executing the `export` command, add at least 1 contact using the `add` command.
+
+Format: `export TARGET_PATH`
+
+Examples:
+* For Windows: `export C:/Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
+* For macOS: `export /Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
+* For Linux: `export /home/user/desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `home/user/desktop` folder.
+* `export Contacts.json` saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
+
+### Importing your contacts: `import`
+
+Imports contacts from the external .json file located at the specified path into the application.
+
+Format: `import TARGET_PATH`
+
+- CAUTION: This command overwrites existing contacts and remove all notes.
+- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command.
+- Only write your own .json file if you are confident that you can update it correctly.
+
+Examples:
+* For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
+* For macOS: `import /Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
+* For Linux: `import /home/user/desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `home/user/desktop` folder.
+* `import Contacts.json` imports the json file named `Contacts.json` from the root folder of where scoopbook.jar is located at.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -224,6 +271,14 @@ ScoopBook data are saved in the hard disk automatically after any command that c
 ### Editing the data file
 
 ScoopBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+**Unsure where to find the JSON file? No worries! Follow these instructions:**
+
+1. In ScoopBook, type the following command: `export temp.json`
+2. `temp.json` will be saved in your JAR file location. Open it in an editor of your choice.
+3. Edit the fields while adhering to the format of the file. Save the JSON file.
+4. In ScoopBook, type the following command: `import temp.json`
+5. Done!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ScoopBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -262,6 +317,9 @@ Action | Format, Examples
 **Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/friend`
 **Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
+**Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
+**Export Contacts** | `export PATH` <br> e.g., `export backup.json`
+**Import Contacts** | `import PATH` <br> e.g., `import previous_ver.json`
 **List** | `list`
 **Help** | `help`
