@@ -54,7 +54,7 @@ public class Email {
 
     @Override
     public String toString() {
-        return value;
+        return value.equals(EMPTY_EMAIL) ? "" : value;
     }
 
     @Override

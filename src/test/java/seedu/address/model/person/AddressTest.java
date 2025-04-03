@@ -53,4 +53,15 @@ public class AddressTest {
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
     }
+
+    @Test
+    public void toStringTest() {
+        // valid address
+        Address address = new Address("Valid Address");
+        assertTrue(address.toString().equals("Valid Address"));
+
+        // empty address
+        Address emptyAddress = new Address("Unknown address");
+        assertTrue(emptyAddress.toString().equals(""));
+    }
 }
