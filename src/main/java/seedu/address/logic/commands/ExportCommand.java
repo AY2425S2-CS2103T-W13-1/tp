@@ -60,7 +60,7 @@ public class ExportCommand extends Command {
             return new CommandResult(String.format(MESSAGE_EXPORT_SUCCESS, targetPath.toAbsolutePath()));
 
         } catch (IOException e) {
-            throw new CommandException(MESSAGE_EXPORT_FAILURE);
+            throw new CommandException(MESSAGE_EXPORT_FAILURE + e.getMessage());
         }
     }
 

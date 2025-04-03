@@ -212,6 +212,7 @@ Format: `clear`
 Exports the contacts in a .json file to the target path.
 
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
+- Before executing the `export` command, add at least 1 contact using the `add` command.
 
 Format: `export TARGET_PATH`
 
