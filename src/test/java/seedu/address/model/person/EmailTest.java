@@ -85,4 +85,15 @@ public class EmailTest {
         // different values -> returns false
         assertFalse(email.equals(new Email("other.valid@email")));
     }
+
+    @Test
+    public void toStringTest() {
+        // valid email
+        Email email = new Email("valid@email");
+        assertTrue(email.toString().equals("valid@email"));
+
+        // empty email
+        Email email_empty = new Email("unknown@example.com");
+        assertTrue(email_empty.toString().equals(""));
+    }
 }

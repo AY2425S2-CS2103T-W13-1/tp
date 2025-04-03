@@ -154,6 +154,8 @@ Format: `addtag INDEX t/TAG1 [t/MORETAGS]`
 * Multiple tags in a single `addtag` command is supported.
   i.e. `addtag 1 t/friend t/neighbour` will tag the 1st person with both "friend" and "neighbour".
 * Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
+* Tags are case-sensitive.
+  i.e. `addtag 1 t/friend` will add the tag "friend" while `addtag 1 t/Friend` will add the tag "Friend".
 
 Examples:
 * `list` followed by `addtag 2 t/friend` tags the 2nd person with "friends" in the address book.

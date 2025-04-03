@@ -26,7 +26,6 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
-
     private Person targetPerson;
 
     public DeleteCommand(Index targetIndex) {
@@ -45,7 +44,9 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         this.targetPerson = personToDelete;
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)),
+                false, false, false, NoteCloseInstruction.CLOSE_ONE, personToDelete);
     }
 
     @Override
