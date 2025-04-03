@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -49,6 +50,12 @@ public class FileNotesStorageTest {
     }
 
     @Test
+    public void deleteNote_nonExistentNote_returnsFalse() throws IOException {
+        boolean result = notesStorage.deleteNote(testPerson);
+        assertFalse(result);
+    }
+
+    @Test
     public void deleteNote_existingNote_success() throws IOException {
         // Create a note first
         notesStorage.saveNote(testPerson, "Note to delete");
@@ -79,5 +86,15 @@ public class FileNotesStorageTest {
         // Verify files are deleted
         assertFalse(new File(testFolder.toString(), "1.txt").exists());
         assertFalse(new File(testFolder.toString(), "2.txt").exists());
+    }
+
+    @Test
+    public void constructor_cannotCreateDirectory_handlesException() throws Exception {
+        Path blockingFile = testFolder.resolve("blocked-dir");
+        Files.createFile(blockingFile);
+
+        new FileNotesStorage(blockingFile);
+
+        assertTrue(Files.isRegularFile(blockingFile));
     }
 }
