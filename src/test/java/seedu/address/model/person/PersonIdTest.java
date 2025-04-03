@@ -21,11 +21,11 @@ public class PersonIdTest {
 
     @Test
     public void constructor_invalidPersonId_throwsIllegalArgumentException() {
-        String invalidPersonId_empty = "";
-        assertThrows(IllegalArgumentException.class, () -> new PersonId(invalidPersonId_empty));
+        String invalidPersonIdEmpty = "";
+        assertThrows(IllegalArgumentException.class, () -> new PersonId(invalidPersonIdEmpty));
 
-        String invalidPersonId_string = "test";
-        assertThrows(IllegalArgumentException.class, () -> new PersonId(invalidPersonId_string));
+        String invalidPersonIdString = "test";
+        assertThrows(IllegalArgumentException.class, () -> new PersonId(invalidPersonIdString));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class PersonIdTest {
         assertFalse(PersonId.isValidId("123.45")); // non-integer
         assertFalse(PersonId.isValidId("123-45")); // non-integer
         assertFalse(PersonId.isValidId("123 45")); // non-integer
-        assertFalse(PersonId .isValidId("-1")); // negative integer
+        assertFalse(PersonId.isValidId("-1")); // negative integer
 
         // valid person id
         assertTrue(PersonId.isValidId("0")); // zero
