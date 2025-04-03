@@ -80,6 +80,7 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
+* A person's name and tags can only contain alphanumeric characters (numbers or letters only, no special characters).
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
