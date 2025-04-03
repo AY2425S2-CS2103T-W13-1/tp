@@ -34,7 +34,7 @@ public class RemoveTagCommand extends Command {
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Tag(s) %2$s removed for person: %1$s";
     public static final String MESSAGE_INVALID_TAGS = "Tag(s) %2$s do not exist for this person.";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag(s) do not exist for this person.";
-
+    public static final String MESSAGE_EMPTY_TAG = "Tags cannot be empty";
     private final Index targetIndex;
     private final PersonDescriptor personDescriptor;
 
