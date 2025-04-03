@@ -223,7 +223,7 @@ Examples:
 
 ### Importing your contacts: `import`
 
-Imports the external .json file from target path into the application.
+Imports contacts from the external .json file located at the specfied path into the application.
 
 Format: `import TARGET_PATH`
 
@@ -253,7 +253,7 @@ ScoopBook data are saved automatically as a JSON file `[JAR file location]/data/
 **Unsure where to find the JSON file? No worries! Follow these instructions:**
 
 1. In ScoopBook, type the following command: `export temp.json`
-2. `temp.json` will be saved in you JAR file location. Open it in an editor of your choice.
+2. `temp.json` will be saved in your JAR file location. Open it in an editor of your choice.
 3. Edit the fields while adhering to the format of the file. Save the JSON file.
 4. In ScoopBook, type the following command: `import temp.json`
 5. Done!
