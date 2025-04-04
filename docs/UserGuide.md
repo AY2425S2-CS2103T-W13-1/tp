@@ -80,6 +80,12 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
+* A person's name and tags can only contain alphanumeric characters (numbers or letters only, no special characters).
+* If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
+    - Phone: `000`
+    - Email: `unknown@example.com`
+    - Address: `Unknown address`  
+      This ensures that every contact has a placeholder value for these fields if left empty.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -103,6 +109,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+* Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -192,6 +199,18 @@ Format: `findtag t/TAG1 [t/MORETAGS]`
 Examples:
 * `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
 * `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
+
+### Opening Note for Person: `note`
+
+Open a window for the user to add notes to.
+If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
+If no note exists for the person, a new note will be created and displayed in the window for editing.
+<br> Format: note INDEX
+
+* Opens a window for the user to add notes to the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …
+* The note will be saved when the window is closed.
 
 ### Deleting Note from Person: `deletenote`
 
@@ -299,6 +318,7 @@ Action | Format, Examples
 **Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/friend`
 **Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
+**Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
 **Export Contacts** | `export PATH` <br> e.g., `export backup.json`
 **Import Contacts** | `import PATH` <br> e.g., `import previous_ver.json`
