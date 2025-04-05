@@ -34,4 +34,11 @@ public class ExportCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_argContainSpecialCharacter_throwsParseException() {
+        String userInput = "export ??.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(ExportCommand.MESSAGE_EXPORT_FAILURE
+                        + " Invalid path: Illegal char <?> at index 0: ??.json"));
+    }
 }

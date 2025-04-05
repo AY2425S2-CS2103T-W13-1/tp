@@ -62,6 +62,14 @@ public class PersonId {
         return PersonId.counter;
     }
 
+    /**
+     * Getter to obtain person ID
+     * @return the person ID in integer
+     */
+    public int getIntId() {
+        return Integer.parseInt(this.value);
+    }
+
     @Override
     public String toString() {
         return value;
