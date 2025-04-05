@@ -267,8 +267,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions  
 * is reasonably comfortable using CLI apps  
 * requires a way to categorise and group contacts easily  
-* requires a high level of privacy  
-* contacts are stored offline  
+* requires a high level of privacy
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
@@ -597,7 +596,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * A user with above-average typing speed (50 WPM) for regular English text (i.e., not code, not system admin commands) should be able to accomplish most basic tasks like adding contacts faster using commands than using the mouse.
 * Should not require a login, since ScoopBook is on a user’s own device.
 * All user data must be stored locally and should not require an internet connection for core functionality.
-* The application must not lose data in the event of a sudden system crash or power failure.
 * The application must be developed using modular, well-documented code to support future feature additions and maintenance.
 
 ### Glossary
@@ -633,7 +631,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Using your computer's terminal, `cd` into the folder in the previous step.
+
+   3. use `java -jar scoopbook.jar` to open the application
 
 1. Saving window preferences
 
@@ -642,29 +642,169 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Viewing Help
 
-### Deleting a person
+**Test case:** `help`  
+**Expected:** Opens the help window with instructions on how to use the commands.
 
-1. Deleting a person while all persons are being shown
+**Test case:** `help 123`  
+**Expected:** Still opens the help window; extraneous parameter is ignored.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+---
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+## Adding a person
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+**Prerequisite:** App is launched.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+**Test case:** `add n/John Doe p/98765432 e/johnd@example.com a/123 John Street`  
+**Expected:** Adds John Doe to the contact list. Details shown in result display.
 
-1. _{ more test cases …​ }_
+**Test case:** `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal t/silent`  
+**Expected:** Adds Betsy Crowe with multiple tags.
 
-### Saving data
+**Test case:** `add n/Johnny Appleseed`  
+**Expected:** Error shown. Missing phone, email, or address.
 
-1. Dealing with missing/corrupted data files
+**Test case:** `add n/John! Doe p/1234567`  
+**Expected:** Error shown. Name contains non-alphanumeric characters.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+---
 
-1. _{ more test cases …​ }_
+## Listing all persons
+
+**Test case:** `list`  
+**Expected:** All persons currently in the address book are displayed.
+
+**Test case:** `list 123`  
+**Expected:** All persons currently in the address book are displayed. Extraneous parameters ignored.
+
+---
+
+## Editing a person
+
+**Prerequisite:** At least 2 persons in the list.
+
+**Test case:** `edit 1 p/91234567 e/johndoe@example.com`  
+**Expected:** 1st person’s phone and email are updated.
+
+**Test case:** `edit 2 n/Betsy Crower t/`  
+**Expected:** Updates name, clears all tags.
+
+**Test case:** `edit 2`  
+**Expected:** Error. No field provided.
+
+**Test case:** `edit 0 p/12345678`  
+**Expected:** Error. Index must be a positive integer.
+
+---
+
+## Finding persons by name
+
+**Test case:** `find John`  
+**Expected:** Displays persons with names containing “John”.
+
+**Test case:** `find alex david`  
+**Expected:** Displays any persons with name containing “alex” or “david”.
+
+**Test case:** `find Han`  
+**Expected:** No match for "Hans". Partial matches not allowed.
+
+---
+
+## Deleting a person
+
+**Test case:** `delete 1` (after `list`)  
+**Expected:** Deletes first contact. Status bar updated.
+
+**Test case:** `delete 0`  
+**Expected:** Error. Invalid index.
+
+**Test case:** `delete`  
+**Expected:** Error. Missing index.
+
+---
+
+## Adding tags
+
+**Test case:** `addtag 1 t/friend t/neighbour`  
+**Expected:** Adds both tags to person at index 1.
+
+**Test case:** `addtag 2 t/friend!`  
+**Expected:** Error. Tag contains invalid character.
+
+---
+
+## Removing tags
+
+**Test case:** `removetag 1 t/friend`  
+**Expected:** Removes "friend" tag.
+
+**Test case:** `removetag 1 t/Friend`  
+**Expected:** No tag removed. Case mismatch.
+
+---
+
+## Finding by tag
+
+**Test case:** `findtag t/friends`  
+**Expected:** Displays persons with tag "friends", "Friends", etc.
+
+**Test case:** `findtag t/friends t/neighbours`  
+**Expected:** Only persons with both tags are displayed.
+
+---
+
+## Notes
+
+**Test case:** `note 1`  
+**Expected:** Opens a note window for person at index 1.
+
+**Test case:** `note 0`  
+**Expected:** Error. Invalid index.
+
+---
+
+## Deleting a note
+
+**Test case:** `deletenote 1`  
+**Expected:** Deletes note from person at index 1.
+
+**Test case:** `deletenote`  
+**Expected:** Error. Missing index.
+
+---
+
+## Clearing all entries
+
+**Test case:** `clear`  
+**Expected:** Deletes all persons from the address book.
+
+**Test case:** `clear abc`  
+**Expected:** Still clears all entries. Extraneous parameter ignored.
+
+---
+
+## Export
+
+**Test case:** `export Contacts.json`  
+**Expected:** Exports current contacts as `Contacts.json` in working directory.
+
+**Test case:** `export /invalid/path/Contacts.json`  
+**Expected:** Error shown. Invalid path.
+
+---
+
+## Import
+
+**Test case:** `import Contacts.json` (valid exported file)  
+**Expected:** Replaces all contacts with imported data. Notes are deleted.
+
+**Test case:** `import corrupted.json`  
+**Expected:** All data discarded. App starts with empty address book.
+
+---
+
+## Exit
+
+**Test case:** `exit`  
+**Expected:** Application closes.
