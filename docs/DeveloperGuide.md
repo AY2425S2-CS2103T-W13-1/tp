@@ -393,8 +393,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view contacts (UC3).
-2. User requests to add remarks to a specific contact in the list.
-3. ScoopBook adds remarks to that contact.
+2. User requests to add tags to a specific contact in the list.
+3. ScoopBook adds tags to that contact.
 
    Use case ends.
 
