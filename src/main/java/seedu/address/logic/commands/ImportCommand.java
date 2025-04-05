@@ -12,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonId;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -31,7 +30,7 @@ public class ImportCommand extends Command {
             + "Example (Windows): " + COMMAND_WORD + " C:/Users/username/Desktop/exported_data.json\n"
             + "Example (Mac): " + COMMAND_WORD + " /Users/username/Desktop/exported_data.json\n"
             + "Example (Linux): " + COMMAND_WORD + " /home/user/desktop/exported_data.json";
-    private int expectedIdNum = 1;
+    private int previousIdNum = 0;
     private final Path targetPath;
 
     /**
@@ -92,9 +91,9 @@ public class ImportCommand extends Command {
                 throw new CommandException("Invalid JSON file: Person '" + person.getName()
                         + "' does not have any added phone, email, or address.");
             }
-            PersonId expectedId = new PersonId(String.valueOf(expectedIdNum));
-            if (expectedId.equals(person.getId())) {
-                expectedIdNum += 1;
+            int personId = person.getId().getIntId();
+            if (personId > previousIdNum) {
+                previousIdNum = personId;
             } else {
                 throw new CommandException("Invalid JSON file: Person '" + person.getName()
                         + "' has either out-of-order OR duplicate person ID.");
