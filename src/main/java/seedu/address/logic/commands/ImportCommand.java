@@ -22,7 +22,7 @@ public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_INVALID_FILE_FORMAT = "Import failed. Target file must have a .json extension.";
     public static final String MESSAGE_IMPORT_SUCCESS = "Imported contacts from %1$s as requested ...";
-    public static final String MESSAGE_IMPORT_FAILURE = "Failed to import json file";
+    public static final String MESSAGE_IMPORT_FAILURE = "Failed to import json file.";
     public static final String MESSAGE_INVALID_JSON = "JSON file does not follow required format.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports contacts from the specified path.\n"

@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,5 +35,13 @@ public class ImportCommandParserTest {
         String userInput = "import validAddressBook.json";
         assertThrows(ParseException.class, () -> parser.parse(userInput),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_argContainSpecialCharacter_throwsParseException() {
+        String userInput = "import ??.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(ImportCommand.MESSAGE_IMPORT_FAILURE
+                        + " Invalid path: Illegal char <?> at index 0: ??.json"));
     }
 }
