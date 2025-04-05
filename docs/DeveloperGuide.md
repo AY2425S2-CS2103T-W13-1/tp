@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [_JavaFX_](https://openjfx.io/), [_JUnit5_](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* We would also like to thank all professors, TAs, PE Dry Run Testers, coursemates and friends who have helped and supported us throughout the project.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,10 +240,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -642,6 +640,8 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+---
+
 ### Viewing Help
 
 **Test case:** `help`  
@@ -713,6 +713,7 @@ testers are expected to do more *exploratory* testing.
 
 ## Deleting a person
 
+**Prerequisites:** Should have at least 1 contact in the menu.
 **Test case:** `delete 1` (after `list`)  
 **Expected:** Deletes first contact. Status bar updated.
 
@@ -726,6 +727,8 @@ testers are expected to do more *exploratory* testing.
 
 ## Adding tags
 
+**Prerequisite:** Should have at least 1 contact in the menu.
+
 **Test case:** `addtag 1 t/friend t/neighbour`  
 **Expected:** Adds both tags to person at index 1.
 
@@ -735,6 +738,8 @@ testers are expected to do more *exploratory* testing.
 ---
 
 ## Removing tags
+
+**Prerequisite:** Should have at least 1 contact in the menu. The first contact should have `friend` as a tag.
 
 **Test case:** `removetag 1 t/friend`  
 **Expected:** Removes "friend" tag.
@@ -756,6 +761,8 @@ testers are expected to do more *exploratory* testing.
 
 ## Notes
 
+**Prerequisite:** Should have at least 1 contact in the menu.
+
 **Test case:** `note 1`  
 **Expected:** Opens a note window for person at index 1.
 
@@ -766,6 +773,7 @@ testers are expected to do more *exploratory* testing.
 
 ## Deleting a note
 
+**Prerequisites:** Should have at least 1 contact in the menu.
 **Test case:** `deletenote 1`  
 **Expected:** Deletes note from person at index 1.
 
@@ -801,6 +809,18 @@ testers are expected to do more *exploratory* testing.
 
 **Test case:** `import corrupted.json`  
 **Expected:** All data discarded. App starts with empty address book.
+
+---
+
+## Saving
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `note 1`. Then, add random text. Then, close the note window. Enter `note 1` again.
+**Expected:** Application closes.
+
+**Test case:** `list`. Then, `addtag 1 t/colleague`. Use `exit` to exit the application. Launch the application again.
+**Expected:**  Upon opening the application, the first contact should have the tag `colleague`.
 
 ---
 
