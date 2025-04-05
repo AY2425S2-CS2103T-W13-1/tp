@@ -21,7 +21,7 @@ public class ExportCommand extends Command {
             + " Start adding contacts to form your address book.";
     public static final String MESSAGE_INVALID_FILE_FORMAT = "Export failed. Target file must have a .json extension.";
     public static final String MESSAGE_EXPORT_SUCCESS = "Exported Address Book to %1$s as requested ...";
-    public static final String MESSAGE_EXPORT_FAILURE = "Failed to export json file";
+    public static final String MESSAGE_EXPORT_FAILURE = "Failed to export json file.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book data at the specified path.\n"
             + "Parameters: FILEPATH (must be a valid file path)\n"

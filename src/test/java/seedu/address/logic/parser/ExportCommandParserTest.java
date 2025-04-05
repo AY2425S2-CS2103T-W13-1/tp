@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
@@ -34,4 +35,11 @@ public class ExportCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_argContainSpecialCharacter_throwsParseException() {
+        String userInput = "export ??.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(ExportCommand.MESSAGE_EXPORT_FAILURE
+                        + " Invalid path: Illegal char <?> at index 0: ??.json"));
+    }
 }
