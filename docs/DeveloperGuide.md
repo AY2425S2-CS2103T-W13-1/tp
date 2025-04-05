@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [_JavaFX_](https://openjfx.io/), [_JUnit5_](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* We would also like to thank all professors, TAs, PE Dry Run Testers, coursemates and friends who have helped and supported us throughout the project.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -239,10 +241,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,8 +265,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions  
 * is reasonably comfortable using CLI apps  
 * requires a way to categorise and group contacts easily  
-* requires a high level of privacy  
-* contacts are stored offline  
+* requires a high level of privacy
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
@@ -304,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | user | create investigations (groups) | group related contacts together |
 | `*` | user | add a profile photo for contacts | remember their faces too |
 
-*{More to be added}*
+
 
 ### Use Cases
 
@@ -394,8 +391,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view contacts (UC3).
-2. User requests to add remarks to a specific contact in the list.
-3. ScoopBook adds remarks to that contact.
+2. User requests to add tags to a specific contact in the list.
+3. ScoopBook adds tags to that contact.
 
    Use case ends.
 
@@ -467,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to export contacts by tag or export all.
+1. User requests to export contacts.
 2. ScoopBook prompts the location to save the export file of contacts in.
 3. User confirms the save location.
 4. ScoopBook saves the relevant contacts in the export file.
@@ -476,14 +473,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User has no contacts.
-    * 1a1. ScoopBook indicates that there is nothing to export.
+* 2a. User decides to cancel the operation.
 
-      Use case ends.
+  Use case ends.
+  
+* 3a. User provided file location is invalid
+   * 3a1. Scoopbook raises an error
+
+     Use case ends.
+
+
+  **Use case: Import contacts - UC10**
+
+**MSS**
+
+1. User requests to import contacts.
+2. ScoopBook prompts the location of the import file.
+3. User confirms the file location.
+4. ScoopBook imports the relevant contacts from the import file.
+
+   Use case ends.
+
+**Extensions**
 
 * 2a. User decides to cancel the operation.
 
   Use case ends.
+  
+* 3a. User provided file location is invalid
+   * 3a1. Scoopbook raises an error
+  
+     Use case ends.
+     
+* 4a. User provided file is invalid format
+   * 4a1. Scoopbook raises an error
+  
+     Use case ends.
 
 
 
@@ -505,69 +530,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Add contact to investigation - UC12**
-
-**MSS**
-
-1. User requests to add a contact to an existing investigation.
-2. ScoopBook adds the contact to the specified investigation.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The investigation specified by User does not exist.
-    * 1a1. ScoopBook informs User that no such investigation exists.
-
-      Use case ends.
-
-* 1b. The contact specified by User does not exist.
-    * 1b1. ScoopBook informs User that no such contact exists.
-
-      Use case ends.
-
-* 1c. Multiple contacts contain the keywords specified by User.
-    * 1c1. ScoopBook informs User that there are duplicates, and that the operation cannot be performed.
-
-      Use case ends.
-
-
-
-**Use case: Remove contact from investigation - UC13**
-
-**MSS**
-
-1. User requests to remove a contact from an existing investigation.
-2. ScoopBook removes the contact from the specified investigation.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The investigation specified by User does not exist.
-    * 1a1. ScoopBook informs User that no such investigation exists.
-
-      Use case ends.
-
-* 1b. The contact specified by User does not exist in the investigation.
-    * 1b1. ScoopBook informs User that no such contact exists.
-
-      Use case ends.
-
-* 1c. Multiple contacts or investigations contain the keywords specified by User.
-    * 1c1. ScoopBook informs User that there are duplicates, and that the operation cannot be performed.
-
-      Use case ends.
-
-
-
-**Use case: Log conversation notes - UC14**
+**Use case: Add conversation notes - UC12**
 
 **MSS**
 
 1. User requests to view contacts (UC3).
-2. User requests to add log to a specific contact in the list.
-3. ScoopBook adds logs to a specific contact.
+2. User requests to add notes to a specific contact in the list.
+3. ScoopBook adds notes to a specific contact.
 
    Use case ends.
 
@@ -580,7 +549,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: View specific conversation note - UC15**
+**Use case: View specific conversation note - UC13**
 
 **MSS**
 
@@ -599,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Delete conversation note - UC16**
+**Use case: Delete conversation note - UC14**
 
 **MSS**
 
@@ -618,157 +587,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Export note - UC17**
-
-**MSS**
-
-1. User requests to view contact (UC3).
-2. User requests to export notes by index or export all for a specific contact.
-3. ScoopBook prompts the location to save the export file of notes in.
-4. User confirms the save location.
-5. ScoopBook saves the relevant notes in the export file.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The given contact index or notes indexes are invalid.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-* 3a. User decides to cancel the operation.
-
-  Use case resumes at step 1.
-
-
-
-**Use case: View keyboard shortcuts - UC18**
-
-**MSS**
-
-1. User requests to view keyboard shortcuts.
-2. ScoopBook displays all actions with keyboard shortcuts with their respective shortcuts.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. Keyboard shortcut list is empty.
-    * 2a1. ScoopBook displays an empty list.
-
-      Use case ends.
-
-
-
-**Use case: Create keyboard shortcuts - UC19**
-
-**MSS**
-
-1. User requests to view keyboard shortcuts (UC18).
-2. User requests to create keyboard shortcuts.
-3. ScoopBook displays available actions that can be assigned to a shortcut.
-4. User selects a specific action and specifies a key combination.
-5. ScoopBook assigns the shortcut.
-
-   Use case ends.
-
-**Extensions**
-
-* 4a. User provides an invalid action index.
-    * 4a1. ScoopBook shows an error message.
-
-      Use case resumes at step 3.
-
-* 4b. User provides an invalid or existing shortcut combination.
-    * 4b1. ScoopBook shows an error message.
-
-      Use case resumes at step 3.
-
-
-
-**Use case: Delete keyboard shortcuts - UC20**
-
-**MSS**
-
-1. User requests to view keyboard shortcuts (UC18).
-2. User requests to delete a specific keyboard shortcut in the list.
-3. ScoopBook deletes the specific keyboard shortcut.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User provides an invalid index.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-
-
-**Use case: Set follow-up reminder - UC21**
-
-**MSS**
-
-1. User requests to view contacts (UC3).
-2. User requests to set a follow-up reminder to specific contact.
-3. ScoopBook sets a follow-up reminder.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User provides an invalid input.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-
-
-**Use case: Delete follow-up reminder - UC22**
-
-**MSS**
-
-1. User requests to view contacts (UC3).
-2. User requests to delete a specific follow-up reminder to a specific contact.
-3. ScoopBook deletes the follow-up reminder.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User provides an invalid input.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-
-
-**Use case: Add profile photo - UC23**
-
-**MSS**
-
-1. User requests to view contacts (UC3).
-2. User requests to add a profile photo for a specific contact.
-3. ScoopBook prompts the location to access the profile photo file.
-4. User selects the profile photo.
-5. ScoopBook saves the profile photo.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User provides an invalid input.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-* 4a. User selects an invalid file.
-    * 4a1. ScoopBook shows an error message.
-
-      Use case resumes at step 2.
-
-
 ### Non-Functional Requirements
 
 * Should work on any mainstream OS as long as it has Java 17 installed.
@@ -776,7 +594,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * A user with above-average typing speed (50 WPM) for regular English text (i.e., not code, not system admin commands) should be able to accomplish most basic tasks like adding contacts faster using commands than using the mouse.
 * Should not require a login, since ScoopBook is on a user’s own device.
 * All user data must be stored locally and should not require an internet connection for core functionality.
-* The application must not lose data in the event of a sudden system crash or power failure.
 * The application must be developed using modular, well-documented code to support future feature additions and maintenance.
 
 ### Glossary
@@ -812,7 +629,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Using your computer's terminal, `cd` into the folder in the previous step.
+
+   3. use `java -jar scoopbook.jar` to open the application
 
 1. Saving window preferences
 
@@ -821,29 +640,191 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+---
 
-### Deleting a person
+### Viewing Help
 
-1. Deleting a person while all persons are being shown
+**Test case:** `help`  
+**Expected:** Opens the help window with instructions on how to use the commands.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+**Test case:** `help 123`  
+**Expected:** Still opens the help window; extraneous parameter is ignored.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+---
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+## Adding a person
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+**Prerequisite:** App is launched.
 
-1. _{ more test cases …​ }_
+**Test case:** `add n/John Doe p/98765432 e/johnd@example.com a/123 John Street`  
+**Expected:** Adds John Doe to the contact list. Details shown in result display.
 
-### Saving data
+**Test case:** `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal t/silent`  
+**Expected:** Adds Betsy Crowe with multiple tags.
 
-1. Dealing with missing/corrupted data files
+**Test case:** `add n/Johnny Appleseed`  
+**Expected:** Error shown. Missing phone, email, or address.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+**Test case:** `add n/John! Doe p/1234567`  
+**Expected:** Error shown. Name contains non-alphanumeric characters.
 
-1. _{ more test cases …​ }_
+---
+
+## Listing all persons
+
+**Test case:** `list`  
+**Expected:** All persons currently in the address book are displayed.
+
+**Test case:** `list 123`  
+**Expected:** All persons currently in the address book are displayed. Extraneous parameters ignored.
+
+---
+
+## Editing a person
+
+**Prerequisite:** At least 2 persons in the list.
+
+**Test case:** `edit 1 p/91234567 e/johndoe@example.com`  
+**Expected:** 1st person’s phone and email are updated.
+
+**Test case:** `edit 2 n/Betsy Crower t/`  
+**Expected:** Updates name, clears all tags.
+
+**Test case:** `edit 2`  
+**Expected:** Error. No field provided.
+
+**Test case:** `edit 0 p/12345678`  
+**Expected:** Error. Index must be a positive integer.
+
+---
+
+## Finding persons by name
+
+**Test case:** `find John`  
+**Expected:** Displays persons with names containing “John”.
+
+**Test case:** `find alex david`  
+**Expected:** Displays any persons with name containing “alex” or “david”.
+
+**Test case:** `find Han`  
+**Expected:** No match for "Hans". Partial matches not allowed.
+
+---
+
+## Deleting a person
+
+**Prerequisites:** Should have at least 1 contact in the menu.
+**Test case:** `delete 1` (after `list`)  
+**Expected:** Deletes first contact. Status bar updated.
+
+**Test case:** `delete 0`  
+**Expected:** Error. Invalid index.
+
+**Test case:** `delete`  
+**Expected:** Error. Missing index.
+
+---
+
+## Adding tags
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `addtag 1 t/friend t/neighbour`  
+**Expected:** Adds both tags to person at index 1.
+
+**Test case:** `addtag 2 t/friend!`  
+**Expected:** Error. Tag contains invalid character.
+
+---
+
+## Removing tags
+
+**Prerequisite:** Should have at least 1 contact in the menu. The first contact should have `friend` as a tag.
+
+**Test case:** `removetag 1 t/friend`  
+**Expected:** Removes "friend" tag.
+
+**Test case:** `removetag 1 t/Friend`  
+**Expected:** No tag removed. Case mismatch.
+
+---
+
+## Finding by tag
+
+**Test case:** `findtag t/friends`  
+**Expected:** Displays persons with tag "friends", "Friends", etc.
+
+**Test case:** `findtag t/friends t/neighbours`  
+**Expected:** Only persons with both tags are displayed.
+
+---
+
+## Notes
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `note 1`  
+**Expected:** Opens a note window for person at index 1.
+
+**Test case:** `note 0`  
+**Expected:** Error. Invalid index.
+
+---
+
+## Deleting a note
+
+**Prerequisites:** Should have at least 1 contact in the menu.
+**Test case:** `deletenote 1`  
+**Expected:** Deletes note from person at index 1.
+
+**Test case:** `deletenote`  
+**Expected:** Error. Missing index.
+
+---
+
+## Clearing all entries
+
+**Test case:** `clear`  
+**Expected:** Deletes all persons from the address book.
+
+**Test case:** `clear abc`  
+**Expected:** Still clears all entries. Extraneous parameter ignored.
+
+---
+
+## Export
+
+**Test case:** `export Contacts.json`  
+**Expected:** Exports current contacts as `Contacts.json` in working directory.
+
+**Test case:** `export /invalid/path/Contacts.json`  
+**Expected:** Error shown. Invalid path.
+
+---
+
+## Import
+
+**Test case:** `import Contacts.json` (valid exported file)  
+**Expected:** Replaces all contacts with imported data. Notes are deleted.
+
+**Test case:** `import corrupted.json`  
+**Expected:** All data discarded. App starts with empty address book.
+
+---
+
+## Saving
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `note 1`. Then, add random text. Then, close the note window. Enter `note 1` again.
+**Expected:** Application closes.
+
+**Test case:** `list`. Then, `addtag 1 t/colleague`. Use `exit` to exit the application. Launch the application again.
+**Expected:**  Upon opening the application, the first contact should have the tag `colleague`.
+
+---
+
+## Exit
+
+**Test case:** `exit`  
+**Expected:** Application closes.
