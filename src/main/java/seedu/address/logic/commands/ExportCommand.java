@@ -25,8 +25,8 @@ public class ExportCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports the address book data at the specified path.\n"
             + "Parameters: FILEPATH (must be a valid file path)\n"
-            + "Example (Windows): " + COMMAND_WORD + " C:/Users/username/Desktop/exported_data.json"
-            + "Example (Mac): " + COMMAND_WORD + " /Users/username/Desktop/exported_data.json"
+            + "Example (Windows): " + COMMAND_WORD + " C:/Users/username/Desktop/exported_data.json\n"
+            + "Example (Mac): " + COMMAND_WORD + " /Users/username/Desktop/exported_data.json\n"
             + "Example (Linux): " + COMMAND_WORD + " /home/user/desktop/exported_data.json";
     private static final Path SOURCE_JSON_PATH = Paths.get("data/addressbook.json");
     private final Path targetPath;
