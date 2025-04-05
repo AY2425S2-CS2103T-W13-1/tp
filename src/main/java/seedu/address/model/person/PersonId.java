@@ -11,11 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class PersonId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "PersonId should be an integer";
-    /*
-     * The person id must be a valid integer
-     */
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+            "PersonId should be an integer"; // The person id must be a valid integer
+    public static final String VALIDATION_REGEX = "^0|[1-9]\\d*$";
 
     private static int counter = 0;
     public final String value;
@@ -50,16 +47,19 @@ public class PersonId {
      * Resets the counter to 0.
      * Called in conjunction with {@code ClearCommand#execute()}.
      */
-    public static void reset() {
+    public static int reset() {
         PersonId.counter = 0;
+        return PersonId.counter;
     }
 
     /**
      * Sets the counter to the specified value.
-     * Called in conjunction with {@code }.
+     * Called in conjunction with {@code Storage#readAddressBook()}.
      */
-    public static void setCounter(int maxId) {
+    public static int setCounter(int maxId) {
+        checkArgument(isValidId(String.valueOf(maxId)), MESSAGE_CONSTRAINTS);
         PersonId.counter = maxId;
+        return PersonId.counter;
     }
 
     @Override

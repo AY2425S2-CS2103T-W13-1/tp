@@ -13,6 +13,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteNoteCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -53,10 +54,13 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
 
         // Inject storage manually if it's DeleteNoteCommand
-        if (command instanceof DeleteNoteCommand) { ((DeleteNoteCommand) command).setStorage(storage); }
+        if (command instanceof DeleteNoteCommand castCommand) {
+            castCommand.setStorage(storage);
+        }
         commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
+            handleNoteOperations(command);
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -117,7 +121,7 @@ public class LogicManager implements Logic {
      * @param command The command that was executed
      * @throws IOException If there is an issue with file operations
      */
-    private boolean handleNoteOperations(Command command) throws IOException {
+    private void handleNoteOperations(Command command) throws IOException {
         if (command instanceof DeleteCommand) {
             DeleteCommand deleteCommand = (DeleteCommand) command;
             Person personDeleted = deleteCommand.getTargetPerson();
@@ -129,7 +133,8 @@ public class LogicManager implements Logic {
             if (clearCommand.hasCleared()) {
                 storage.deleteAllNotes();
             }
+        } else if (command instanceof ImportCommand) {
+            storage.deleteAllNotes();
         }
-        return false;
     }
 }

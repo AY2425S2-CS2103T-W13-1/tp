@@ -40,7 +40,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return value.equals(EMPTY_ADDRESS) ? "" : value;
     }
 
     @Override

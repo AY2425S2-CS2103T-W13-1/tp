@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private NoteWindow noteWindow;
+    private NoteWindowHandler noteWindowHandler;
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -74,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        noteWindow = new NoteWindow();
+        noteWindowHandler = new NoteWindowHandler(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -163,8 +163,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNote(Person person) {
-        NoteWindow newNoteWindow = new NoteWindow(person, logic);
-        newNoteWindow.show();
+        noteWindowHandler.openNoteWindow(person);
     }
 
     void show() {
@@ -180,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        noteWindow.hide();
+        noteWindowHandler.closeAllNoteWindows(true);
         primaryStage.hide();
     }
 
@@ -217,6 +216,17 @@ public class MainWindow extends UiPart<Stage> {
                 handleNote(commandResult.getTargetPerson());
             }
 
+            switch (commandResult.shouldDeleteNote()) {
+            case CLOSE_ONE:
+                noteWindowHandler.closeNoteWindowWithoutSaving(commandResult.getTargetPerson());
+                break;
+            case CLOSE_ALL:
+                // For clear command, close all note windows without saving
+                noteWindowHandler.closeAllNoteWindows(false);
+                break;
+            default:
+                break;
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
