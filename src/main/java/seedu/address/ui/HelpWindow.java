@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -33,7 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private TextArea localGuideTextArea;
+    private WebView localGuideWebView;
 
     /**
      * Creates a new HelpWindow.
@@ -113,11 +113,13 @@ public class HelpWindow extends UiPart<Stage> {
      * Loads the local user guide from a text file
      */
     private void loadLocalGuide() {
-        String content = loadResourceFile("help/local_userguide.txt");
-        if (content != null) {
-            localGuideTextArea.setText(content);
+        String markdown = loadResourceFile("help/local_userguide.md");
+        if (markdown != null) {
+            String html = convertSimpleMarkdownToHtml(markdown);
+            localGuideWebView.getEngine().loadContent(html);
         } else {
-            localGuideTextArea.setText("Local user guide not found.");
+            localGuideWebView.getEngine()
+                    .loadContent("<html><body><p>Local user guide not found.</p></body></html>");
         }
     }
 
@@ -141,4 +143,24 @@ public class HelpWindow extends UiPart<Stage> {
             return null;
         }
     }
+
+    /**
+     * Converts markdown file to HTML view
+     * @param markdown
+     * @return
+     */
+    private String convertSimpleMarkdownToHtml(String markdown) {
+        String html = markdown
+                .replaceAll("(?m)^# (.+)$", "<h1>$1</h1>")
+                .replaceAll("(?m)^## (.+)$", "<h2>$1</h2>")
+                .replaceAll("(?m)^### (.+)$", "<h3>$1</h3>")
+                .replaceAll("\\*\\*(.+?)\\*\\*", "<b>$1</b>")
+                .replaceAll("\\*(.+?)\\*", "<i>$1</i>")
+                .replaceAll("`(.+?)`", "<code>$1</code>")
+                .replaceAll("\\[(.+?)\\]\\((.+?)\\)", "<a href=\"$2\">$1</a>")
+                .replaceAll("\n", "<br>");
+
+        return "<html><body style='font-family:sans-serif; padding: 10px;'>" + html + "</body></html>";
+    }
+
 }
