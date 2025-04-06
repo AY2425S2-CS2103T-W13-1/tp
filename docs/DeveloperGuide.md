@@ -652,7 +652,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Adding a person
+### Adding a person
 
 **Prerequisite:** App is launched.
 
@@ -670,7 +670,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Listing all persons
+### Listing all persons
 
 **Test case:** `list`  
 **Expected:** All persons currently in the address book are displayed.
@@ -680,7 +680,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Editing a person
+### Editing a person
 
 **Prerequisite:** At least 2 persons in the list.
 
@@ -698,7 +698,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Finding persons by name
+### Finding persons by name
 
 **Test case:** `find John`  
 **Expected:** Displays persons with names containing “John”.
@@ -711,7 +711,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Deleting a person
+### Deleting a person
 
 **Prerequisites:** Should have at least 1 contact in the menu.
 **Test case:** `delete 1` (after `list`)  
@@ -725,7 +725,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Adding tags
+### Adding tags
 
 **Prerequisite:** Should have at least 1 contact in the menu.
 
@@ -737,7 +737,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Removing tags
+### Removing tags
 
 **Prerequisite:** Should have at least 1 contact in the menu. The first contact should have `friend` as a tag.
 
@@ -749,7 +749,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Finding by tag
+### Finding by tag
 
 **Test case:** `findtag t/friends`  
 **Expected:** Displays persons with tag "friends", "Friends", etc.
@@ -759,7 +759,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Notes
+### Notes
 
 **Prerequisite:** Should have at least 1 contact in the menu.
 
@@ -771,7 +771,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Deleting a note
+### Deleting a note
 
 **Prerequisites:** Should have at least 1 contact in the menu.
 **Test case:** `deletenote 1`  
@@ -782,7 +782,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Clearing all entries
+### Clearing all entries
 
 **Test case:** `clear`  
 **Expected:** Deletes all persons from the address book.
@@ -792,7 +792,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Export
+### Export
 
 **Test case:** `export Contacts.json`  
 **Expected:** Exports current contacts as `Contacts.json` in working directory.
@@ -802,7 +802,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Import
+### Import
 
 **Test case:** `import Contacts.json` (valid exported file)  
 **Expected:** Replaces all contacts with imported data. Notes are deleted.
@@ -812,7 +812,7 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Saving
+### Saving
 
 **Prerequisite:** Should have at least 1 contact in the menu.
 
@@ -824,7 +824,16 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-## Exit
+### Exit
 
 **Test case:** `exit`  
 **Expected:** Application closes.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Removing placeholder values for Person:** Currently Person uses a placeholder value for optional fields in the contact. I.e., if Alex Yeoh has a phone number only, the email and address fields will be replaced with a placeholder value instead of being blank. We plan to wrap each field in an Optional class so that it is able to handle empty values rather than leaving it with a placeholder value.
