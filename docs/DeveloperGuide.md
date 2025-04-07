@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [_JavaFX_](https://openjfx.io/), [_JUnit5_](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* We would also like to thank all professors, TAs, PE Dry Run Testers, coursemates and friends who have helped and supported us throughout the project.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,10 +246,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -272,8 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions  
 * is reasonably comfortable using CLI apps  
 * requires a way to categorise and group contacts easily  
-* requires a high level of privacy  
-* contacts are stored offline  
+* requires a high level of privacy
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI-driven app, keep contacts safe  
 
@@ -309,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | user | create investigations (groups) | group related contacts together |
 | `*` | user | add a profile photo for contacts | remember their faces too |
 
-*{More to be added}*
+
 
 ### Use Cases
 
@@ -399,8 +396,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view contacts (UC3).
-2. User requests to add remarks to a specific contact in the list.
-3. ScoopBook adds remarks to that contact.
+2. User requests to add tags to a specific contact in the list.
+3. ScoopBook adds tags to that contact.
 
    Use case ends.
 
@@ -472,27 +469,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to export contacts by tag or export all.
-2. ScoopBook prompts the location to save the export file of contacts in.
-3. User confirms the save location.
-4. ScoopBook saves the relevant contacts in the export file.
+1. User requests to export contacts to a specified file location.
+2. ScoopBook saves the relevant contacts in the export file.
 
    Use case ends.
 
 **Extensions**
+  
+* 1a. User provided invalid file location.
+   * 1a1. Scoopbook raises an error
 
-* 1a. User has no contacts.
-    * 1a1. ScoopBook indicates that there is nothing to export.
-
-      Use case ends.
-
-* 2a. User decides to cancel the operation.
-
-  Use case ends.
+     Use case ends.
 
 
 
-**Use case: Create investigation - UC11**
+**Use case: Import contacts - UC11**
+
+**MSS**
+
+1. User requests to import contacts from a file location.
+2. ScoopBook imports the contacts from the import file.
+
+   Use case ends.
+
+**Extensions**
+  
+* 1a. User provided invalid file location.
+   * 1a1. Scoopbook raises an error
+  
+     Use case ends.
+     
+* 1b. User provided file with invalid format
+   * 1b1. Scoopbook raises an error
+  
+     Use case ends.
+
+
+
+**Use case: Create investigation - UC12 (To be implemented)**
 
 **MSS**
 
@@ -510,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Add contact to investigation - UC12**
+**Use case: Add contact to investigation - UC13 (To be implemented)**
 
 **MSS**
 
@@ -538,7 +552,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Remove contact from investigation - UC13**
+**Use case: Remove contact from investigation - UC14 (To be implemented)**
 
 **MSS**
 
@@ -566,32 +580,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Log conversation notes - UC14**
-
-**MSS**
-
-1. User requests to view contacts (UC3).
-2. User requests to add log to a specific contact in the list.
-3. ScoopBook adds logs to a specific contact.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User provides an invalid input.
-    * 2a1. ScoopBook shows an error message.
-
-      Use case resumes at step 1.
-
-
-
-**Use case: View specific conversation note - UC15**
+**Use case: View and edit specific conversation note - UC15**
 
 **MSS**
 
 1. User requests to view contacts (UC3).
 2. User requests to view a specific conversation note from a specific contact.
-3. ScoopBook displays the specified conversation note.
+3. ScoopBook displays the specified conversation note to edit.
 
    Use case ends.
 
@@ -623,7 +618,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Export note - UC17**
+**Use case: Export note - UC17 (To be implemented)**
 
 **MSS**
 
@@ -648,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: View keyboard shortcuts - UC18**
+**Use case: View keyboard shortcuts - UC18 (To be implemented)**
 
 **MSS**
 
@@ -666,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Create keyboard shortcuts - UC19**
+**Use case: Create keyboard shortcuts - UC19 (To be implemented)**
 
 **MSS**
 
@@ -692,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Delete keyboard shortcuts - UC20**
+**Use case: Delete keyboard shortcuts - UC20 (To be implemented)**
 
 **MSS**
 
@@ -711,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Set follow-up reminder - UC21**
+**Use case: Set follow-up reminder - UC21 (To be implemented)**
 
 **MSS**
 
@@ -730,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Delete follow-up reminder - UC22**
+**Use case: Delete follow-up reminder - UC22 (To be implemented)**
 
 **MSS**
 
@@ -749,7 +744,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Add profile photo - UC23**
+**Use case: Add profile photo - UC23 (To be implemented)**
 
 **MSS**
 
@@ -774,14 +769,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
+      
 ### Non-Functional Requirements
 
 * Should work on any mainstream OS as long as it has Java 17 installed.
-* Should be able to store up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+* Should be able to store up to 1000 persons with no more than 1s of response time between each command entered.
 * A user with above-average typing speed (50 WPM) for regular English text (i.e., not code, not system admin commands) should be able to accomplish most basic tasks like adding contacts faster using commands than using the mouse.
 * Should not require a login, since ScoopBook is on a user’s own device.
 * All user data must be stored locally and should not require an internet connection for core functionality.
-* The application must not lose data in the event of a sudden system crash or power failure.
 * The application must be developed using modular, well-documented code to support future feature additions and maintenance.
 
 ### Glossary
@@ -817,7 +812,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Using your computer's terminal, `cd` into the folder in the previous step.
+
+   3. Use `java -jar [CS2103-W13-1][ScoopBook].jar` to open the application
 
 1. Saving window preferences
 
@@ -826,29 +823,209 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+---
+
+### Viewing Help
+
+**Test case:** `help`  
+**Expected:** Opens the help window with instructions on how to use the commands.
+
+**Test case:** `help abc`  
+**Expected:** Still opens the help window. Extraneous parameter is ignored.
+
+---
+
+### Adding a person
+
+**Prerequisite:** App is launched.
+
+**Test case:** `add n/John Doe p/98765432 e/johnd@example.com a/123 John Street`  
+**Expected:** Adds John Doe to the contact list. Details shown in result display.
+
+**Test case:** `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal t/silent`  
+**Expected:** Adds Betsy Crowe with multiple tags.
+
+**Test case:** `add n/Johnny Appleseed`  
+**Expected:** Error shown. Missing phone, email, or address.
+
+**Test case:** `add n/John! Doe p/1234567`  
+**Expected:** Error shown. Name contains characters that are not accepted. Acceptable characters: alphanumeric characters, space, `,`, `(`, `)`, `@`, `\`, `-`, `'`.
+
+---
+
+### Listing all persons
+
+**Test case:** `list`  
+**Expected:** All persons currently in the address book are displayed.
+
+**Test case:** `list 123`  
+**Expected:** All persons currently in the address book are displayed. Extraneous parameters ignored.
+
+---
+
+### Editing a person
+
+**Prerequisite:** At least 2 persons in the list.
+
+**Test case:** `edit 1 p/91234567 e/johndoe@example.com`  
+**Expected:** 1st person’s phone and email are updated.
+
+**Test case:** `edit 2 n/Betsy Crower t/`  
+**Expected:** Updates name, clears all tags.
+
+**Test case:** `edit 2`  
+**Expected:** Error. No field provided.
+
+**Test case:** `edit 0 p/12345678`  
+**Expected:** Error. Index must be a positive integer.
+
+---
+
+### Finding persons by name
+
+**Prerequisite:** Contact list currently contains people with the following names: `John Mary`, `John Doe`,  `Alex Yeoh`, `David Lim`, `Hans Solo`.
+
+**Test case:** `find John`  
+**Expected:** Displays persons with names containing “John”.
+
+**Test case:** `find Alex David`  
+**Expected:** Displays any persons with name containing “Alex” or “David”.
+
+**Test case:** `find Han`  
+**Expected:** No match for "Hans". Partial matches not allowed.
+
+---
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+**Prerequisites:** Should have at least 1 contact in the menu.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+**Test case:** `delete 1` (after `list`)  
+**Expected:** Deletes first contact.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+**Test case:** `delete 0`  
+**Expected:** Error. Invalid index.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+**Test case:** `delete`  
+**Expected:** Error. Missing index.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+---
 
-1. _{ more test cases …​ }_
+### Adding tags
 
-### Saving data
+**Prerequisite:** Should have at least 1 contact in the menu.
 
-1. Dealing with missing/corrupted data files
+**Test case:** `addtag 1 t/friend t/neighbour`  
+**Expected:** Adds both tags to person at index 1.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+**Test case:** Following the previous test case, `addtag 1 t/friend!`  
+**Expected:** Error. Tag contains invalid character.
 
-1. _{ more test cases …​ }_
+---
+
+### Removing tags
+
+**Prerequisite:** Should have at least 1 contact in the menu. The first contact should have `friend` as a tag.
+
+**Test case:** `removetag 1 t/friend`  
+**Expected:** Removes "friend" tag.
+
+**Test case:** Following the previous test case, `removetag 1 t/Friend`  
+**Expected:** No tag removed. Case mismatch.
+
+---
+
+### Finding by tag
+
+**Prerequisite:** Should have at least 5 contacts in the menu. At least two contacts should have `friends` as a tag. At least one of the `friends` contacts should have a `neighbours` tag.  
+
+**Test case:** `findtag t/friends`  
+**Expected:** Displays persons with tag "friends", "Friends", etc.
+
+**Test case:** `findtag t/friends t/neighbours`  
+**Expected:** Only persons with both tags are displayed.
+
+---
+
+### Notes
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `note 1`  
+**Expected:** Opens a note window for person at index 1.
+
+**Test case:** `note 0`  
+**Expected:** Error. Invalid index.
+
+---
+
+### Deleting a note
+
+**Prerequisites:** Should have at least 1 contact in the menu.
+**Test case:** `deletenote 1`  
+**Expected:** Deletes note from person at index 1.
+
+**Test case:** `deletenote`  
+**Expected:** Error. Missing index.
+
+---
+
+### Clearing all entries
+
+**Test case:** `clear`  
+**Expected:** Delete all contacts and notes from the address book.
+
+**Test case:** `clear abc`  
+**Expected:** Still clears all contacts and notes. Extraneous parameter ignored.
+
+---
+
+### Export
+
+**Test case:** `export Contacts.json`  
+**Expected:** Export the json file as Contacts.json in the root folder of where the .jar is located at.
+
+**Test case:** `export /invalid/path/Contacts.json`  
+**Expected:** Error shown. Invalid path.
+
+---
+
+### Import
+
+**Test case:** `import Contacts.json` (valid exported file)  
+**Expected:** Replaces all contacts with imported data. Notes are deleted.
+
+**Test case:** `import corrupted.json`  
+**Expected:** Returns error message.
+
+---
+
+### Saving
+
+**Prerequisite:** Should have at least 1 contact in the menu.
+
+**Test case:** `note 1`. Then, add random text. Then, close the note window. Enter `note 1` again.
+**Expected:** Note should show the same random text shown earlier.
+
+**Test case:** `list`. Then, `addtag 1 t/colleague`. Use `exit` to exit the application. Launch the application again.
+**Expected:**  Upon opening the application, the first contact should have the tag `colleague`.
+
+---
+
+### Exit
+
+**Test case:** `exit`  
+**Expected:** Application closes.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Removing placeholder values for Person:** Currently Person uses a placeholder value for optional fields in the contact. I.e., if Alex Yeoh has a phone number only, the email and address fields will be replaced with a placeholder value instead of being blank. We plan to wrap each field in an Optional class so that it is able to handle empty values rather than leaving it with a placeholder value.
+2. **Person cards to be more visible for longer texts:** Currently, Person fields truncates long text fields (i.e., Name, Phone Number, Email, Address). For example, if the name exceeds a certain length, it will be truncated with a "...". It shall be updated in future iterations to be able to display the whole text field by using a scrolling mechanic to see the whole text field for all fields (Name, Phone Number, Email, Address, Tags).
+3. **Standardise error messages for commands that use Index referencing:** Currently, commands that use index referencing do not return the same error message for different cases of index errors. Invalid cases include: out of bounds for addressbook, non-positive integers, non-integers. We plan to standardise the index error messages to the different cases of invalid index accordingly.
+4. **Improve search commands**: `find` command currently uses an OR operator to search. (i.e. `find John Mary` will return contacts with names `John`, `Mary`, and `John Mary`, but `John Mary` does not appear as the first contact). `find` shall be updated to return results where the first contact is the most relevant contact (i.e Names with `John Mary`) followed by other contacts.
+
