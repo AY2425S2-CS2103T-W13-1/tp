@@ -210,7 +210,7 @@ If no note exists for the person, a new note will be created and displayed in th
 <br> Format: `note INDEX`
 
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
-  * Please use only this opened window to edit the note (see 'Known issues' section below)
+  * Please use only this opened window to edit the note (see [#Known issues](#known-issues) section below)
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
 * The note will be saved when the window is closed.
