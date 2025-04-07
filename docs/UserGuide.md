@@ -140,7 +140,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 1 t/friends t/colleagues` Removes all existing tags on the 1st person, and sets the 1st person's tag to `friends` and `colleagues` only.
+*  `edit 1 t/friends t/colleagues` Removes all existing tags of the 1st person, and sets the 1st person's tag to `friends` and `colleagues` only.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
