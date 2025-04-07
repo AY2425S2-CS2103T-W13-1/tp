@@ -11,14 +11,14 @@ participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 Box Storage STORAGE_COLOR_T1
-participant "s.Storage" as Storage STORAGE_COLOR
+participant "s:Storage" as Storage STORAGE_COLOR
 end box
 
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("deletenote 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deleteNote 1")
+LogicManager -> AddressBookParser : parseCommand("deletenote 1")
 activate AddressBookParser
 
 create DeleteNoteCommandParser
@@ -47,7 +47,7 @@ destroy DeleteNoteCommandParser
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteNoteCommand: setStorage(storage)
+LogicManager -> DeleteNoteCommand: setStorage(s)
 activate DeleteNoteCommand
 DeleteNoteCommand --> LogicManager
 deactivate DeleteNoteCommand
