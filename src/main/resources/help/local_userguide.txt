@@ -14,6 +14,13 @@ Note:
 - The add command must have a name, and one of the following fields: phone number, email, address.
   i.e. add n/Johnny Appleseed does not work because there is no phone number, email or address.
 - A person can have any number of tags (including 0).
+- If a contact is added with the following values, they will not be displayed in the contact list,
+  as they are used as internal placeholders:
+    - Phone: `000`
+    - Email: `unknown@example.com`
+    - Address: `Unknown address`
+      This ensures that every contact has a placeholder value for these fields if left empty.
+
 
 2. Listing all contacts: list
 
@@ -34,6 +41,8 @@ Note:
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed (i.e., adding of tags is not cumulative).
 - You can remove all the contact’s tags by typing t/ without specifying any tags after it.
+- Similar to the add command, the aforementioned placeholder values will not be displayed in the contact list.
+
 
 Examples:
 - edit 1 p/91234567 e/johndoe@example.com edits the phone number and email address of the 1st person to 91234567 and
@@ -63,7 +72,7 @@ Format: delete INDEX
 Note:
 - Deletes the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer (1, 2, 3, …).
+- The index must be a positive integer (1, 2, 3, ...).
 
 Examples:
 - list followed by delete 2 deletes the 2nd person in the address book.
@@ -78,10 +87,12 @@ Format: addtag INDEX t/TAG1 [t/MORETAGS]
 Note:
 - Adds the specified tags to the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer 1, 2, 3, …​
+- The index must be a positive integer 1, 2, 3, ...
 - Multiple tags in a single addtag command is supported. i.e. addtag 1 t/friend t/neighbour will tag the 1st person
   with both "friend" and "neighbour".
 - Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
+- Tags are case-sensitive. i.e. addtag 1 t/friend will add the tag "friend" while addtag 1 t/Friend
+  will add the tag "Friend".
 
 Examples:
 - list followed by addtag 2 t/friend tags the 2nd person with "friends" in the address book.
@@ -96,7 +107,7 @@ Format: removetag INDEX t/TAG1 [t/MORETAGS]
 Note:
 - Removes the specified tags from the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer 1, 2, 3, …​
+- The index must be a positive integer 1, 2, 3, ...
 - Multiple tags in a single removetag command is supported. i.e. removetag 1 t/friend t/neighbour will remove
   both the "friend" and "neighbour" tag for the 1st person.
 - Tags are case sensitive. The typed tag must match the tag on the person exactly. i.e. removetag 1 t/friend will
@@ -136,7 +147,7 @@ Format: note INDEX
 Note:
 - Opens a window for the user to add notes to the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer 1, 2, 3, …
+- The index must be a positive integer 1, 2, 3, ...
 - The note will be saved when the window is closed.
 
 10. Deleting Note from Person: deletenote
@@ -148,13 +159,17 @@ Format: deletenote INDEX
 Note:
 - Deletes note for the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
-- The index must be a positive integer 1, 2, 3, …
+- The index must be a positive integer 1, 2, 3, ...
 
 11. Exporting your contacts: export
 
 Exports the contacts in a .json file to the target path.
 
 Format: export TARGET_PATH
+
+Note:
+- The export command only exports your contacts. It does not export the notes tagged to them.
+- Before executing the export command, add at least 1 contact using the add command.
 
 Examples:
 - For Windows: export C:/Users/username/Desktop/MyContacts.json saves the json file as MyContacts.json in the
@@ -170,6 +185,11 @@ Examples:
 Imports the external .json file from target path into the application.
 
 Format: import TARGET_PATH
+
+Note:
+- CAUTION: This command overwrites existing contacts and remove all notes.
+- To ensure that the .json file follows the correct format, only use .json files exported using the export command.
+- Only write your own .json file if you are confident that you can update it correctly.
 
 Examples:
 - For Windows: import C:/Users/username/Desktop/MyContacts.json imports the json file from MyContacts.json in the
