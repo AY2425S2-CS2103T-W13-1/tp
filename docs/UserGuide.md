@@ -67,7 +67,6 @@ ScoopBook helps you stay organized without breaking your workflow.
 * Commands are case-sensitive. <br>
   e.g. `LIST`command will not work.
 
-
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -90,23 +89,22 @@ ScoopBook helps you stay organized without breaking your workflow.
 
 Shows the user guide, containing instructions on how to use the command.
 
-Format: `help`
-
+```dtd
+help
+```
 
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* The add command **must** have a name, and one of the following fields: phone number, email, address.
-  i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
-* A person can have any number of tags (including 0).
-* If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
-    - Phone: `000`
-    - Email: `unknown@example.com`
-    - Address: `Unknown address`  
-      This ensures that every contact has a placeholder value for these fields if left empty.
+```dtd
+add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
+:warning:The add command **must** have a name, and one of the following fields: phone number, email, address. <br>
+  i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address. <br>
+:bulb: A person can have any number of tags (including 0). <br>
+:warning: If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders: <br> - Phone: `000` <br>- Email: `unknown@example.com` <br>- Address: `Unknown address` <br>
+This ensures that every contact has a placeholder value for these fields if left empty.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -116,21 +114,24 @@ Examples:
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+```
+list
+```
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the address book at specified index.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+```dtd
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
-* Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
+:bulb: The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​ <br>
+:bulb: At least one of the optional fields must be provided. <br>
+:bulb: Existing values will be updated to the input values. <br>
+:warning: When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. <br>
+:bulb: You can remove all the person’s tags by typing `t/` without specifying any tags after it. <br>
+:warning: Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
