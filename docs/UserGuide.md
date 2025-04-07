@@ -177,6 +177,7 @@ Format: `removetag INDEX t/TAG1 [t/MORETAGS]`
 * The index **must be a positive integer** 1, 2, 3, …​
 * Multiple tags in a single removetag command is supported.
   i.e. `removetag 1 t/friend t/neighbour` will remove both the "friend" and "neighbour" tag for the 1st person.
+* To remove all tags from a person, type `edit INDEX t/` instead.
 * Tags are case sensitive. The typed tag must match the tag on the person exactly.
   i.e. `removetag 1 t/friend` will not remove the tag "Friend".
 
