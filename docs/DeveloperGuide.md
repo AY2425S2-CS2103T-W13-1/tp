@@ -199,7 +199,7 @@ Below are the sequence diagrams for `NoteCommand` and `DeleteNoteCommand` to ill
 
 The Notes system uses a dedicated `NotesStorage` interface, implemented by `FileNotesStorage`, to handle note persistence.
 
-Each note is saved as a `.txt` file in a designated notes directory, with filenames based on the `Person`'s unique ID (e.g., `123abc.txt`). This ensures that notes remain uniquely tied to each contact even if their name changes.
+Each note is saved as a `.txt` file in a designated notes directory, with filenames based on the `Person`'s unique ID (e.g., `12.txt`). This ensures that notes remain uniquely tied to each contact even if their name changes.
 
 The `FileNotesStorage` class provides three main methods:
 * `readNote(Person person)` — Returns the note content as a string if the file exists, or an empty string otherwise.
