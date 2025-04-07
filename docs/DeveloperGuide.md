@@ -160,6 +160,59 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Notes feature
+
+The **Notes feature** allows users to write and save plain text notes for each contact. These notes can be opened in a separate window, edited at any time, and are saved to a file on the user's computer. This allows users to keep important information linked to specific people in their contact list. 
+
+#### Implementation 
+The Notes system spans across the UI, Logic and Storage layers of the application.
+
+#### UI Layer
+When the user executes the command `note INDEX`, the `MainWindow` receives the `CommandResult` from Logic containing the flag `isShowNote == true` and the `targetPerson`. It then calls: `handleNote(commandResult.getTargetPerson())`
+
+This method delegates to `NoteWindowHandler`, which manages the opening and closing of note windows. 
+
+Each `NoteWindow` is uniquely associated with a `Person`. Only one note window can be opened per person at a time, tracked by a `Map<Person, NoteWindow>`.
+
+When the window is initialized, `NoteWindow` calls `logic.readNote(person)` to load the existing note (if any), and displays it in a `TextArea`. When the window is closed, notes are automatically saved by calling `logic.saveNote(person, content)`.
+
+#### Logic Layer
+
+The `LogicManager` connects the UI and Storage layers for the Notes system. It exposes three key methods:
+* `readNote(Person person)`
+* `saveNote(Person person, String content)`
+* `deleteNote(Person person)`
+
+These are called directly by the UI when a `NoteWindow` is opened, closed, or deleted.
+
+Additionally, `LogicManager` performs note cleanup when specific commands are executed:
+* `DeleteCommand` → deletes the note for the removed person
+* `ClearCommand` and `ImportCommand` → delete all notes
+
+These cleanup operations are handled in `handleNoteOperations(Command command)`, which runs after each command execution.
+
+Below are the sequence diagrams for `NoteCommand` and `DeleteNoteCommand` to illustrate the flow of events
+
+1. Sequence diagram for **NoteCommand**:
+<img src="images/NoteSequenceDiagram.png" width="900" />
+
+2. Sequence diagram for **DeleteNoteCommand**:
+<img src="images/DeleteNoteSequenceDiagram.png" width="900" />
+#### Storage Layer 
+
+The Notes system uses a dedicated `NotesStorage` interface, implemented by `FileNotesStorage`, to handle note persistence.
+
+Each note is saved as a `.txt` file in a designated notes directory, with filenames based on the `Person`'s unique ID (e.g., `12.txt`). This ensures that notes remain uniquely tied to each contact even if their name changes.
+
+The `FileNotesStorage` class provides three main methods:
+* `readNote(Person person)` — Returns the note content as a string if the file exists, or an empty string otherwise.
+* `saveNote(Person person, String content)` — Saves the note content to a file. If the file does not exist, it is created automatically.
+* `deleteNote(Person person)` — Deletes the note file associated with the given person.
+
+For bulk operations, `deleteAllNotes()` removes all note files from the directory.
+* triggered by `DeleteCommand`& `ClearCommand`.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
