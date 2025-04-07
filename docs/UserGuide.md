@@ -3,10 +3,28 @@ layout: page
 title: User Guide
 ---
 
-ScoopBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ScoopBook can get your contact management tasks done faster than traditional GUI apps. Made with journalists in mind, this app boasts **efficient categorisation** and **searching** of contacts.
+# ScoopBook
 
+## :trophy: Our Goal
+
+**ScoopBook** is built to help journalists efficiently manage the contacts of their sources, witnesses, and other key individuals they interact with on the job.
+
+## :dart: Problems We’re Solving
+
+- Traditional contact apps (like those on mobile phones) often have clunky interfaces that make adding and organizing contacts a hassle.
+- Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time.
+## :mag: How ScoopBook works?
+
+**ScoopBook** is a **desktop contact management app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
+
+With ScoopBook, you get:
+- **Blazing-fast** contact entry
+- **Smart categorization** of contacts (e.g. sources, leads, officials)
+- **Powerful, instant search** to find the right person, fast
+
+ScoopBook helps you stay organized without breaking your workflow.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,15 +44,15 @@ ScoopBook is a **desktop app for managing contacts, optimized for use via a Comm
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -45,6 +63,9 @@ ScoopBook is a **desktop app for managing contacts, optimized for use via a Comm
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+* Commands are case-sensitive. <br>
+  e.g. `LIST`command will not work.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -68,15 +89,17 @@ ScoopBook is a **desktop app for managing contacts, optimized for use via a Comm
 
 Shows the user guide, containing instructions on how to use the command.
 
-Format: `help`
-
+```dtd
+help
+```
 
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
+```dtd
+add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
@@ -96,20 +119,23 @@ Examples:
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+```
+list
+```
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the address book at specified index.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+```dtd
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+```
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* :bulb: TIP: You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
@@ -120,8 +146,9 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
+```dtd
+find KEYWORD [MORE_KEYWORDS]
+```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -138,7 +165,9 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+```dtd
+delete INDEX
+```
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -152,7 +181,9 @@ Examples:
 
 Adds the tags typed in to the specified person.
 
-Format: `addtag INDEX t/TAG1 [t/MORETAGS]`
+```dtd
+addtag INDEX t/TAG1 [t/MORETAGS]
+```
 
 * Adds the specified tags to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -171,7 +202,9 @@ Examples:
 
 Removes the specified tag from the person.
 
-Format: `removetag INDEX t/TAG1 [t/MORETAGS]`
+```dtd
+removetag INDEX t/TAG1 [t/MORETAGS]
+```
 
 * Removes the specified tags from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -190,7 +223,9 @@ Examples:
 
 Find persons who have all of the specified tags.
 
-Format: `findtag t/TAG1 [t/MORETAGS]`
+```dtd
+findtag t/TAG1 [t/MORETAGS]
+```
 
 * The searching of tags is case-insensitive. e.g `friends` will match `Friends`
 * The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
@@ -206,9 +241,12 @@ Examples:
 
 Open a window for the user to add notes to.
 If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
-If no note exists for the person, a new note will be created and displayed in the window for editing.
-<br> Format: `note INDEX`
 
+If no note exists for the person, a new note will be created and displayed in the window for editing. <br> 
+
+```dtd
+note INDEX
+```
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
   * Please use only this opened window to edit the note (see [#Known issues](#known-issues) section below)
 * The index refers to the index number shown in the displayed person list.
@@ -223,7 +261,9 @@ Examples:
 
 Deletes the note from the person.
 
-Format: `deletenote INDEX`
+```dtd
+deletenote INDEX
+```
 
 * Deletes note for the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -237,32 +277,52 @@ Examples:
 
 Clears all entries from the address book.
 
-Format: `clear`
+- :warning: WARNING: This clears all contacts and notes from the address book.
+
+```dtd
+clear
+```
 
 ### Exporting your contacts: `export`
 
 Exports the contacts in a .json file to the target path.
 
+```dtd
+export TARGET_PATH
+```
+
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the `export` command, add at least 1 contact using the `add` command.
-
-Format: `export TARGET_PATH`
+- `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `scoopbook.jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
+- Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
 Examples:
-* For Windows: `export C:/Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
-* For macOS: `export /Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
-* For Linux: `export /home/user/desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `home/user/desktop` folder.
-* `export Contacts.json` saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
+* For Windows: `export C:/Users/username/Desktop/MyContacts.json`
+  * saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder. <br>
+
+
+* For macOS: `export /Users/username/Desktop/MyContacts.json`
+  * saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder. <br>
+
+
+* For Linux: `export /home/user/desktop/MyContacts.json` 
+  * saves the json file as `MyContacts.json` in the `home/user/desktop` folder. <br>
+
+
+* For all OS: `export Contacts.json`
+  * saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
 
 ### Importing your contacts: `import`
 
 Imports contacts from the external .json file located at the specified path into the application.
 
-Format: `import TARGET_PATH`
+```dtd
+import TARGET_PATH
+```
 
-- CAUTION: This command overwrites existing contacts and remove all notes.
-- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command.
-- Only write your own .json file if you are confident that you can update it correctly.
+- :warning: WARNING: This command overwrites existing contacts and remove all notes.
+- Only import .json files exported using the `export` command.
+- Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
 Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
@@ -274,7 +334,9 @@ Examples:
 
 Exits the program.
 
-Format: `exit`
+```dtd
+exit
+```
 
 ### Saving the data
 
@@ -332,7 +394,7 @@ Action | Format, Examples
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
 **Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
-**Export Contacts** | `export PATH` <br> e.g., `export backup.json`
-**Import Contacts** | `import PATH` <br> e.g., `import previous_ver.json`
+**Export Contacts** | `export TARGET_PATH` <br> e.g., `export backup.json`
+**Import Contacts** | `import TARGET_PATH` <br> e.g., `import previousVer.json`
 **List** | `list`
 **Help** | `help`
