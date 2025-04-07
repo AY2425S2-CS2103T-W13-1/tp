@@ -9,11 +9,11 @@ title: User Guide
 
 **ScoopBook** is built to help journalists efficiently manage the contacts of their sources, witnesses, and other key individuals they interact with on the job.
 
-## Problems We’re Solving
+## :dart: Problems We’re Solving
 
 - Traditional contact apps (like those on mobile phones) often have clunky interfaces that make adding and organizing contacts a hassle.
 - Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time.
-## How ScoopBook works?
+## :mag: How ScoopBook works?
 
 **ScoopBook** is a **desktop contact management app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
 
