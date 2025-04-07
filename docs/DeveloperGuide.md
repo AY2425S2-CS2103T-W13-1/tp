@@ -155,6 +155,11 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Notes feature
+
+The **Notes feature** allows users to write and save plain text notes for each contact. These notes can be opened in a separate window, edited at any time, and are saved to a file on the user's computer. This allows users to keep important information linked to specific people in their contact list. 
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
