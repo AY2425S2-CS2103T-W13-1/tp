@@ -40,7 +40,7 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
 
         PersonDescriptor removeTagPersonDescriptor = new PersonDescriptor();
 
-        parseTagsForRemoveTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removeTagPersonDescriptor::setTags);
+        parseTags(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(removeTagPersonDescriptor::setTags);
         return new RemoveTagCommand(index, removeTagPersonDescriptor);
     }
 
@@ -49,8 +49,12 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForRemoveTags(Collection<String> tags) throws ParseException {
+    private Optional<Set<Tag>> parseTags(Collection<String> tags) throws ParseException {
         assert tags != null;
+
+        if (tags.isEmpty() || tags.contains("")) {
+            throw new ParseException(RemoveTagCommand.MESSAGE_EMPTY_TAG);
+        }
 
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
