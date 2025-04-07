@@ -205,12 +205,17 @@ Examples:
 Open a window for the user to add notes to.
 If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
 If no note exists for the person, a new note will be created and displayed in the window for editing.
-<br> Format: note INDEX
+<br> Format: `note INDEX`
 
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
+  * Please use only this opened window to edit the note (see 'Known issues' section below)
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
 * The note will be saved when the window is closed.
+
+Examples:
+* `list` followed by `note 2` opens a note window for the 2nd person in the address book.
+* `find Betsy` followed by `note 1` opens a note window for the 1st person in the results of the `find` command.
 
 ### Deleting Note from Person: `deletenote`
 
@@ -221,6 +226,10 @@ Format: `deletenote INDEX`
 * Deletes note for the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `deletenote 2` deletes the note for the 2nd person in the address book, if the note exists.
+* `find Betsy` followed by `deletenote 1` deletes the note for the 1st person in the results of the `find` command, if the note exists.
 
 ### Clearing all entries : `clear`
 
@@ -303,7 +312,12 @@ _Details coming soon ..._
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-
+3. **If you open the Note Window**, and then run the `note` command again, the original Note Window will remain minimized, and no new Note Window will appear. The remedy is to manually restore the minimized Note Window.
+4. **If you use any other means apart from the note window that ScoopBook opens to edit a note**, (eg. notepad) we cannot guarantee that your edits will be saved. This may be because of an encoding incompatibility between your text editor and ScoopBook's. Please use the note window that ScoopBook opens to edit the note.
+5. **Text fields in the GUI**: Currently, text fields that are too long may be cut off in the GUI. We will introduce scrolling as a feature to enable viewing these fields in full in future releases.
+6. **Adding a contact with placeholder values**: Currently, we do not prevent the user from adding a contact with placeholder values. This is because we want to allow the user to add a contact with only a name and one other field, and we chose these placeholder values as unlikely values that would be used for a contact.
+    1. Regardless, we acknowledge that this may lead to confusion as these contact fields deliberately added with placeholder values will not be displayed in the contact list. We will fix this in future releases.
+8. **Finding a contact**: Currently, the `find` command performs an `OR` search. While all contacts matching at least one keyword will be returned, they are not sorted according to the highest similarity or match. We will improve this in future releases.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
