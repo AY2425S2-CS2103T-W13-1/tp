@@ -494,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
      Use case ends.
      
-* 1b. User provided file is invalid format
+* 1b. User provided file has an invalid format
    * 1b1. Scoopbook raises an error
   
      Use case ends.
@@ -825,8 +825,8 @@ testers are expected to do more *exploratory* testing.
 **Test case:** `help`  
 **Expected:** Opens the help window with instructions on how to use the commands.
 
-**Test case:** `help 123`  
-**Expected:** Still opens the help window; extraneous parameter is ignored.
+**Test case:** `help abc`  
+**Expected:** Still opens the help window. Extraneous parameter is ignored.
 
 ---
 
@@ -844,7 +844,7 @@ testers are expected to do more *exploratory* testing.
 **Expected:** Error shown. Missing phone, email, or address.
 
 **Test case:** `add n/John! Doe p/1234567`  
-**Expected:** Error shown. Name contains non-alphanumeric characters.
+**Expected:** Error shown. Name contains characters that are not accepted. Acceptable characters: alphanumeric characters, space, `,`, `(`, `)`, `@`, `\`, `-`, `'`.
 
 ---
 
@@ -878,11 +878,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding persons by name
 
+**Prerequisite:** Contact list currently contains people with the following names: `John Mary`, `John Doe`,  `Alex Yeoh`, `David Lim`, `Hans Solo`.
+
 **Test case:** `find John`  
 **Expected:** Displays persons with names containing “John”.
 
-**Test case:** `find alex david`  
-**Expected:** Displays any persons with name containing “alex” or “david”.
+**Test case:** `find Alex David`  
+**Expected:** Displays any persons with name containing “Alex” or “David”.
 
 **Test case:** `find Han`  
 **Expected:** No match for "Hans". Partial matches not allowed.
@@ -892,8 +894,9 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a person
 
 **Prerequisites:** Should have at least 1 contact in the menu.
+
 **Test case:** `delete 1` (after `list`)  
-**Expected:** Deletes first contact. Status bar updated.
+**Expected:** Deletes first contact.
 
 **Test case:** `delete 0`  
 **Expected:** Error. Invalid index.
@@ -910,7 +913,7 @@ testers are expected to do more *exploratory* testing.
 **Test case:** `addtag 1 t/friend t/neighbour`  
 **Expected:** Adds both tags to person at index 1.
 
-**Test case:** `addtag 2 t/friend!`  
+**Test case:** `addtag 1 t/friend!`  
 **Expected:** Error. Tag contains invalid character.
 
 ---
@@ -928,6 +931,8 @@ testers are expected to do more *exploratory* testing.
 ---
 
 ### Finding by tag
+
+**Prerequisite:** Should have at least 5 contacts in the menu. At least two contacts should have `friends` as a tag. At least one of the `friends` contacts should have a `neighbours` tag.  
 
 **Test case:** `findtag t/friends`  
 **Expected:** Displays persons with tag "friends", "Friends", etc.
@@ -963,17 +968,17 @@ testers are expected to do more *exploratory* testing.
 ### Clearing all entries
 
 **Test case:** `clear`  
-**Expected:** Deletes all persons from the address book.
+**Expected:** Delete all contacts from the address book.
 
 **Test case:** `clear abc`  
-**Expected:** Still clears all entries. Extraneous parameter ignored.
+**Expected:** Still clears all contactss. Extraneous parameter ignored.
 
 ---
 
 ### Export
 
 **Test case:** `export Contacts.json`  
-**Expected:** Exports current contacts as `Contacts.json` in working directory.
+**Expected:** Export the json file as Contacts.json in the root folder of where the .jar is located at.
 
 **Test case:** `export /invalid/path/Contacts.json`  
 **Expected:** Error shown. Invalid path.
@@ -986,7 +991,7 @@ testers are expected to do more *exploratory* testing.
 **Expected:** Replaces all contacts with imported data. Notes are deleted.
 
 **Test case:** `import corrupted.json`  
-**Expected:** All data discarded. App starts with empty address book.
+**Expected:** Returns error message.
 
 ---
 
@@ -995,7 +1000,7 @@ testers are expected to do more *exploratory* testing.
 **Prerequisite:** Should have at least 1 contact in the menu.
 
 **Test case:** `note 1`. Then, add random text. Then, close the note window. Enter `note 1` again.
-**Expected:** Application closes.
+**Expected:** Note should show the same random text shown earlier.
 
 **Test case:** `list`. Then, `addtag 1 t/colleague`. Use `exit` to exit the application. Launch the application again.
 **Expected:**  Upon opening the application, the first contact should have the tag `colleague`.
