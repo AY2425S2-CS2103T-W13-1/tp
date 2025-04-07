@@ -145,8 +145,9 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
+```dtd
+find KEYWORD [MORE_KEYWORDS]
+```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -163,7 +164,9 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+```dtd
+delete INDEX
+```
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -177,7 +180,9 @@ Examples:
 
 Adds the tags typed in to the specified person.
 
-Format: `addtag INDEX t/TAG1 [t/MORETAGS]`
+```dtd
+addtag INDEX t/TAG1 [t/MORETAGS]
+```
 
 * Adds the specified tags to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -196,7 +201,9 @@ Examples:
 
 Removes the specified tag from the person.
 
-Format: `removetag INDEX t/TAG1 [t/MORETAGS]`
+```dtd
+removetag INDEX t/TAG1 [t/MORETAGS]
+```
 
 * Removes the specified tags from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -214,7 +221,9 @@ Examples:
 
 Find persons who have all of the specified tags.
 
-Format: `findtag t/TAG1 [t/MORETAGS]`
+```dtd
+findtag t/TAG1 [t/MORETAGS]
+```
 
 * The searching of tags is case-insensitive. e.g `friends` will match `Friends`
 * The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
@@ -230,9 +239,11 @@ Examples:
 
 Open a window for the user to add notes to.
 If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in the window.
-If no note exists for the person, a new note will be created and displayed in the window for editing.
-<br> Format: note INDEX
+If no note exists for the person, a new note will be created and displayed in the window for editing. <br> 
 
+```dtd
+note INDEX
+```
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
@@ -242,7 +253,9 @@ If no note exists for the person, a new note will be created and displayed in th
 
 Deletes the note from the person.
 
-Format: `deletenote INDEX`
+```dtd
+deletenote INDEX
+```
 
 * Deletes note for the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -252,18 +265,24 @@ Format: `deletenote INDEX`
 
 Clears all entries from the address book.
 
-Format: `clear`
+- :warning: This clears all contacts and notes from the address book.
+
+```dtd
+clear
+```
 
 ### Exporting your contacts: `export`
 
 Exports the contacts in a .json file to the target path.
 
+```dtd
+export TARGET_PATH
+```
+
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the `export` command, add at least 1 contact using the `add` command.
 - `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `scoopbook.jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
-
-Format: `export TARGET_PATH`
 
 Examples:
 * For Windows: `export C:/Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
@@ -275,12 +294,13 @@ Examples:
 
 Imports contacts from the external .json file located at the specified path into the application.
 
-Format: `import TARGET_PATH`
+```dtd
+import TARGET_PATH
+```
 
-- CAUTION: This command overwrites existing contacts and remove all notes.
+- :warning: CAUTION: This command overwrites existing contacts and remove all notes.
 - Only import .json files exported using the `export` command.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
-
 
 Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
@@ -292,7 +312,9 @@ Examples:
 
 Exits the program.
 
-Format: `exit`
+```dtd
+exit
+```
 
 ### Saving the data
 
