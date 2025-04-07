@@ -707,7 +707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Set follow-up reminder - UC21**
+**Use case: Set follow-up reminder - UC21 (To be implemented)**
 
 **MSS**
 
