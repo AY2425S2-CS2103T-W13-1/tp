@@ -89,7 +89,7 @@ ScoopBook helps you stay organized without breaking your workflow.
 
 Shows the user guide, containing instructions on how to use the command.
 
-```dtd
+```
 help
 ```
 
@@ -97,7 +97,7 @@ help
 
 Adds a person to the address book.
 
-```dtd
+```
 add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 ```
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
@@ -127,7 +127,7 @@ list
 
 Edits an existing person in the address book at specified index.
 
-```dtd
+```
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 ```
 
@@ -147,7 +147,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-```dtd
+```
 find KEYWORD [MORE_KEYWORDS]
 ```
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -166,7 +166,7 @@ Examples:
 
 Deletes the specified person from the address book.
 
-```dtd
+```
 delete INDEX
 ```
 
@@ -182,7 +182,7 @@ Examples:
 
 Adds the tags typed in to the specified person.
 
-```dtd
+```
 addtag INDEX t/TAG1 [t/MORETAGS]
 ```
 
@@ -203,7 +203,7 @@ Examples:
 
 Removes the specified tag from the person.
 
-```dtd
+```
 removetag INDEX t/TAG1 [t/MORETAGS]
 ```
 
@@ -213,7 +213,7 @@ removetag INDEX t/TAG1 [t/MORETAGS]
 * Multiple tags in a single removetag command is supported.
   i.e. `removetag 1 t/friend t/neighbour` will remove both the "friend" and "neighbour" tag for the 1st person.
 * To remove all tags from a person, type `edit INDEX t/` instead.
-* Tags are case sensitive. The typed tag must match the tag on the person exactly.
+* Tags are case-sensitive. The typed tag must match the tag on the person exactly.
   i.e. `removetag 1 t/friend` will not remove the tag "Friend".
 
 Examples:
@@ -222,9 +222,9 @@ Examples:
 
 ### Finding people with tags: `findtag`
 
-Find persons who have all of the specified tags.
+Find persons who have all the specified tags.
 
-```dtd
+```
 findtag t/TAG1 [t/MORETAGS]
 ```
 
@@ -245,7 +245,7 @@ If the person at the specified `INDEX` already has a note, the note will be disp
 
 If no note exists for the person, a new note will be created and displayed in the window for editing. <br> 
 
-```dtd
+```
 note INDEX
 ```
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
@@ -262,7 +262,7 @@ Examples:
 
 Deletes the note from the person.
 
-```dtd
+```
 deletenote INDEX
 ```
 
@@ -280,7 +280,7 @@ Clears all entries from the address book.
 
 - :warning: WARNING: This clears all contacts and notes from the address book.
 
-```dtd
+```
 clear
 ```
 
@@ -288,7 +288,7 @@ clear
 
 Exports the contacts in a .json file to the target path.
 
-```dtd
+```
 export TARGET_PATH
 ```
 
@@ -318,7 +318,7 @@ Examples:
 
 Imports contacts from the external .json file located at the specified path into the application.
 
-```dtd
+```
 import TARGET_PATH
 ```
 
@@ -336,7 +336,7 @@ Examples:
 
 Exits the program.
 
-```dtd
+```
 exit
 ```
 
@@ -367,6 +367,15 @@ Furthermore, certain edits can cause the ScoopBook to behave in unexpected ways 
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ScoopBook home folder.
+
+**Q**: What are considered duplicate contacts?<br>
+**A**: Duplicate contacts are contacts with names that match exactly. We do not allow the addition of duplicate contacts in our app. For example, `John Doe` and `John Doe` are considered duplicate contacts, and we will not allow the addition of the second contact if the first has already been added. 
+
+Names that differ in lower and upper case letters are not considered as duplicate contacts even if the same exact letters are used. For example, `John Doe` and `john doe` are not considered duplicate contacts.
+
+Additionally, names with different amount of spaces between them are also not considered duplicate contacts. For example, `John Doe` and `John  Doe` are not considered duplicate contacts.
+
+This way, we leave room for flexibility in deciding contact names, with the bare minimum of preventing the addition of duplicates as specified.
 
 --------------------------------------------------------------------------------------------------------------------
 
