@@ -5,7 +5,7 @@ title: User Guide
 
 # ScoopBook
 
-## :trophy Our Goal
+## :trophy: Our Goal
 
 **ScoopBook** is built to help journalists efficiently manage the contacts of their sources, witnesses, and other key individuals they interact with on the job.
 
@@ -63,6 +63,10 @@ ScoopBook helps you stay organized without breaking your workflow.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+* Commands are case-sensitive. <br>
+  e.g. `LIST`command will not work.
+
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -269,8 +273,7 @@ Imports contacts from the external .json file located at the specified path into
 Format: `import TARGET_PATH`
 
 - CAUTION: This command overwrites existing contacts and remove all notes.
-- To ensure that the .json file follows the correct format, only use .json files exported using the `export` command.
-- Only write your own .json file if you are confident that you can update it correctly.
+- Only import .json files exported using the `export` command.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
 
