@@ -3,10 +3,28 @@ layout: page
 title: User Guide
 ---
 
-ScoopBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ScoopBook can get your contact management tasks done faster than traditional GUI apps. Made with journalists in mind, this app boasts **efficient categorisation** and **searching** of contacts.
+# ScoopBook
 
+## :trophy Our Goal
+
+**ScoopBook** is built to help journalists efficiently manage the contacts of their sources, witnesses, and other key individuals they interact with on the job.
+
+## Problems We’re Solving
+
+- Traditional contact apps (like those on mobile phones) often have clunky interfaces that make adding and organizing contacts a hassle.
+- Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time.
+## How ScoopBook works?
+
+**ScoopBook** is a **desktop contact management app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
+
+With ScoopBook, you get:
+- **Blazing-fast** contact entry
+- **Smart categorization** of contacts (e.g. sources, leads, officials)
+- **Powerful, instant search** to find the right person, fast
+
+ScoopBook helps you stay organized without breaking your workflow.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,15 +44,15 @@ ScoopBook is a **desktop app for managing contacts, optimized for use via a Comm
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -107,7 +125,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 * Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
@@ -233,6 +251,8 @@ Exports the contacts in a .json file to the target path.
 
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the `export` command, add at least 1 contact using the `add` command.
+- `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `scoopbook.jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
+- Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
 Format: `export TARGET_PATH`
 
@@ -251,6 +271,8 @@ Format: `import TARGET_PATH`
 - CAUTION: This command overwrites existing contacts and remove all notes.
 - To ensure that the .json file follows the correct format, only use .json files exported using the `export` command.
 - Only write your own .json file if you are confident that you can update it correctly.
+- Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
+
 
 Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
@@ -319,7 +341,7 @@ Action | Format, Examples
 **Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
 **Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
-**Export Contacts** | `export PATH` <br> e.g., `export backup.json`
-**Import Contacts** | `import PATH` <br> e.g., `import previous_ver.json`
+**Export Contacts** | `export TARGET_PATH` <br> e.g., `export backup.json`
+**Import Contacts** | `import TARGET_PATH` <br> e.g., `import previousVer.json`
 **List** | `list`
 **Help** | `help`
