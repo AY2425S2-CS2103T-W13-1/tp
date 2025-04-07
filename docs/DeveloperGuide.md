@@ -844,7 +844,7 @@ testers are expected to do more *exploratory* testing.
 **Expected:** Error shown. Missing phone, email, or address.
 
 **Test case:** `add n/John! Doe p/1234567`  
-**Expected:** Error shown. Name contains characters that are not accepted. Acceptable characters: alphanumeric characters, space, `,`, `(`, `)`, `@`, `\`, `-`, `'`.
+**Expected:** Error shown. Name contains characters that are not accepted. Acceptable characters: alphanumeric characters, whitespaces, `,`, `(`, `)`, `@`, `.`, `-`, `'`.
 
 ---
 
@@ -1023,4 +1023,5 @@ Team size: 5
 2. **Person cards to be more visible for longer texts:** Currently, Person fields truncates long text fields (i.e., Name, Phone Number, Email, Address). For example, if the name exceeds a certain length, it will be truncated with a "...". It shall be updated in future iterations to be able to display the whole text field by using a scrolling mechanic to see the whole text field for all fields (Name, Phone Number, Email, Address, Tags).
 3. **Standardise error messages for commands that use Index referencing:** Currently, commands that use index referencing do not return the same error message for different cases of index errors. Invalid cases include: out of bounds for addressbook, non-positive integers, non-integers. We plan to standardise the index error messages to the different cases of invalid index accordingly.
 4. **Improve search commands**: `find` command currently uses an OR operator to search. (i.e. `find John Mary` will return contacts with names `John`, `Mary`, and `John Mary`, but `John Mary` does not appear as the first contact). `find` shall be updated to return results where the first contact is the most relevant contact (i.e Names with `John Mary`) followed by other contacts.
+5. **Allow user to copy from display**: Currently, the display does not allow users to copy text from the display. This may cause inconvenience or introduce delays for journalists who may want to copy text from the display. We plan to introduce support for copying for ease of use.
 
