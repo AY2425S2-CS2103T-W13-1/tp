@@ -471,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
   
-* 1a. User provided file location is invalid
+* 1a. User provided invalid file location.
    * 1a1. Scoopbook raises an error
 
      Use case ends.
@@ -483,18 +483,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to import contacts from a file location.
-2. ScoopBook imports the relevant contacts from the import file.
+2. ScoopBook imports the contacts from the import file.
 
    Use case ends.
 
 **Extensions**
   
-* 1a. User provided file location is invalid
+* 1a. User provided invalid file location.
    * 1a1. Scoopbook raises an error
   
      Use case ends.
      
-* 1b. User provided file has an invalid format
+* 1b. User provided file with invalid format
    * 1b1. Scoopbook raises an error
   
      Use case ends.
@@ -913,7 +913,7 @@ testers are expected to do more *exploratory* testing.
 **Test case:** `addtag 1 t/friend t/neighbour`  
 **Expected:** Adds both tags to person at index 1.
 
-**Test case:** `addtag 1 t/friend!`  
+**Test case:** Following the previous test case, `addtag 1 t/friend!`  
 **Expected:** Error. Tag contains invalid character.
 
 ---
@@ -925,7 +925,7 @@ testers are expected to do more *exploratory* testing.
 **Test case:** `removetag 1 t/friend`  
 **Expected:** Removes "friend" tag.
 
-**Test case:** `removetag 1 t/Friend`  
+**Test case:** Following the previous test case, `removetag 1 t/Friend`  
 **Expected:** No tag removed. Case mismatch.
 
 ---
@@ -968,10 +968,10 @@ testers are expected to do more *exploratory* testing.
 ### Clearing all entries
 
 **Test case:** `clear`  
-**Expected:** Delete all contacts from the address book.
+**Expected:** Delete all contacts and notes from the address book.
 
 **Test case:** `clear abc`  
-**Expected:** Still clears all contactss. Extraneous parameter ignored.
+**Expected:** Still clears all contacts and notes. Extraneous parameter ignored.
 
 ---
 
