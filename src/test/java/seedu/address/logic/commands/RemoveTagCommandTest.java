@@ -39,7 +39,7 @@ public class RemoveTagCommandTest {
         RemoveTagCommand removeTagCommand = new RemoveTagCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(RemoveTagCommand.MESSAGE_REMOVE_TAG_SUCCESS,
-                Messages.format(editedPerson));
+                Messages.format(editedPerson), "[colleague]");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(currentPerson, editedPerson);

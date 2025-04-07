@@ -65,14 +65,10 @@ public class RemoveTagCommandParserTest {
     }
 
     @Test
-    public void parse_emptyTagField_returnsRemoveTagCommandWithNoTags() {
+    public void parse_emptyTagField_returnsEmptyTagErrorMessage() {
         String userInput = "1 t/";
         Index expectedIndex = Index.fromOneBased(1);
-        PersonDescriptor expectedDescriptor = new PersonDescriptor();
-        expectedDescriptor.setTags(Set.of());
-
-        RemoveTagCommand expectedCommand = new RemoveTagCommand(expectedIndex, expectedDescriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, RemoveTagCommand.MESSAGE_EMPTY_TAG);
     }
 }
 
