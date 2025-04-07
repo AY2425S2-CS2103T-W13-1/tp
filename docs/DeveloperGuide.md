@@ -1027,3 +1027,6 @@ testers are expected to do more *exploratory* testing.
 Team size: 5
 
 1. **Removing placeholder values for Person:** Currently Person uses a placeholder value for optional fields in the contact. I.e., if Alex Yeoh has a phone number only, the email and address fields will be replaced with a placeholder value instead of being blank. We plan to wrap each field in an Optional class so that it is able to handle empty values rather than leaving it with a placeholder value.
+2. **Person cards to be more visible for longer texts:** Currently, Person fields truncates some texts. For example, if the name exceeds a certain length, it will be truncated with a "...". It shall be updated in future iterations to be able to display the whole text field by using a scrolling mechanic to see the whole text field.
+3. **Standardise error messages for commands that use Index referencing:** Currently, commands that use index referencing do not return the same error message for different cases of index errors. Invalid cases include: out of bounds for addressbook, non-positive integers, non-integers. We plan to standardise the index error messages to the different cases of invalid index accordingly.
+
