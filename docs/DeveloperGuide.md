@@ -464,21 +464,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to export contacts.
-2. ScoopBook prompts the location to save the export file of contacts in.
-3. User confirms the save location.
-4. ScoopBook saves the relevant contacts in the export file.
+1. User requests to export contacts to a specified file location.
+2. ScoopBook saves the relevant contacts in the export file.
 
    Use case ends.
 
 **Extensions**
-
-* 2a. User decides to cancel the operation.
-
-  Use case ends.
   
-* 3a. User provided file location is invalid
-   * 3a1. Scoopbook raises an error
+* 1a. User provided file location is invalid
+   * 1a1. Scoopbook raises an error
 
      Use case ends.
 
