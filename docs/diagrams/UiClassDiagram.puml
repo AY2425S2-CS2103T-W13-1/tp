@@ -37,7 +37,6 @@ MainWindow -down->  "1" CommandBox
 MainWindow -down-> "1" ResultDisplay
 MainWindow -down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow -down-> "*" NoteWindow
 MainWindow -down-> "1" NoteWindowHandler
 NoteWindowHandler -down-> "*" NoteWindow
 ResultDisplay -down-> "*" DialogBox
