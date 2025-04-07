@@ -780,7 +780,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 * Should work on any mainstream OS as long as it has Java 17 installed.
-* Should be able to store up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+* Should be able to store up to 1000 persons with no more than 1s of response per command entered.
 * A user with above-average typing speed (50 WPM) for regular English text (i.e., not code, not system admin commands) should be able to accomplish most basic tasks like adding contacts faster using commands than using the mouse.
 * Should not require a login, since ScoopBook is on a user’s own device.
 * All user data must be stored locally and should not require an internet connection for core functionality.
