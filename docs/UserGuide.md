@@ -133,8 +133,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+* :bulb: TIP: You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
 
 Examples:
@@ -265,7 +264,7 @@ deletenote INDEX
 
 Clears all entries from the address book.
 
-- :warning: This clears all contacts and notes from the address book.
+- :warning: WARNING: This clears all contacts and notes from the address book.
 
 ```dtd
 clear
@@ -285,10 +284,20 @@ export TARGET_PATH
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
 Examples:
-* For Windows: `export C:/Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
-* For macOS: `export /Users/username/Desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder.
-* For Linux: `export /home/user/desktop/MyContacts.json` saves the json file as `MyContacts.json` in the `home/user/desktop` folder.
-* `export Contacts.json` saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
+* For Windows: `export C:/Users/username/Desktop/MyContacts.json`
+  * saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder. <br>
+
+
+* For macOS: `export /Users/username/Desktop/MyContacts.json`
+  * saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder. <br>
+
+
+* For Linux: `export /home/user/desktop/MyContacts.json` 
+  * saves the json file as `MyContacts.json` in the `home/user/desktop` folder. <br>
+
+
+* For all OS: `export Contacts.json`
+  * saves the json file as `Contacts.json` in the root folder of where scoopbook.jar is located at.
 
 ### Importing your contacts: `import`
 
@@ -298,7 +307,7 @@ Imports contacts from the external .json file located at the specified path into
 import TARGET_PATH
 ```
 
-- :warning: CAUTION: This command overwrites existing contacts and remove all notes.
+- :warning: WARNING: This command overwrites existing contacts and remove all notes.
 - Only import .json files exported using the `export` command.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 
