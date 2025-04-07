@@ -80,7 +80,8 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
-* A person's name and tags can only contain alphanumeric characters (numbers or letters only, no special characters).
+* A person's name can only contain alphanumeric characters (numbers or letters only), and the following special characters: `,` `(` `)` `.` `@` `\` `-` `'`.
+* A person's tags can only contain alphanumeric characters (numbers or letters only, no special characters).
 * If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
     - Phone: `000`
     - Email: `unknown@example.com`
