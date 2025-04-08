@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -28,7 +29,12 @@ public class ImportCommandParser {
         if (parts.length > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
-        Path targetPath = Paths.get(trimmedArgs);
-        return new ImportCommand(targetPath);
+        try {
+            Path targetPath = Paths.get(trimmedArgs);
+            return new ImportCommand(targetPath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(ImportCommand.MESSAGE_IMPORT_FAILURE + " Invalid path: "
+                    + e.getMessage());
+        }
     }
 }
