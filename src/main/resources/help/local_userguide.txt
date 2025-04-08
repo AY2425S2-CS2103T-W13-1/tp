@@ -8,19 +8,21 @@ Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]
 
 Examples:
 - add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
-- add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal
+- add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Criminal
 
 Note:
 - The add command must have a name, and one of the following fields: phone number, email, address.
-  i.e. add n/Johnny Appleseed does not work because there is no phone number, email or address.
+  i.e. 'add n/Johnny Appleseed' does not work because there is no phone number, email or address.
 - A person can have any number of tags (including 0).
+- A person's name can only contain alphanumeric characters (numbers or letters only), whitespaces, and the following
+  special characters: " , ( ) @ . - ' "
+- A person's tags can only contain alphanumeric characters (numbers or letters only, no special characters).
 - If a contact is added with the following values, they will not be displayed in the contact list,
   as they are used as internal placeholders:
-    - Phone: `000`
+    - Phone Number: `000`
     - Email: `unknown@example.com`
     - Address: `Unknown address`
       This ensures that every contact has a placeholder value for these fields if left empty.
-
 
 2. Listing all contacts: list
 
@@ -30,9 +32,9 @@ Format: list
 
 3. Editing a contact: edit
 
-Edits an existing contact in the address book.
+Edits an existing person in the address book at specified index.
 
-Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]
+Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...
 
 Note:
 - Edits the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list.
@@ -45,9 +47,9 @@ Note:
 
 
 Examples:
-- 'edit 1 p/91234567 e/johndoe@example.com' edits the phone number and email address of the 1st person to 91234567 and
-  johndoe@example.com.
-- 'edit 2 n/Betsy Crower t/' edits the name of the 2nd person to Betsy Crower and clears all existing tags.
+- 'edit 1 p/91234567 e/johndoe@example.com' edits the phone number and email address of the 1st person to "91234567" and
+  "johndoe@example.com".
+- 'edit 2 n/Betsy Crower t/' edits the name of the 2nd person to "Betsy Crower" and clears all existing tags.
 
 4. Locating contacts by name: find
 
@@ -56,12 +58,12 @@ Finds persons whose names contain any of the given keywords.
 Format: find KEYWORD [MORE_KEYWORDS]
 
 Note:
-- The search is case-insensitive. For example, hans will match Hans.
-- The order of the keywords does not matter. For example, Hans Bo will match Bo Hans.
+- The search is case-insensitive. For example, "hans" will match "Hans".
+- The order of the keywords does not matter. For example, "Hans Bo" will match "Bo Hans".
 - Only the name is searched.
-- Only full words will be matched. For example, Han will not match Hans.
-- Persons matching at least one keyword will be returned (OR search). For example, Hans Bo will return Hans Gruber and
-  Bo Yang.
+- Only full words will be matched. For example, "Han" will not match "Hans".
+- Persons matching at least one keyword will be returned (OR search). For example, "Hans Bo" will return "Hans Gruber"
+  and "Bo Yang".
 
 5. Deleting a person: delete
 
@@ -80,7 +82,7 @@ Examples:
 
 6. Adding tags to a contact: addtag
 
-Adds the tags typed in to the specified person.
+Adds the tag(s) typed in to the specified person.
 
 Format: addtag INDEX t/TAG1 [t/MORETAGS]
 
@@ -88,64 +90,62 @@ Note:
 - Adds the specified tags to the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, ...
-- Multiple tags in a single addtag command is supported. i.e. 'addtag 1 t/friend t/neighbour' will tag the 1st person
-  with both "friend" and "neighbour".
+- Multiple tags in a single addtag command is supported. i.e. 'addtag 1 t/Witness t/HomeAffairs' will tag the 1st person
+  with both "Witness" and "HomeAffairs".
 - Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
-- Tags are case-sensitive. i.e. 'addtag 1 t/friend' will add the tag "friend" while 'addtag 1 t/Friend'
-  will add the tag "Friend".
+- Tags are case-sensitive. i.e. 'addtag 1 t/witness' will add the tag "witness" while 'addtag 1 t/Witness'
+  will add the tag "Witness".
 
 Examples:
-- 'list' followed by 'addtag 2 t/friend' tags the 2nd person with "friends" in the address book.
-- 'find Betsy' followed by 'addtag 1 t/friend' tags the 1st person in the results of the find command with "friends".
+- 'list' followed by 'addtag 2 t/Education' tags the 2nd person with "Education" in the address book.
+- 'find Betsy' followed by 'addtag 1 t/Victim' tags the 1st person in the results of the find command with "Victim".
 
 7. Removing tag from a contact: removetag
 
-Removes the specified tag from the person.
+Removes the specified tag(s) from the specified person.
 
-Format: removetag INDEX t/TAG1 [t/MORETAGS]
+Format: removetag INDEX t/TAG1 [t/MORE_TAGS]
 
 Note:
-- Removes the specified tags from the person at the specified INDEX.
+- Removes the specified tag(s) from the person at the specified INDEX.
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, ...
-- Multiple tags in a single removetag command is supported. i.e. 'removetag 1 t/friend t/neighbour' will remove
-  both the "friend" and "neighbour" tag for the 1st person.
-- Tags are case-sensitive. The typed tag must match the tag on the person exactly. i.e. 'removetag 1 t/friend' will
-  not remove the tag "Friend".
+- Multiple tags in a single removetag command is supported. i.e. 'removetag 1 t/Witness t/Local' will remove
+  both the "Witness" and "Local" tag for the 1st person.
+- Tags are case-sensitive. The typed tag must match the tag on the person exactly. i.e. 'removetag 1 t/witness' will
+  not remove the tag "Witness".
 
 Examples:
-- 'list' followed by 'removetag 2 t/friend' removes the "friend" tag from the 2nd person in the address book.
-- 'find Betsy' followed by 'removetag 1 t/friend' removes the "friend" tag from the 1st person in the results of
+- 'list' followed by 'removetag 2 t/Witness' removes the "Witness" tag from the 2nd person in the address book.
+- 'find Betsy' followed by 'removetag 1 t/Victim' removes the "Victim" tag from the 1st person in the results of
   the find command.
 
 8. Finding people with tags: findtag
 
-Find persons who have all the specified tags.
+Find persons who have all the specified tag(s).
 
-Format: findtag t/TAG1 [t/MORETAGS]
+Format: findtag t/TAG1 [t/MORE_TAGS]
 
 Note:
-- The searching of tags is case-insensitive. e.g friends will match Friends
+- The searching of tags is case-insensitive. e.g "friends" will match "Friends"
 - The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
 - Only the tags are searched.
-- Only full words will be matched e.g. Friend will not match Friends
+- Only full words will be matched e.g. "Friend" will not match "Friends"
 - Only persons matching all the tags will be returned (i.e. AND search).
 
 Examples:
-- 'findtag t/friends' returns people with tag friends, Friends, FriEndS (due to case insensitivity).
-- 'findtag t/friends t/neighbours' returns people with tag friends and neighbours only.
+- 'findtag t/witness' returns people with tag "witness", "Witness", "witNeSs" (due to case insensitivity).
+- 'findtag t/witness t/HomeAffairs' returns people with tag "Witness" and "HomeAffairs" only.
 
 9. Opening Note for Person: note
 
-Open a window for the user to add notes to.
-If the person at the specified `INDEX` already has a note, the note will be displayed and the user can edit it in
-the window.
-If no note exists for the person, a new note will be created and displayed in the window for editing.
+Opens a window for the user to add notes to the person at the specified INDEX.
 
 Format: note INDEX
 
 Note:
 - Opens a window for the user to add notes to the person at the specified INDEX.
+- Please use only this opened window to edit the note.
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, ...
 - The note will be saved when the window is closed.
@@ -213,7 +213,7 @@ Examples:
 
 13. Clearing all entries: clear
 
-Warning: this clears all entries from the address book.
+Warning: this clears all contacts, notes & .txt files from the address book.
 
 Format: clear
 
