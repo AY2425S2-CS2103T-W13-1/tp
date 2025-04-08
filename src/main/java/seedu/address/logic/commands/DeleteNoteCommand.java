@@ -29,10 +29,22 @@ public class DeleteNoteCommand extends Command {
     private Storage storage;
     private Person targetPerson;
 
+    /**
+     * Constructs a {@code DeleteNoteCommand} that targets a person by their index in the filtered person list.
+     *
+     * @param targetIndex The index of the person in the filtered list.
+     */
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the delete note command by attempting to remove a note from the target person.
+     *
+     * @param model The model containing the current state of the address book.
+     * @return A {@code CommandResult} indicating success or failure, along with instructions to close the note view.
+     * @throws CommandException If the target index is invalid or an I/O error occurs during deletion.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -82,11 +94,18 @@ public class DeleteNoteCommand extends Command {
     }
 
     /**
-     * Returns the target person to be deleted.
+     * Returns the person associated with this command at execution time.
+     *
+     * @return The target {@code Person} whose note was attempted to be deleted.
      */
     public Person getTargetPerson() {
         return targetPerson;
     }
+    /**
+     * Sets the {@code Storage} instance required to perform note deletion.
+     *
+     * @param storage The storage implementation to use.
+     */
     public void setStorage(Storage storage) {
         this.storage = storage;
     }
