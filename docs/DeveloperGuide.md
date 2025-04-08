@@ -130,7 +130,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 The `Person`,
-* requires a name, and at least one of the following fields: phone, email, address.
+* requires a name, and at least one of the following fields: phone number, email, address.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -897,7 +897,7 @@ testers are expected to do more *exploratory* testing.
 **Expected:** Adds Betsy Crowe with multiple tags.
 
 **Test case:** `add n/Johnny Appleseed`  
-**Expected:** Error shown. Missing phone, email, or address.
+**Expected:** Error shown. Missing phone number, email, or address.
 
 **Test case:** `add n/John! Doe p/1234567`  
 **Expected:** Error shown. Name contains characters that are not accepted. Acceptable characters: alphanumeric characters, whitespaces, `,`, `(`, `)`, `@`, `.`, `-`, `'`.
@@ -919,7 +919,7 @@ testers are expected to do more *exploratory* testing.
 **Prerequisite:** At least 2 persons in the list.
 
 **Test case:** `edit 1 p/91234567 e/johndoe@example.com`  
-**Expected:** 1st person’s phone and email are updated.
+**Expected:** 1st person’s phone number and email are updated.
 
 **Test case:** `edit 2 n/Betsy Crower t/`  
 **Expected:** Updates name, clears all tags.
