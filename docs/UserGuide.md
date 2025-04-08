@@ -436,10 +436,10 @@ This way, we leave room for flexibility in deciding contact names, with the bare
 
 :question: **Q**: **Why didn't my `add` command work?**<br>
 **A**: Ensure that you entered at least a `name` and **one of the following**: phone number, email, or address.
-- Does your name contain special characters? only whitespace, `,`, `(`, `)`, `@`, `.`, `-`, `'` are allowed.
+- Does your name contain special characters? Only whitespace, `,`, `(`, `)`, `@`, `.`, `-`, `'` are allowed.
 
 :question: **Q**: **Why didn't my `edit`, `addtag`, `removetag` `delete` `note` or `deletenote` command work?**<br>
-**A**: Check your INDEX! is your index within range?
+**A**: Check your INDEX! Is your index within range?
 
 :question: **Q**: **My `import` command did not work. What went wrong?**<br>
 **A**: Make sure that the file was originally exported from ScoopBook. Do not import unrelated `.json` files or edit them outside of ScoopBook!
