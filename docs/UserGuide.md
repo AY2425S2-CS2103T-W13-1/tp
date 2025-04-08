@@ -9,24 +9,24 @@ title: User Guide
 
 **ScoopBook** is built to help journalists efficiently manage the contacts of their sources, witnesses, and other key individuals they interact with on the job.
 
+## :bust_in_silhouette: Target Audience
+
+ScoopBook is designed for **Journalist** who need a fast, efficient and offline way to manage sources and contacts. We assume that these Journalists are comfortable with the keyboard, but **no technical background is required**.
 ## :dart: Problems We’re Solving
 
-- Traditional contact apps (like those on mobile phones) often have clunky interfaces that make adding and organizing contacts a hassle.
-- Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time.
+- Traditional contact apps (like those on mobile phones) often have clunky interfaces that make it difficult for journalists to handle large number of contacts, sources and witnesses.
+- Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time when the next big scoop is on the line. 
+## :mag: How does ScoopBook work?
 
-## :mag: How ScoopBook works?
-
-**ScoopBook** is a **desktop contact management app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
+**ScoopBook** is a **desktop app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
 
 With ScoopBook, you get:
-- **Blazing-fast** contact entry
+- **Blazing-fast** contact entry: Offering a Typing-based interface.
 - **Smart categorization** of contacts (e.g. sources, leads, officials)
-- **Powerful, instant search** to find the right person, fast
+- **Powerful, instant search** to find the right sources, right contacts, fast.
 
-ScoopBook helps you stay organized without breaking your workflow.
-
-* Table of Contents
-{:toc}
+## :memo: Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,12 +43,12 @@ ScoopBook helps you stay organized without breaking your workflow.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type the command into the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Here are some example commands you can try:
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a witness named `John Doe` to the address book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -90,10 +90,10 @@ ScoopBook helps you stay organized without breaking your workflow.
 ### Viewing help : `help`
 
 Shows the user guide, containing instructions on how to use the command.
-
 ```
 help
 ```
+<img src="images/HelpCommand.png" width="700" />
 
 ### Adding a person: `add`
 
@@ -102,20 +102,27 @@ Adds a person to the address book.
 ```
 add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 ```
+
+<img src="images/AddCommand.png" width="700" />
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * The add command **must** have a name, and one of the following fields: phone number, email, address.
   i.e. `add n/Johnny Appleseed` does not work because there is no phone number, email or address.
 * A person can have any number of tags (including 0).
 * A person's name can only contain alphanumeric characters (numbers or letters only), whitespaces, and the following special characters: `,`, `(`, `)`, `@`, `.`, `-`, `'`.
 * A person's tags can only contain alphanumeric characters (numbers or letters only, no special characters).
 * If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
-    - Phone: `000`
+    - Phone Number: `000`
     - Email: `unknown@example.com`
     - Address: `Unknown address`  
       This ensures that every contact has a placeholder value for these fields if left empty.
+</div>
 
-Examples:
+:paperclip: Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Criminal`
 
 ### Listing all persons : `list`
 
@@ -124,23 +131,31 @@ Shows a list of all persons in the address book.
 ```
 list
 ```
+<img src="images/ListCommand.png" width="700" />
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book at specified index.
 
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 ```
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Note:**<br>
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* :bulb: TIP: You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * Similar to the `add` command, the aforementioned placeholder values will not be displayed in the contact list.
+</div>
 
-Examples:
+<div markdown="block" class="alert alert-info">
+
+:bulb: TIP: You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+:paperclip: Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 1 t/friends t/colleagues` Removes all existing tags of the 1st person, and sets the 1st person's tag to `friends` and `colleagues` only.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
@@ -152,17 +167,22 @@ Finds persons whose names contain any of the given keywords.
 ```
 find KEYWORD [MORE_KEYWORDS]
 ```
+<img src="images/findAlexDavidResult.png" width="700" />
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+</div>
 
-Examples:
+:paperclip: Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
@@ -171,54 +191,66 @@ Deletes the specified person from the address book.
 ```
 delete INDEX
 ```
+<img src="images/DeleteCommand.png" width="700" />
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+:paperclip: Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Adding tags to a contact: `addtag`
 
-Adds the tags typed in to the specified person.
+Adds the tag(s) typed in to the specified person.
 
 ```
-addtag INDEX t/TAG1 [t/MORETAGS]
+addtag INDEX t/TAG1 [t/MORE_TAGS]
 ```
+<img src="images/AddTagCommand.png" width="700" />
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Note:**<br>
 * Adds the specified tags to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Multiple tags in a single `addtag` command is supported.
-  i.e. `addtag 1 t/friend t/neighbour` will tag the 1st person with both "friend" and "neighbour".
+  i.e. `addtag 1 t/Witness t/HomeAffairs` will tag the 1st person with both "Witness" and "HomeAffairs".
 * Tags can only contain alphanumeric characters (numbers or letters only, no special characters or spaces).
 * Tags are case-sensitive.
-  i.e. `addtag 1 t/friend` will add the tag "friend" while `addtag 1 t/Friend` will add the tag "Friend".
+  i.e. `addtag 1 t/Witness` will add the tag "Witness" while `addtag 1 t/witness` will add the tag "witness".
+</div>
 
-Examples:
-* `list` followed by `addtag 2 t/friend` tags the 2nd person with "friends" in the address book.
-* `find Betsy` followed by `addtag 1 t/friend` tags the 1st person in the results of the `find` command with "friends".
+:paperclip: Examples:
+* `list` followed by `addtag 2 t/Education` tags the 2nd person with "Education" in the address book.
+* `find Betsy` followed by `addtag 1 t/Victim` tags the 1st person in the results of the `find` command with "Victim".
 
 ### Removing tag from a contact: `removetag`
 
-Removes the specified tag from the person.
+Removes the specified tag(s) from the specified person.
 
 ```
-removetag INDEX t/TAG1 [t/MORETAGS]
+removetag INDEX t/TAG1 [t/MORE_TAGS]
 ```
+<img src="images/RemoveTagCommand.png" width="700" />
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * Removes the specified tags from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Multiple tags in a single removetag command is supported.
-  i.e. `removetag 1 t/friend t/neighbour` will remove both the "friend" and "neighbour" tag for the 1st person.
-* To remove all tags from a person, type `edit INDEX t/` instead.
+* Multiple tags in a single `removetag` command is supported. i.e. `removetag 1 t/Witness t/Local` will remove both the "Witness" and "Local" tag for the 1st person.
 * Tags are case-sensitive. The typed tag must match the tag on the person exactly.
-  i.e. `removetag 1 t/friend` will not remove the tag "Friend".
+  i.e. `removetag 1 t/witness` will not remove the tag "Witness".
+</div>
 
-Examples:
+<div markdown="block" class="alert alert-info">
+:bulb: TIP: Use `edit INDEX t/` instead to remove all tags for specified contact.
+</div>
+
+:paperclip: Examples:
 * `list` followed by `removetag 2 t/friend` removes the "friend" tag from the 2nd person in the address book.
 * `find Betsy` followed by `removetag 1 t/friend` removes the "friend" tag from the 1st person in the results of the `find` command.
 
@@ -227,18 +259,22 @@ Examples:
 Find persons who have all the specified tags.
 
 ```
-findtag t/TAG1 [t/MORETAGS]
+findtag t/TAG1 [t/MORE_TAGS]
 ```
+<img src="images/FindTagCommand.png" width="700" />
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Note:**<br>
 * The searching of tags is case-insensitive. e.g `friends` will match `Friends`
 * The order of the tags does not matter. i.e. As long as the person has the listed tags, they will be shown.
 * Only the tags are searched.
 * Only full words will be matched e.g. `Friend` will not match `Friends`
 * Only persons matching all the tags will be returned (i.e. `AND` search).
+</div>
 
-Examples:
-* `findtag t/friends` returns people with tag `friends`, `Friends`, `FriEndS` (due to case insensitivity).
-* `findtag t/friends t/neighbours` returns people with tag `friends` **and** `neighbours` only.
+:paperclip: Examples:
+* `findtag t/witness` returns people with tag `witness`, `Witness`, `WitNeSs` (due to case insensitivity).
+* `findtag t/Witness t/HomeAffairs` returns people with tag `Witness` **and** `HomeAffairs` only.
 
 ### Opening Note for Person: `note`
 
@@ -250,13 +286,19 @@ If no note exists for the person, a new note will be created and displayed in th
 ```
 note INDEX
 ```
+<img src="images/NoteCommand.png" width="700" />
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * Opens a window for the user to add notes to the person at the specified `INDEX`.
-  * Please use only this opened window to edit the note (see [#Known issues](#known-issues) section below)
+  * :exclamation: Please use only this opened window to edit the note (see [#Known issues](#known-issues) section below)
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …
 * The note will be saved when the window is closed.
+</div>
 
-Examples:
+:paperclip: Examples:
 * `list` followed by `note 2` opens a note window for the 2nd person in the address book.
 * `find Betsy` followed by `note 1` opens a note window for the 1st person in the results of the `find` command.
 
@@ -272,7 +314,7 @@ deletenote INDEX
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+:paperclip: Examples:
 * `list` followed by `deletenote 2` deletes the note for the 2nd person in the address book, if the note exists.
 * `find Betsy` followed by `deletenote 1` deletes the note for the 1st person in the results of the `find` command, if the note exists.
 
@@ -280,7 +322,7 @@ Examples:
 
 Clears all entries from the address book.
 
-- :warning: WARNING: This clears all contacts and notes from the address book.
+- :warning: WARNING: This clears all contacts, notes & `.txt` files from the address book.
 
 ```
 clear
@@ -293,14 +335,22 @@ Exports the contacts in a .json file to the target path.
 ```
 export TARGET_PATH
 ```
+<img src="images/ExportCommand.png" width="700" />
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the `export` command, add at least 1 contact using the `add` command.
 - `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `[CS2103-W13-1][ScoopBook].jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
-- * :bulb: TIP: If you are running into issues with TARGET_PATH, use `export sample.json` to export it directly to the root folder with of the [CS2103-W13-1][ScoopBook].jar file. Then, move the .json file to wherever you want it to be.
+</div>
 
-Examples:
+<div markdown="block" class="alert alert-info">
+:bulb: TIP: If you are running into issues with TARGET_PATH, use `export sample.json` to export it directly to the root folder with of the [CS2103-W13-1][ScoopBook].jar file. Then, move the .json file to wherever you want it to be.
+</div>
+
+:paperclip: Examples:
 * For Windows: `export C:/Users/username/Desktop/MyContacts.json`
   * saves the json file as `MyContacts.json` in the `Users/username/Desktop` folder. <br>
 
@@ -323,12 +373,17 @@ Imports contacts from the external .json file located at the specified path into
 ```
 import TARGET_PATH
 ```
+<img src="images/ImportCommand.png" width="700" />
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 - :warning: WARNING: This command overwrites existing contacts and remove all notes.
 - Only import .json files exported using the `export` command.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
+</div>
 
-Examples:
+:paperclip: Examples:
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For macOS: `import /Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For Linux: `import /home/user/desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `home/user/desktop` folder.
@@ -367,17 +422,37 @@ Furthermore, certain edits can cause the ScoopBook to behave in unexpected ways 
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+:question: **Q**: **How do I transfer my data to another Computer?**<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ScoopBook home folder.
 
-**Q**: What are considered duplicate contacts?<br>
+:question: **Q**: **What are considered duplicate contacts?**<br>
 **A**: Duplicate contacts are contacts with names that match exactly. We do not allow the addition of duplicate contacts in our app. For example, `John Doe` and `John Doe` are considered duplicate contacts, and we will not allow the addition of the second contact if the first has already been added. 
 
 Names that differ in lower and upper case letters are not considered as duplicate contacts even if the same exact letters are used. For example, `John Doe` and `john doe` are not considered duplicate contacts.
 
-Additionally, names with different amount of spaces between them are also not considered duplicate contacts. For example, `John Doe` and `John  Doe` are not considered duplicate contacts.
+Additionally, names with different amount of spaces between them are also not considered duplicate contacts. For example, `John Doe` and <code>John&nbsp; Doe</code> are not considered duplicate contacts.
 
 This way, we leave room for flexibility in deciding contact names, with the bare minimum of preventing the addition of duplicates as specified.
+
+:question: **Q**: **Why didn't my `add` command work?**<br>
+**A**: Ensure that you entered at least a `name` and **one of the following**: phone number, email, or address.
+- Does your name contain special characters? Only whitespace, `,`, `(`, `)`, `@`, `.`, `-`, `'` are allowed.
+
+:question: **Q**: **Why didn't my `edit`, `addtag`, `removetag` `delete` `note` or `deletenote` command work?**<br>
+**A**: Check your INDEX! Is your index within range?
+
+:question: **Q**: **My `import` command did not work. What went wrong?**<br>
+**A**: Make sure that the file was originally exported from ScoopBook. Do not import unrelated `.json` files or edit them outside of ScoopBook!
+- Did you also check your filepath?
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: TIP: If you are unsure, test with a sample `export` first:
+```
+export temp.json
+import temp.json
+```
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -391,20 +466,21 @@ This way, we leave room for flexibility in deciding contact names, with the bare
 6. **Adding a contact with placeholder values**: Currently, we do not prevent the user from adding a contact with placeholder values. This is because we want to allow the user to add a contact with only a name and one other field, and we chose these placeholder values as unlikely values that would be used for a contact. 
    1. Regardless, we acknowledge that this may lead to confusion as these contact fields deliberately added with placeholder values will not be displayed in the contact list. We will fix this in future releases.
 7. **Finding a contact**: Currently, the `find` command performs an `OR` search. While all contacts matching at least one keyword will be returned, they are not sorted according to the highest similarity or match. We will improve this in future releases.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/Witness t/Local`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/friend`
-**Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/friend`
-**Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/friend`
+**Add Tag** | `addtag INDEX t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `addtag 2 t/Witness`
+**Find Tag** | `findtag t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `findtag t/Witness`
+**Remove Tag** | `removetag INDEX t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `removetag 2 t/Witness`
 **Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
 **Export Contacts** | `export TARGET_PATH` <br> e.g., `export backup.json`
