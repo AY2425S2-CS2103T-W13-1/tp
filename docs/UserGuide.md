@@ -430,7 +430,7 @@ Furthermore, certain edits can cause the ScoopBook to behave in unexpected ways 
 
 Names that differ in lower and upper case letters are not considered as duplicate contacts even if the same exact letters are used. For example, `John Doe` and `john doe` are not considered duplicate contacts.
 
-Additionally, names with different amount of spaces between them are also not considered duplicate contacts. For example, `John Doe` and `John  Doe` are not considered duplicate contacts.
+Additionally, names with different amount of spaces between them are also not considered duplicate contacts. For example, `John Doe` and <code>John&nbsp; Doe</code> are not considered duplicate contacts.
 
 This way, we leave room for flexibility in deciding contact names, with the bare minimum of preventing the addition of duplicates as specified.
 
