@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ScoopBook User Guide
+title: User Guide
 ---
 
 ## :trophy: Our Goal
@@ -26,6 +26,7 @@ With ScoopBook, you get:
 - **Powerful, instant search** to find the right sources, right contacts, fast.
 
 ## :memo: Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -333,13 +334,12 @@ deletenote INDEX
 
 Clears all entries from the address book.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This clears all contacts, notes & `.txt` files from the address book.
-</div>
-
 ```
 clear
 ```
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This clears all contacts, notes & `.txt` files from the address book.
+</div>
 
 ### Exporting your contacts: `export`
 
