@@ -466,6 +466,7 @@ import temp.json
 6. **Adding a contact with placeholder values**: Currently, we do not prevent the user from adding a contact with placeholder values. This is because we want to allow the user to add a contact with only a name and one other field, and we chose these placeholder values as unlikely values that would be used for a contact. 
    1. Regardless, we acknowledge that this may lead to confusion as these contact fields deliberately added with placeholder values will not be displayed in the contact list. We will fix this in future releases.
 7. **Finding a contact**: Currently, the `find` command performs an `OR` search. While all contacts matching at least one keyword will be returned, they are not sorted according to the highest similarity or match. We will improve this in future releases.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
