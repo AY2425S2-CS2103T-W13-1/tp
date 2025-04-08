@@ -13,6 +13,7 @@ title: User Guide
 
 - Traditional contact apps (like those on mobile phones) often have clunky interfaces that make adding and organizing contacts a hassle.
 - Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time.
+
 ## :mag: How ScoopBook works?
 
 **ScoopBook** is a **desktop contact management app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
@@ -23,8 +24,9 @@ With ScoopBook, you get:
 - **Powerful, instant search** to find the right person, fast
 
 ScoopBook helps you stay organized without breaking your workflow.
+
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -386,9 +388,9 @@ This way, we leave room for flexibility in deciding contact names, with the bare
 3. **If you open the Note Window**, and then run the `note` command again, the original Note Window will remain minimized, and no new Note Window will appear. The remedy is to manually restore the minimized Note Window.
 4. **If you use any other means apart from the note window that ScoopBook opens to edit a note**, (eg. notepad) we cannot guarantee that your edits will be saved. This may be because of an encoding incompatibility between your text editor and ScoopBook's. Please use the note window that ScoopBook opens to edit the note.
 5. **Text fields in the GUI**: Currently, text fields that are too long may be cut off in the GUI. We will introduce scrolling as a feature to enable viewing these fields in full in future releases.
-6. **Adding a contact with placeholder values**: Currently, we do not prevent the user from adding a contact with placeholder values. This is because we want to allow the user to add a contact with only a name and one other field, and we chose these placeholder values as unlikely values that would be used for a contact.
-    1. Regardless, we acknowledge that this may lead to confusion as these contact fields deliberately added with placeholder values will not be displayed in the contact list. We will fix this in future releases.
-8. **Finding a contact**: Currently, the `find` command performs an `OR` search. While all contacts matching at least one keyword will be returned, they are not sorted according to the highest similarity or match. We will improve this in future releases.
+6. **Adding a contact with placeholder values**: Currently, we do not prevent the user from adding a contact with placeholder values. This is because we want to allow the user to add a contact with only a name and one other field, and we chose these placeholder values as unlikely values that would be used for a contact. 
+   1. Regardless, we acknowledge that this may lead to confusion as these contact fields deliberately added with placeholder values will not be displayed in the contact list. We will fix this in future releases.
+7. **Finding a contact**: Currently, the `find` command performs an `OR` search. While all contacts matching at least one keyword will be returned, they are not sorted according to the highest similarity or match. We will improve this in future releases.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
