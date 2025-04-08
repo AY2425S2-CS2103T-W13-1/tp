@@ -1,9 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: ScoopBook User Guide
 ---
-
-# ScoopBook
 
 ## :trophy: Our Goal
 
@@ -11,11 +9,13 @@ title: User Guide
 
 ## :bust_in_silhouette: Target Audience
 
-ScoopBook is designed for **Journalist** who need a fast, efficient and offline way to manage sources and contacts. We assume that these Journalists are comfortable with the keyboard, but **no technical background is required**.
+ScoopBook is designed for **journalists** who need a fast, efficient and offline way to manage sources and contacts. We assume that these journalists are comfortable with the keyboard, but **no technical background is required**.
+
 ## :dart: Problems We’re Solving
 
 - Traditional contact apps (like those on mobile phones) often have clunky interfaces that make it difficult for journalists to handle large number of contacts, sources and witnesses.
 - Journalists frequently juggle multiple tools just to do simple tasks (like saving a contact or jotting down notes) wasting valuable time when the next big scoop is on the line. 
+
 ## :mag: How does ScoopBook work?
 
 **ScoopBook** is a **desktop app** designed with journalists in mind. It combines the speed and precision of a **Command Line Interface (CLI)** with the ease of a **Graphical User Interface (GUI)**—so if you can type fast, you can work fast.
@@ -26,7 +26,7 @@ With ScoopBook, you get:
 - **Powerful, instant search** to find the right sources, right contacts, fast.
 
 ## :memo: Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ With ScoopBook, you get:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command into the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command into the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Here are some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -100,7 +100,7 @@ help
 Adds a person to the address book.
 
 ```
-add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [t/MORE_TAGS]
 ```
 
 <img src="images/AddCommand.png" width="700" />
@@ -122,7 +122,7 @@ add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 
 :paperclip: Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Criminal`
+* `add n/Betsy Crowe t/Witness e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Criminal`
 
 ### Listing all persons : `list`
 
@@ -138,8 +138,10 @@ list
 Edits an existing person in the address book at specified index.
 
 ```
-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [t/MORE_TAGS]
 ```
+<img src="images/EditCommand.png" width="700" />
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -152,7 +154,7 @@ edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: TIP: You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+:bulb: TIP: You can remove all the person’s tags by typing `edit INDEX t/` without specifying any tags after it.
 </div>
 
 :paperclip: Examples:
@@ -193,9 +195,13 @@ delete INDEX
 ```
 <img src="images/DeleteCommand.png" width="700" />
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 :paperclip: Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
@@ -309,10 +315,15 @@ Deletes the note from the person.
 ```
 deletenote INDEX
 ```
+<img src="images/DeleteNoteCommand.png" width="700" />
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 * Deletes note for the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+</div>
 
 :paperclip: Examples:
 * `list` followed by `deletenote 2` deletes the note for the 2nd person in the address book, if the note exists.
@@ -322,7 +333,9 @@ deletenote INDEX
 
 Clears all entries from the address book.
 
-- :warning: WARNING: This clears all contacts, notes & `.txt` files from the address book.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This clears all contacts, notes & `.txt` files from the address book.
+</div>
 
 ```
 clear
@@ -375,10 +388,13 @@ import TARGET_PATH
 ```
 <img src="images/ImportCommand.png" width="700" />
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command overwrites existing contacts and remove all notes.
+</div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
-- :warning: WARNING: This command overwrites existing contacts and remove all notes.
 - Only import .json files exported using the `export` command.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 </div>
