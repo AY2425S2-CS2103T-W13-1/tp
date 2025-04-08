@@ -35,4 +35,12 @@ public class ImportCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(userInput),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_argContainSpecialCharacter_throwsParseException() {
+        String userInput = "import ??.json";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                String.format(ImportCommand.MESSAGE_IMPORT_FAILURE
+                        + " Invalid path: Illegal char <?> at index 0: ??.json"));
+    }
 }
