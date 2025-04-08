@@ -114,7 +114,7 @@ add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 * A person's name can only contain alphanumeric characters (numbers or letters only), whitespaces, and the following special characters: `,`, `(`, `)`, `@`, `.`, `-`, `'`.
 * A person's tags can only contain alphanumeric characters (numbers or letters only, no special characters).
 * If a contact is added with the following values, they will not be displayed in the contact list, as they are used as internal placeholders:
-    - Phone: `000`
+    - Phone Number: `000`
     - Email: `unknown@example.com`
     - Address: `Unknown address`  
       This ensures that every contact has a placeholder value for these fields if left empty.
@@ -138,7 +138,7 @@ list
 Edits an existing person in the address book at specified index.
 
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
+edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​
 ```
 <div markdown="block" class="alert alert-info">
 
@@ -435,7 +435,7 @@ Additionally, names with different amount of spaces between them are also not co
 This way, we leave room for flexibility in deciding contact names, with the bare minimum of preventing the addition of duplicates as specified.
 
 :question: **Q**: **Why didn't my `add` command work?**<br>
-**A**: Ensure that you entered at least a `name` and **one of the following**: phone, email, or address.
+**A**: Ensure that you entered at least a `name` and **one of the following**: phone number, email, or address.
 - Does your name contain special characters? only whitespace, `,`, `(`, `)`, `@`, `.`, `-`, `'` are allowed.
 
 :question: **Q**: **Why didn't my `edit`, `addtag`, `removetag` `delete` `note` or `deletenote` command work?**<br>
