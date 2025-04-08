@@ -865,7 +865,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Using your computer's terminal, `cd` into the folder in the previous step.
 
-   3. Use `java -jar [CS2103-W13-1][ScoopBook].jar` to open the application
+   3. Use `java -jar ScoopBook.jar` to open the application
 
 1. Saving window preferences
 

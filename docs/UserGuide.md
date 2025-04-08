@@ -40,7 +40,7 @@ With ScoopBook, you get:
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ScoopBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar [CS2103-W13-1][ScoopBook].jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ScoopBook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -49,7 +49,7 @@ With ScoopBook, you get:
 
     * `list` : Lists all contacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a witness named `John Doe` to the address book.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the address book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -355,12 +355,12 @@ export TARGET_PATH
 **:information_source: Note:**<br>
 - The `export` command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the `export` command, add at least 1 contact using the `add` command.
-- `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `[CS2103-W13-1][ScoopBook].jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
+- `export` command is case-insensitive. If `sAmPle.json` already exists (in the folder the `ScoopBook.jar` is located at), `export sample.json` will overwrite `sAmPle.json`.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the `TARGET_PATH`.
 </div>
 
 <div markdown="block" class="alert alert-info">
-:bulb: TIP: If you are running into issues with TARGET_PATH, use `export sample.json` to export it directly to the root folder with of the [CS2103-W13-1][ScoopBook].jar file. Then, move the .json file to wherever you want it to be.
+:bulb: TIP: If you are running into issues with TARGET_PATH, use `export sample.json` to export it directly to the root folder with of the ScoopBook.jar file. Then, move the .json file to wherever you want it to be.
 </div>
 
 :paperclip: Examples:
@@ -377,7 +377,7 @@ export TARGET_PATH
 
 
 * For all OS: `export Contacts.json`
-  * saves the json file as `Contacts.json` in the root folder of where [CS2103-W13-1][ScoopBook].jar is located at.
+  * saves the json file as `Contacts.json` in the root folder of where `ScoopBook.jar` is located at.
 
 ### Importing your contacts: `import`
 
@@ -403,7 +403,7 @@ This command overwrites existing contacts and remove all notes.
 * For Windows: `import C:/Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For macOS: `import /Users/username/Desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `Users/username/Desktop` folder.
 * For Linux: `import /home/user/desktop/MyContacts.json` imports the json file from `MyContacts.json` in the `home/user/desktop` folder.
-* `import Contacts.json` imports the json file named `Contacts.json` from the root folder of where [CS2103-W13-1][ScoopBook].jar is located at.
+* `import Contacts.json` imports the json file named `Contacts.json` from the root folder of where ScoopBook.jar is located at.
 
 ### Exiting the program : `exit`
 

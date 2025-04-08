@@ -174,11 +174,11 @@ Format: export TARGET_PATH
 Note:
 - The export command only exports your contacts. It does not export the notes tagged to them.
 - Before executing the export command, add at least 1 contact using the add command.
-- Export command is case-insensitive. If 'sAmPle.json' already exists (in the folder the '[CS2103-W13-1][ScoopBook].jar'
+- Export command is case-insensitive. If 'sAmPle.json' already exists (in the folder the 'ScoopBook.jar'
   is located at), export sample.json` will overwrite 'sAmPle.json'.
 - Ensure that there are no special characters (E.g. `*!<>`) or spaces in the TARGET_PATH.
 - TIP: If you are running into issues with TARGET_PATH, use export sample.json to export it directly to the root
-  folder with of the [CS2103-W13-1][ScoopBook].jar file. Then, move the .json file to wherever you want it to be.
+  folder with of the ScoopBook.jar file. Then, move the .json file to wherever you want it to be.
 
 Examples:
 - For Windows: 'export C:/Users/username/Desktop/MyContacts.json' saves the json file as MyContacts.json in the
@@ -188,7 +188,7 @@ Examples:
 - For Linux: 'export /home/user/desktop/MyContacts.json' saves the json file as MyContacts.json in the
   home/user/desktop folder.
 - For all OS: 'export Contacts.json' saves the json file as Contacts.json in the root folder of where
-  [CS2103-W13-1][ScoopBook].jar is located at.
+  ScoopBook.jar is located at.
 
 12. Importing your contacts: import
 
@@ -209,7 +209,7 @@ Examples:
 - For Linux: 'import /home/user/desktop/MyContacts.json' imports the json file from MyContacts.json in the
   home/user/desktop folder.
 - For all OS: 'import Contacts.json' imports the json file named Contacts.json from the root folder of where
-  [CS2103-W13-1][ScoopBook].jar is located at.
+  ScoopBook.jar is located at.
 
 13. Clearing all entries: clear
 
