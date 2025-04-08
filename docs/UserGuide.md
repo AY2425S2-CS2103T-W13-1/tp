@@ -43,7 +43,7 @@ With ScoopBook, you get:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the commandto in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command into the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -206,7 +206,7 @@ delete INDEX
 Adds the tag(s) typed in to the specified person.
 
 ```
-addtag INDEX t/TAG1 [t/MORETAGS]
+addtag INDEX t/TAG1 [t/MORE_TAGS]
 ```
 <img src="images/AddTagCommand.png" width="700" />
 <div markdown="block" class="alert alert-info">
@@ -231,7 +231,7 @@ addtag INDEX t/TAG1 [t/MORETAGS]
 Removes the specified tag(s) from the specified person.
 
 ```
-removetag INDEX t/TAG1 [t/MORETAGS]
+removetag INDEX t/TAG1 [t/MORE_TAGS]
 ```
 <img src="images/RemoveTagCommand.png" width="700" />
 
@@ -259,7 +259,7 @@ removetag INDEX t/TAG1 [t/MORETAGS]
 Find persons who have all the specified tags.
 
 ```
-findtag t/TAG1 [t/MORETAGS]
+findtag t/TAG1 [t/MORE_TAGS]
 ```
 <img src="images/FindTagCommand.png" width="700" />
 <div markdown="block" class="alert alert-info">
@@ -476,9 +476,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Tag** | `addtag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `addtag 2 t/Witness`
-**Find Tag** | `findtag t/TAG1 [t/MORETAGS]…​` <br> e.g., `findtag t/Witness`
-**Remove Tag** | `removetag INDEX t/TAG1 [t/MORETAGS]…​` <br> e.g., `removetag 2 t/Witness`
+**Add Tag** | `addtag INDEX t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `addtag 2 t/Witness`
+**Find Tag** | `findtag t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `findtag t/Witness`
+**Remove Tag** | `removetag INDEX t/TAG1 [t/MORE_TAGS]…​` <br> e.g., `removetag 2 t/Witness`
 **Note** | `note INDEX` <br> e.g., `note 2`
 **Delete Note** | `deletenote INDEX` <br> e.g., `deletenote 3`
 **Export Contacts** | `export TARGET_PATH` <br> e.g., `export backup.json`
