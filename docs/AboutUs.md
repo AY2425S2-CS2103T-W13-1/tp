@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](https://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `shawn.goh@u.nus.edu`
 
 ## Project team
 
@@ -15,7 +15,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://shawnnygoh.github.io/)]
 [[github](https://github.com/shawnnygoh)]
-[[portfolio](team/shawn.md)]
 
 * Role: Deliverables and Deadlines
 
